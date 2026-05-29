@@ -112,7 +112,9 @@ class FitCalibrationAlgorithm(CRSmartAlgorithm):
         context: QgsProcessingContext,
         feedback: QgsProcessingFeedback,
     ) -> dict[str, Any]:
-        csv_path = self.parameterAsFile(parameters, self.INPUT_CSV, context)
+        # A QgsProcessingParameterFile value is a path string; parameterAsString
+        # is available across all target QGIS versions (unlike parameterAsFile).
+        csv_path = self.parameterAsString(parameters, self.INPUT_CSV, context)
         method_idx = self.parameterAsEnum(parameters, self.METHOD, context)
         threshold = self.parameterAsDouble(parameters, self.OUTLIER_THRESHOLD, context)
         method = _METHODS[method_idx]

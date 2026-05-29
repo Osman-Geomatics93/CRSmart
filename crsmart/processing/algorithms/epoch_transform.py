@@ -114,9 +114,7 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
             target_crs,
         )
         if sink is None:
-            raise QgsProcessingException(
-                self.invalidSinkError(parameters, self.OUTPUT)
-            )
+            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
 
         total = source.featureCount()
         step = 100.0 / total if total else 0.0
