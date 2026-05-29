@@ -23,6 +23,19 @@ def qgs_crs_to_pyproj(crs: QgsCoordinateReferenceSystem) -> CRS:
     return CRS.from_wkt(crs.toWkt())
 
 
+def qgs_crs_to_crslike(crs: QgsCoordinateReferenceSystem) -> str:
+    """Return an engine CRS identifier, preferring the authority id.
+
+    The transformation recommender depends on PROJ's *catalogued* coordinate
+    operations, which are keyed by authority code (e.g. ``EPSG:4201``). A WKT
+    round-trip can drop that authority binding on some PROJ versions, leaving
+    only a ballpark transform. So we pass the authid (``EPSG:xxxx``) when QGIS
+    has one and fall back to WKT only for custom/compound CRSs without an id.
+    """
+    authid = crs.authid()
+    return authid if authid else crs.toWkt()
+
+
 def pyproj_crs_to_qgs(crs: CRS) -> QgsCoordinateReferenceSystem:
     """Convert a pyproj CRS back into a QgsCoordinateReferenceSystem via WKT."""
     return QgsCoordinateReferenceSystem.fromWkt(crs.to_wkt())

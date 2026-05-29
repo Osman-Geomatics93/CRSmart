@@ -25,7 +25,7 @@ from qgis.core import (
 
 from ...core.models import RecommendationResult
 from ...core.transform_recommender import enumerate_candidates
-from .base import CRSmartAlgorithm
+from .base import CRSmartAlgorithm, qgs_crs_to_crslike
 
 WGS84 = "EPSG:4326"
 
@@ -110,9 +110,7 @@ class RecommendTransformAlgorithm(CRSmartAlgorithm):
     ) -> dict[str, Any]:
         source = self.parameterAsCrs(parameters, self.SOURCE_CRS, context)
         target = self.parameterAsCrs(parameters, self.TARGET_CRS, context)
-        allow_ballpark = self.parameterAsBool(
-            parameters, self.ALLOW_BALLPARK, context
-        )
+        allow_ballpark = self.parameterAsBool(parameters, self.ALLOW_BALLPARK, context)
 
         aoi_bbox = None
         if parameters.get(self.EXTENT):
@@ -131,8 +129,8 @@ class RecommendTransformAlgorithm(CRSmartAlgorithm):
                 )
 
         result = enumerate_candidates(
-            source.toWkt(),
-            target.toWkt(),
+            qgs_crs_to_crslike(source),
+            qgs_crs_to_crslike(target),
             area_of_interest=aoi_bbox,
             allow_ballpark=allow_ballpark,
         )

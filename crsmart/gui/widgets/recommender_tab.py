@@ -28,6 +28,7 @@ from qgis.PyQt.QtWidgets import (
 from ...core.grids import download_grids
 from ...core.models import RecommendationResult, TransformCandidate
 from ...core.transform_recommender import enumerate_candidates
+from ...processing.algorithms.base import qgs_crs_to_crslike
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
     from qgis.gui import QgisInterface
@@ -97,8 +98,8 @@ class RecommenderTab(QWidget):
             return
         try:
             result = enumerate_candidates(
-                source.toWkt(),
-                target.toWkt(),
+                qgs_crs_to_crslike(source),
+                qgs_crs_to_crslike(target),
                 allow_ballpark=self.allow_ballpark.isChecked(),
             )
         except Exception as exc:
