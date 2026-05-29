@@ -15,12 +15,14 @@ GROUP_ID = "crsmarttools"
 
 
 def qgs_crs_to_pyproj(crs: QgsCoordinateReferenceSystem) -> CRS:
-    """Convert a QgsCoordinateReferenceSystem into a pyproj CRS via WKT.
+    """Convert a QgsCoordinateReferenceSystem into a pyproj CRS.
 
-    WKT is the lossless interchange that preserves compound CRS, datum ensembles
-    and dynamic-frame metadata, so the engine sees exactly what QGIS holds.
+    Prefer the authority id (e.g. ``EPSG:4326``) when QGIS has one: it is robust
+    and keeps PROJ's catalogued metadata. Fall back to WKT for custom/compound
+    CRSs without an authid. WKT alone is fragile -- some QGIS builds return an
+    empty WKT for memory-layer CRSs, which would raise CRSError.
     """
-    return CRS.from_wkt(crs.toWkt())
+    return CRS.from_user_input(qgs_crs_to_crslike(crs))
 
 
 def qgs_crs_to_crslike(crs: QgsCoordinateReferenceSystem) -> str:
