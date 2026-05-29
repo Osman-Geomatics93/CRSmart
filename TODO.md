@@ -72,7 +72,7 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 
 ## Open items / decisions to confirm with user
 - Author set to **OSMAN IBRAHIM** <osmangeomatics93@gmail.com> (confirmed by user).
-- Repo slug placeholder is `github.com/osmangeomatics/crsmart` — replace with the real one.
+- Repo slug placeholder is `github.com/Osman-Geomatics93/CRSmart` — replace with the real one.
 - **Qt6 checker CI entrypoint** is best-effort (`pyqgis-4-checker` / fallback
   script path) and must be confirmed against the Oslandia image in Phase 6.
 - Defaults taken at Phase 1: GitHub Actions CI, CSV-first calibration input,

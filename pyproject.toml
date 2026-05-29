@@ -29,9 +29,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/osmangeomatics/crsmart"
-Repository = "https://github.com/osmangeomatics/crsmart"
-Issues = "https://github.com/osmangeomatics/crsmart/issues"
+Homepage = "https://github.com/Osman-Geomatics93/CRSmart"
+Repository = "https://github.com/Osman-Geomatics93/CRSmart"
+Issues = "https://github.com/Osman-Geomatics93/CRSmart/issues"
 
 [tool.setuptools]
 packages = ["crsmart"]

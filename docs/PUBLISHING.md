@@ -1,8 +1,7 @@
 # Publishing CRSmart to GitHub
 
-The repository is committed locally but has **no remote yet**, and the URLs use
-a placeholder slug (`osmangeomatics/crsmart`). Follow these steps once you decide
-the real GitHub owner/repo name.
+The project URLs target `github.com/Osman-Geomatics93/CRSmart`. These steps
+record how the repository is created and pushed (kept for reference / re-use).
 
 ## 1. Create the GitHub repository
 

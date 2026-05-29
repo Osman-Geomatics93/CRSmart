@@ -59,8 +59,8 @@ Full walkthrough with examples: [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md).
 
 ### From source (for development)
 ```bash
-git clone https://github.com/osmangeomatics/crsmart
-cd crsmart
+git clone https://github.com/Osman-Geomatics93/CRSmart
+cd CRSmart
 pip install -e ".[dev]"
 pre-commit install
 ```
