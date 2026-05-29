@@ -75,10 +75,12 @@ jobs:
           python3 -m pip install pytest pytest-qgis pytest-cov numpy pyproj
           python3 -c "import numpy, pyproj, pytest; print('deps OK')"
       - name: Run test suite
-        env:
-          PYTHONPATH: ${{ github.workspace }}
         run: |
           cd "$GITHUB_WORKSPACE"
+          # PREPEND the workspace so `import crsmart` works, but KEEP the
+          # container's PYTHONPATH (e.g. /usr/share/qgis/python on QGIS 4.x);
+          # overwriting it removes the qgis module from sys.path.
+          export PYTHONPATH="$GITHUB_WORKSPACE:${PYTHONPATH:-}"
           xvfb-run -a python3 -m pytest -ra --cov=crsmart --cov-report=term-missing
 
   package:
