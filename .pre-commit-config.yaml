@@ -1,0 +1,39 @@
+# Pre-commit hooks for CRSmart.
+# Install: pip install pre-commit && pre-commit install
+# Run on all files: pre-commit run --all-files
+minimum_pre_commit_version: "3.5.0"
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  - repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
+        additional_dependencies: ["qgis-stubs", "numpy", "types-setuptools"]
+        files: ^crsmart/
+
+  # Qt5 -> Qt6 compatibility check. The canonical checker is distributed via the
+  # Oslandia pyqgis-qt-checker image and is also run as a dedicated CI job
+  # (see .github/workflows/ci.yml). A local mirror hook is wired in Phase 6 once
+  # the exact pinned distribution is confirmed.

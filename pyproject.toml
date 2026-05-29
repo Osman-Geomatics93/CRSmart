@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crsmart"
+version = "0.1.0"
+description = "Uncertainty- and epoch-aware CRS / datum transformation assistant for QGIS"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-2.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Mohamed Fawzy", email = "mohamed.fawzy98@hotmail.com" }]
+keywords = ["qgis", "crs", "datum", "proj", "pyproj", "geodesy", "epoch", "helmert"]
+# Runtime deps are provided by the QGIS Python environment (pyqgis, pyproj) at
+# install time; numpy/pyproj are listed so the *engine* is testable standalone.
+dependencies = ["pyproj>=3.4", "numpy>=1.21"]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5",
+    "black>=24.3",
+    "mypy>=1.8",
+    "qgis-stubs>=0.2.0.post1",
+    "pytest>=7.4",
+    "pytest-qgis>=2.0",
+    "pytest-cov>=4.1",
+    "pre-commit>=3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/mohamed-fawzy/crsmart"
+Repository = "https://github.com/mohamed-fawzy/crsmart"
+Issues = "https://github.com/mohamed-fawzy/crsmart/issues"
+
+[tool.setuptools]
+packages = ["crsmart"]
+
+# ----------------------------------------------------------------------------
+# Lint / format / type
+# ----------------------------------------------------------------------------
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+src = ["crsmart", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "ANN", "SIM", "RUF", "TID"]
+ignore = [
+    "ANN101", # missing type annotation for self
+    "ANN102", # missing type annotation for cls
+    "UP007",  # keep Optional[X] for py3.9 readability
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ANN001", "ANN201", "S101"]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+# Qt portability hard rule: never import PyQt directly. Always go through the
+# qgis.PyQt shim so one codebase runs on Qt5 (QGIS <= 3.44) and Qt6 (QGIS 4.x).
+"PyQt5".msg = "Import Qt via 'from qgis.PyQt...' not PyQt5 directly (Qt5/Qt6 portability)."
+"PyQt6".msg = "Import Qt via 'from qgis.PyQt...' not PyQt6 directly (Qt5/Qt6 portability)."
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+ignore_missing_imports = false
+# Engine is strictly typed; GUI/processing wrappers lean on qgis-stubs.
+files = ["crsmart"]
+
+[[tool.mypy.overrides]]
+# pyproj / numpy ship partial or no stubs depending on version.
+module = ["pyproj.*", "numpy.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# QGIS-native enrichment paths are exercised only inside QGIS; stub gaps allowed.
+module = ["qgis.*", "processing.*"]
+ignore_missing_imports = true
+
+# ----------------------------------------------------------------------------
+# Tests
+# ----------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = ["ignore::DeprecationWarning"]

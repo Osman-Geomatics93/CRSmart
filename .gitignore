@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.installed.cfg
+
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Compiled translations (sources .ts are tracked; .qm are built)
+*.qm
+
+# QGIS plugin build artifacts
+*.zip
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local PROJ grid cache used during manual testing
+proj_grids/
+
+# Claude Code local settings
+.claude/settings.local.json

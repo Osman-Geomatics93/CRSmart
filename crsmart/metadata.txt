@@ -1,0 +1,28 @@
+[general]
+name=CRSmart
+qgisMinimumVersion=3.40
+qgisMaximumVersion=4.99
+supportsQt6=True
+description=Uncertainty- and epoch-aware CRS / datum transformation assistant.
+about=CRSmart turns CRS and datum transformation from a guessing game into a
+    guided, transparent, uncertainty-aware workflow. It recommends transformation
+    operations ranked by accuracy and area of validity, flags ballpark transforms,
+    detects missing PROJ grids (with consented CDN download), handles epoch-aware
+    (4D) transforms for dynamic datums, fits local site calibrations
+    (Helmert / affine) with residual reporting, and repairs missing vertical CRS.
+    All geodetic math goes through PROJ / pyproj. Every capability is exposed both
+    as a Processing algorithm and via a dockable panel.
+version=0.1.0
+author=Mohamed Fawzy
+email=mohamed.fawzy98@hotmail.com
+tracker=https://github.com/mohamed-fawzy/crsmart/issues
+repository=https://github.com/mohamed-fawzy/crsmart
+homepage=https://github.com/mohamed-fawzy/crsmart
+category=Vector
+icon=resources/icon.svg
+tags=crs,datum,transformation,projection,reprojection,epoch,dynamic datum,geodesy,helmert,vertical crs,proj,pyproj
+experimental=True
+deprecated=False
+hasProcessingProvider=yes
+license=GPL-2.0
+changelog=See CHANGELOG.md
