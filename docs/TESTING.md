@@ -52,16 +52,18 @@ you cloned the repo):
 
 ## B. Epoch-aware transform (dynamic datums) — *the refusal is the test*
 
-Create a scratch point layer in **ITRF2014 (EPSG:7912)**. Target = **ITRF2008 (EPSG:7911)**.
+Load `sample_points_itrf2014_australia.csv` as **ITRF2014 (EPSG:7912)**. Target = **GDA2020 (EPSG:7843)** — a global-dynamic ↔ plate-fixed pair, so plate motion is actually visible.
 
 **GUI — Epoch tab:**
 
 - [ ] **Explain epoch requirement** states an epoch **is required** and why.
 - [ ] **Run with the epoch unset** → CRSmart **refuses** (no silent output). *(key safety behavior)*
-- [ ] Set epoch **2010.0** → runs and produces output.
-- [ ] Same point at **1995.0** vs **2025.0** → coordinates **differ** (plate motion).
+- [ ] Set epoch **2020.0** → runs and produces output.
+- [ ] Same point at **1995.0** vs **2025.0** → coordinates **differ by ~1.7 m** (30 yr × ~5.7 cm/yr plate motion).
 
-**Processing — `Epoch-aware transform`:** `INPUT` layer, `TARGET_CRS=EPSG:7911`, `EPOCH` empty → errors out; with `EPOCH=2010.0` → succeeds.
+**Processing — `Epoch-aware transform`:** `INPUT` layer, `TARGET_CRS=EPSG:7843`, `EPOCH` empty → errors out; with `EPOCH=2020.0` → succeeds.
+
+> ITRF2014 → ITRF2008 (EPSG:7911) also requires an epoch, but two global frames barely move relative to each other — the 1995-vs-2025 difference is ~0. Use the dynamic↔plate-fixed pair above to *see* the effect.
 
 ---
 
