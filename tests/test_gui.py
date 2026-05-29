@@ -49,9 +49,8 @@ def test_calibration_tab_fits_pasted_points(qgis_iface) -> None:
 
 def test_vertical_tab_assembles_compound(qgis_iface) -> None:
     import pytest
-    from qgis.core import QgsCoordinateReferenceSystem
-
     from crsmart.gui.widgets.vertical_tab import VerticalTab
+    from qgis.core import QgsCoordinateReferenceSystem
 
     tab = VerticalTab(qgis_iface)
     tab.horizontal_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:4326"))
