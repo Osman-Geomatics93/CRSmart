@@ -116,13 +116,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install qgis-plugin-ci
-        run: pip install qgis-plugin-ci
-      # GitHub release + plugin zip only. Omitting --osgeo-* skips the
-      # plugins.qgis.org upload (no OSGeo credentials configured).
-      - name: Release
+      # GitHub release + plugin zip only (no plugins.qgis.org upload).
+      # qgis-plugin-ci's `release` expects a pre-existing GitHub release to
+      # upload to; gh creates the release and attaches the zip in one step.
+      - name: Build plugin zip
+        run: python scripts/build_zip.py
+      - name: Create GitHub release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          qgis-plugin-ci release "${GITHUB_REF_NAME}" \
-            --github-token "${GITHUB_TOKEN}"
+          notes="docs/RELEASE_NOTES_${GITHUB_REF_NAME}.md"
+          if [ -f "$notes" ]; then
+            gh release create "${GITHUB_REF_NAME}" dist/*.zip \
+              --title "${GITHUB_REF_NAME}" --notes-file "$notes"
+          else
+            gh release create "${GITHUB_REF_NAME}" dist/*.zip \
+              --title "${GITHUB_REF_NAME}" --generate-notes
+          fi
