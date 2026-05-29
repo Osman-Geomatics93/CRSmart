@@ -105,7 +105,7 @@ jobs:
           path: dist/*.zip
 
   release:
-    name: Create GitHub release
+    name: Publish release (GitHub + plugins.qgis.org)
     needs: [lint, qt6-check, test, package]
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
@@ -116,20 +116,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      # GitHub release + plugin zip only (no plugins.qgis.org upload).
-      # qgis-plugin-ci's `release` expects a pre-existing GitHub release to
-      # upload to; gh creates the release and attaches the zip in one step.
-      - name: Build plugin zip
-        run: python scripts/build_zip.py
+      - name: Install qgis-plugin-ci
+        run: pip install qgis-plugin-ci
+      # Create the GitHub release shell first (notes only). qgis-plugin-ci's
+      # `release` then attaches its packaged zip to this release AND uploads
+      # the same zip to plugins.qgis.org. qgis-plugin-ci can't create the
+      # release itself (it 404s when none exists for the tag), and letting gh
+      # attach the zip too would duplicate the asset.
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           notes="docs/RELEASE_NOTES_${GITHUB_REF_NAME}.md"
           if [ -f "$notes" ]; then
-            gh release create "${GITHUB_REF_NAME}" dist/*.zip \
+            gh release create "${GITHUB_REF_NAME}" \
               --title "${GITHUB_REF_NAME}" --notes-file "$notes"
           else
-            gh release create "${GITHUB_REF_NAME}" dist/*.zip \
+            gh release create "${GITHUB_REF_NAME}" \
               --title "${GITHUB_REF_NAME}" --generate-notes
           fi
+      - name: Publish to GitHub assets and plugins.qgis.org
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OSGEO_USERNAME: ${{ secrets.OSGEO_USERNAME }}
+          OSGEO_PASSWORD: ${{ secrets.OSGEO_PASSWORD }}
+        run: |
+          qgis-plugin-ci release "${GITHUB_REF_NAME}" \
+            --github-token "${GITHUB_TOKEN}" \
+            --osgeo-username "${OSGEO_USERNAME}" \
+            --osgeo-password "${OSGEO_PASSWORD}"

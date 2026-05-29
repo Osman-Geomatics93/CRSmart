@@ -10,7 +10,7 @@ _Nothing yet._
 
 ## [0.1.0] - 2026-05-29
 
-First public release. **Experimental.** Runs on QGIS 3.40 LTR (Qt5) through
+First public release. Runs on QGIS 3.40 LTR (Qt5) through
 QGIS 4.x (Qt6); every capability is available both as a Processing algorithm and
 in the dockable panel. All geodetic math goes through PROJ / pyproj.
 

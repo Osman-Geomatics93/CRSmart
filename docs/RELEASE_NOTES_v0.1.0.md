@@ -2,7 +2,7 @@
 
 **An uncertainty- and epoch-aware CRS / datum transformation assistant for QGIS.**
 
-First public release (experimental). CRSmart turns CRS and datum transformation
+First public release. CRSmart turns CRS and datum transformation
 from a guessing game into a guided, transparent workflow — its angle is honesty
 about **accuracy** and **epoch**, not just "reproject". Runs on **QGIS 3.40 LTR
 (Qt5) through QGIS 4.x (Qt6)**; every feature is available both as a Processing
@@ -47,7 +47,7 @@ See [`docs/USER_GUIDE.md`](../docs/USER_GUIDE.md) for a full walkthrough.
 
 ## Known limitations
 
-- Experimental release; APIs and UI may change before 1.0.
+- Early release; APIs and UI may still change before 1.0.
 - README screenshots are placeholders.
 - One GUI test self-skips on QGIS builds whose projection widget can't hold a
   standalone vertical CRS; the underlying engine path is fully tested.
