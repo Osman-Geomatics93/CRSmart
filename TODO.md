@@ -66,14 +66,23 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 - [x] Built & structure-verified `dist/crsmart-0.1.0.zip` (crsmart/ top-level,
       no pyc/cache/tests, ships metadata + i18n)
 - [x] `docs/USER_GUIDE.md` + README usage/build sections; metadata changelog
-- [ ] Qt6 checker entrypoint still best-effort (verified only when CI runs;
-      no local QGIS-4 checker image) — see Open items
-- [ ] Screenshots are placeholders (need a running QGIS to capture)
+- [x] Pushed to GitHub (Osman-Geomatics93/CRSmart, public); **CI FULLY GREEN**
+      at 6366a51 (run 26645629199, conclusion=success): lint+mypy, Qt6 gate,
+      Tests on QGIS ltr (3.40/Qt5) **71 passed, 1 skipped** AND latest (Qt6)
+      **71 passed, 1 skipped**, and build+verify zip. release skipped (tag-gated).
+      Real Processing + GUI pytest-qgis tests run on both Qt5 and Qt6.
+- [x] Qt6 gate is a self-contained grep check (no fragile external image)
 
-## Open items / decisions to confirm with user
-- Author set to **OSMAN IBRAHIM** <osmangeomatics93@gmail.com> (confirmed by user).
-- Repo slug placeholder is `github.com/Osman-Geomatics93/CRSmart` — replace with the real one.
-- **Qt6 checker CI entrypoint** is best-effort (`pyqgis-4-checker` / fallback
-  script path) and must be confirmed against the Oslandia image in Phase 6.
-- Defaults taken at Phase 1: GitHub Actions CI, CSV-first calibration input,
-  cm-level tolerance for Feature B assertions.
+## Remaining — need the user (not code)
+- [ ] Load `dist/crsmart-0.1.0.zip` in local QGIS 3.40 desktop to eyeball it.
+- [ ] Capture README screenshots (placeholders for now; need a running QGIS).
+- [ ] Publish: add repo secrets OSGEO_USERNAME / OSGEO_PASSWORD, then push a
+      version tag (e.g. `v0.1.0`) to trigger the tag-gated release job.
+
+## Notes
+- Author: **OSMAN IBRAHIM** <osmangeomatics93@gmail.com>; slug Osman-Geomatics93/CRSmart.
+- Defaults locked at Phase 1: GitHub Actions CI, CSV-first calibration input,
+  cm-level tolerance for Feature B assertions. ruff is the sole formatter
+  (black removed). The 1 skipped test = GUI vertical-tab on QGIS builds whose
+  projection widget can't hold a standalone vertical CRS (engine path covered
+  in tests/test_vertical.py).
