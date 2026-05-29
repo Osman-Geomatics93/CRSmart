@@ -6,8 +6,10 @@ CRSmart turns CRS and datum transformation from a guessing game into a guided,
 transparent, *uncertainty-aware* workflow. Its angle is **honesty about accuracy
 and epoch**, not just "reproject".
 
-> Status: **early development** (Phase 1 scaffold). See `TODO.md` for progress
-> and `DESIGN.md` for the full design.
+> Status: **feature-complete, pre-release (v0.1.0, experimental).** All four
+> features are implemented as both Processing algorithms and GUI tabs, with a
+> tested pure-Python engine. See `TODO.md` for progress, `DESIGN.md` for the
+> design, and [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md) for usage.
 
 ## Features
 
@@ -20,6 +22,26 @@ and epoch**, not just "reproject".
 
 Every feature is available both as a **Processing algorithm** (scriptable,
 batchable) and via a **dockable panel**.
+
+## Usage
+
+Open the panel from **Plugins ▸ CRSmart** (toolbar icon), or find the algorithms
+in the **Processing Toolbox ▸ CRSmart**. Quick tour:
+
+- **Recommend** — pick a source and target CRS; CRSmart lists every candidate
+  transform with its accuracy (m), flags ballpark and missing-grid cases, and
+  recommends the best. Copy the PROJ pipeline, or download a missing grid (you
+  are asked for consent first — no silent network access).
+- **Epoch** — for dynamic datums (e.g. ITRF, GDA2020), set a coordinate epoch
+  and run a correct 4D transform. CRSmart explains in plain language *why* an
+  epoch is needed and refuses to run silently when one is required but unset.
+- **Calibrate** — paste or load (CSV) matched control points
+  (`local_x, local_y, target_x, target_y`), fit a Helmert or affine transform,
+  inspect residuals/RMSE/outliers, and copy the resulting PROJ pipeline.
+- **Vertical** — fix "vertical CRS missing!" by assembling a compound
+  (horizontal + vertical) CRS and assigning it.
+
+Full walkthrough with examples: [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md).
 
 ## Requirements
 
@@ -59,6 +81,17 @@ pytest                        # tests (pytest-qgis)
 The pure-Python engine lives in `crsmart/core/` and has **zero** Qt/`iface`
 dependencies (enforced by `tests/test_no_qt_in_core.py`), so it is unit-testable
 without a running QGIS GUI. See `CLAUDE.md` for the full constraint set.
+
+### Building the plugin zip
+
+```bash
+python scripts/build_zip.py        # -> dist/crsmart-<version>.zip
+```
+
+The zip has `crsmart/` as its single top-level directory (the id QGIS uses) and
+excludes tests, caches and dev files. Install it via
+`Plugins ▸ Manage and Install Plugins ▸ Install from ZIP`. Tagged releases are
+published to the OSGeo plugin repository by CI via `qgis-plugin-ci`.
 
 ## License
 

@@ -57,11 +57,18 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 - [x] Core engine coverage 88% -> 93% (remaining gap = live CDN download body, not unit-tested)
 - [x] Local gates green: ruff, ruff format, mypy (26 files), pytest 58 (non-QGIS subset)
 
-## Phase 6 — CI, packaging, docs
-- [ ] Finalize CI matrix; confirm/pin exact Qt6 checker entrypoint (see below)
-- [ ] `qgis-plugin-ci` release config
-- [ ] i18n `.ts`/`.qm` scaffolding
-- [ ] README screenshots, user guide; verify built zip installs cleanly
+## Phase 6 — CI, packaging, docs ✅
+- [x] CI matrix finalized: lint+mypy, Qt6 checker, tests on QGIS 3.40 + 4.x,
+      package (build+verify zip), release (tag-gated qgis-plugin-ci)
+- [x] `.qgis-plugin-ci` release config
+- [x] i18n scaffolding: `crsmart/i18n/crsmart_en.ts` baseline catalogue
+- [x] `scripts/build_zip.py` (dependency-free) + `tests/test_packaging.py`
+- [x] Built & structure-verified `dist/crsmart-0.1.0.zip` (crsmart/ top-level,
+      no pyc/cache/tests, ships metadata + i18n)
+- [x] `docs/USER_GUIDE.md` + README usage/build sections; metadata changelog
+- [ ] Qt6 checker entrypoint still best-effort (verified only when CI runs;
+      no local QGIS-4 checker image) — see Open items
+- [ ] Screenshots are placeholders (need a running QGIS to capture)
 
 ## Open items / decisions to confirm with user
 - Author set to **OSMAN IBRAHIM** <osmangeomatics93@gmail.com> (confirmed by user).

@@ -73,3 +73,47 @@ jobs:
       - name: Run test suite
         run: |
           xvfb-run -a python3 -m pytest -ra --cov=crsmart --cov-report=term-missing
+
+  package:
+    name: Build & verify plugin zip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build zip
+        run: python scripts/build_zip.py
+      - name: Verify zip structure
+        run: python -m pytest tests/test_packaging.py -ra
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: crsmart-plugin-zip
+          path: dist/*.zip
+
+  release:
+    name: Release to QGIS plugin repository
+    needs: [lint, qt6-check, test, package]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install qgis-plugin-ci
+        run: pip install qgis-plugin-ci
+      # Publishes the tagged release to the OSGeo plugin repo and attaches the
+      # zip to the GitHub release. Requires repository secrets:
+      #   OSGEO_USERNAME / OSGEO_PASSWORD (plugins.qgis.org credentials).
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OSGEO_USERNAME: ${{ secrets.OSGEO_USERNAME }}
+          OSGEO_PASSWORD: ${{ secrets.OSGEO_PASSWORD }}
+        run: |
+          qgis-plugin-ci release "${GITHUB_REF_NAME}" \
+            --github-token "${GITHUB_TOKEN}" \
+            --osgeo-username "${OSGEO_USERNAME}" \
+            --osgeo-password "${OSGEO_PASSWORD}"

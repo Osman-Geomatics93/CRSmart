@@ -40,3 +40,12 @@ All notable changes to CRSmart are documented here. The format follows
   confirmation dialog (no silent network). The GUI holds no geodetic logic — it
   only collects input, calls the engine / Processing, and renders output.
   pytest-qgis interaction tests added for all four tabs.
+- **Phase 5 — Tests & polish.** Hardened calibration input validation
+  (NaN/infinity/ragged/non-numeric → clean `CalibrationError`); added edge-case
+  tests (identity transform, antimeridian area-of-use wrap, grid consent-gate
+  paths). Core engine coverage raised to ~94%.
+- **Phase 6 — CI, packaging, docs.** Finalized the GitHub Actions matrix
+  (lint+mypy, Qt6 checker, tests on QGIS 3.40 LTR + 4.x, build-and-verify zip,
+  tag-gated `qgis-plugin-ci` release). Added `.qgis-plugin-ci`, i18n `.ts`
+  scaffolding, a dependency-free `scripts/build_zip.py` with packaging tests,
+  `docs/USER_GUIDE.md`, and README usage/build sections.

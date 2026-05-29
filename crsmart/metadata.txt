@@ -25,4 +25,6 @@ experimental=True
 deprecated=False
 hasProcessingProvider=yes
 license=GPL-2.0
-changelog=See CHANGELOG.md
+changelog=0.1.0 - First release. Four features (recommend / epoch / calibrate /
+    repair vertical) as Processing algorithms and a dockable panel.
+    See CHANGELOG.md for details.

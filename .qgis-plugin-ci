@@ -1,0 +1,7 @@
+# qgis-plugin-ci configuration (https://github.com/opengisch/qgis-plugin-ci)
+# The plugin package directory (contains metadata.txt and __init__.py).
+plugin_path: crsmart
+github_organization_slug: osmangeomatics
+project_slug: crsmart
+# Translation handling: language sources live in crsmart/i18n.
+# qgis-plugin-ci compiles .ts -> .qm during packaging when present.
