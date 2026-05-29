@@ -40,9 +40,14 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 - [x] Local gates green: mypy (22 files), ruff, ruff format, pytest 44 (non-QGIS subset)
 - [ ] QGIS-dependent Processing tests verified only in CI (no local QGIS / no remote yet)
 
-## Phase 4 — GUI dock panel
-- [ ] Feature tabs on `QgsDockWidget`; native widgets; messageBar; consent modal
-- [ ] A couple of pytest-qgis interaction tests
+## Phase 4 — GUI dock panel ✅
+- [x] `QTabWidget` dock with four tabs (Recommend / Epoch / Calibrate / Vertical)
+- [x] Native widgets: QgsProjectionSelectionWidget, QgsMapLayerComboBox
+- [x] Results/warnings via `iface.messageBar()`; explicit QMessageBox consent
+      modal before any PROJ-CDN grid download (Recommend tab)
+- [x] No business logic in GUI — tabs call core/Processing only
+- [x] pytest-qgis interaction tests in `tests/test_gui.py` (run in CI)
+- [x] Local gates green: ruff, ruff format, mypy (26 files), pytest 37 (non-QGIS subset)
 
 ## Phase 5 — Tests & polish
 - [ ] Edge cases, error states, docstrings, coverage round-out
