@@ -18,9 +18,9 @@ reports an RMSE of ~0 with **no outliers** — a sanity check that the fit and t
 emitted PROJ pipeline are correct.
 
 ### `sample_control_points_with_outlier.csv`
-Identical, except point **index 4** has a deliberate ~5 m blunder. Fitting flags
-that point as an **outlier** (standardized residual above the 3.5σ threshold),
-demonstrating CRSmart's blunder detection.
+Identical, except point **index 4** has a deliberate ~20 m blunder. Fitting flags
+that point as an **outlier** (standardized residual ~9.9, well above the 3.5
+threshold), demonstrating CRSmart's blunder detection.
 
 Try it: load either file in the Calibrate tab, choose **Helmert**, and click
 **Fit calibration**.
