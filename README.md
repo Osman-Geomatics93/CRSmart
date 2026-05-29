@@ -82,6 +82,9 @@ The pure-Python engine lives in `crsmart/core/` and has **zero** Qt/`iface`
 dependencies (enforced by `tests/test_no_qt_in_core.py`), so it is unit-testable
 without a running QGIS GUI. See `CLAUDE.md` for the full constraint set.
 
+For verifying an installed build by hand in a real QGIS (both surfaces, with
+known sample-data results), follow [`docs/TESTING.md`](docs/TESTING.md).
+
 ### Building the plugin zip
 
 ```bash
