@@ -6,46 +6,58 @@ All notable changes to CRSmart are documented here. The format follows
 
 ## [Unreleased]
 
+_Nothing yet._
+
+## [0.1.0] - 2026-05-29
+
+First public release. **Experimental.** Runs on QGIS 3.40 LTR (Qt5) through
+QGIS 4.x (Qt6); every capability is available both as a Processing algorithm and
+in the dockable panel. All geodetic math goes through PROJ / pyproj.
+
 ### Added
-- **Phase 0 — Design.** `DESIGN.md`: module breakdown, verified QGIS/pyproj API
-  surface (with introduction versions and fallbacks), data flow, and test plan.
-- **Phase 1 — Scaffold.** Repository skeleton, `metadata.txt`
-  (`qgisMinimumVersion=3.40`, `qgisMaximumVersion=4.99`, `supportsQt6=True`,
-  GPL-2.0), `classFactory` + plugin class (`initGui`/`initProcessing`/`unload`),
-  stub Processing provider, empty dockable panel, `pyproject.toml`
-  (ruff/black/mypy + deps), pre-commit config, pytest-qgis smoke tests,
-  core-has-no-Qt architecture guard, and a GitHub Actions CI matrix
-  (lint + mypy + Qt6 checker + tests on QGIS 3.40 LTR and 4.x).
-- **Phase 2 — Core engine** (pure Python, no Qt). Feature A transformation
-  recommender with uncertainty (accuracy ranking, ballpark detection,
-  missing-grid reporting, reusable PROJ pipelines, AOI coverage; never
-  recommends a ballpark transform); Feature B epoch-aware / dynamic-datum 4D
-  transforms with epoch enforcement; Feature C Helmert/affine least-squares
-  calibration emitting a reusable PROJ pipeline (residuals, RMSE, robust
-  3.5-sigma outlier flagging); Feature D vertical-CRS detection and compound-CRS
-  assembly; and a grid module with a hard download-consent gate (no silent
-  network access).
-- **Phase 3 — Processing algorithms.** Five `QgsProcessingAlgorithm`s under the
-  provider, each a thin wrapper over the core engine with help text: Recommend
-  transformation (with uncertainty), Reproject layer (with an explicit pinned
-  PROJ operation), Epoch-aware transform (refuses to run silently without a
-  required epoch), Fit local site calibration (Helmert/affine from CSV), and
-  Repair vertical CRS (assemble/assign a compound CRS). Added a WKT-based
-  QGIS<->pyproj CRS bridge; pushed CSV parsing / reusable-transformer logic into
-  the testable core. Headless algorithm tests run under pytest-qgis in CI.
-- **Phase 4 — GUI dock panel.** A `QgsDockWidget` with one tab per feature
-  (Recommend / Epoch / Calibrate / Vertical), built on native QGIS widgets
-  (`QgsProjectionSelectionWidget`, `QgsMapLayerComboBox`). Results and warnings
-  surface via `iface.messageBar()`; grid downloads require an explicit
-  confirmation dialog (no silent network). The GUI holds no geodetic logic — it
-  only collects input, calls the engine / Processing, and renders output.
-  pytest-qgis interaction tests added for all four tabs.
-- **Phase 5 — Tests & polish.** Hardened calibration input validation
-  (NaN/infinity/ragged/non-numeric → clean `CalibrationError`); added edge-case
-  tests (identity transform, antimeridian area-of-use wrap, grid consent-gate
-  paths). Core engine coverage raised to ~94%.
-- **Phase 6 — CI, packaging, docs.** Finalized the GitHub Actions matrix
-  (lint+mypy, Qt6 checker, tests on QGIS 3.40 LTR + 4.x, build-and-verify zip,
-  tag-gated `qgis-plugin-ci` release). Added `.qgis-plugin-ci`, i18n `.ts`
-  scaffolding, a dependency-free `scripts/build_zip.py` with packaging tests,
-  `docs/USER_GUIDE.md`, and README usage/build sections.
+
+- **Transformation recommender with uncertainty (Feature A).** Enumerates every
+  candidate transform between two CRSs, annotated with accuracy (metres), area of
+  validity, ballpark flag, and missing-grid dependency; ranks them and recommends
+  the best. Never silently uses a ballpark transform. Emits the chosen PROJ
+  pipeline for reuse. Algorithm: `crsmart:recommendtransform`.
+- **Reproject layer with an explicit operation.** Writes a reprojected copy of a
+  vector layer, optionally pinning a specific PROJ coordinate operation so the
+  transform used is explicit and reproducible. Algorithm: `crsmart:reprojectlayer`.
+- **Epoch-aware / dynamic-datum (4D) transforms (Feature B).** Detects dynamic
+  reference frames (e.g. ITRF, GDA2020), explains in plain language why an epoch
+  is required, performs the time-dependent transform at a given coordinate epoch,
+  and refuses to run silently when an epoch is required but unset. Algorithm:
+  `crsmart:epochtransform`.
+- **Local site calibration (Feature C).** Fits a 2D conformal Helmert
+  (4-parameter) or 6-parameter affine transform from matched control points (CSV
+  or pasted), reporting per-point residuals, RMSE, and robustly flagged outliers,
+  and emitting a reusable `+proj=affine` pipeline. Algorithm:
+  `crsmart:fitcalibration`.
+- **Vertical datum repair (Feature D).** Detects a missing vertical CRS and
+  assembles/assigns a compound (horizontal + vertical) CRS. Algorithm:
+  `crsmart:repairvertical`.
+- **Dockable GUI panel** with one tab per feature, built on native QGIS widgets
+  (`QgsProjectionSelectionWidget`, `QgsMapLayerComboBox`); results and warnings
+  via `iface.messageBar()`.
+- **Consented PROJ-CDN grid download.** When a more accurate operation needs a
+  grid that is not installed, CRSmart offers to fetch it from
+  `https://cdn.proj.org` only after explicit confirmation. No network access
+  happens as a side effect of browsing transformations.
+- **Sample data and docs.** `docs/USER_GUIDE.md`, sample control-point CSVs, and
+  README usage/build sections.
+
+### Engineering
+
+- Pure-Python engine in `crsmart/core` (pyproj + numpy) with **zero Qt / iface
+  dependency**, enforced by a test, so it is unit-testable headlessly.
+- Qt5/Qt6 portability: all Qt access via the `qgis.PyQt` shim with fully
+  qualified enums; CI gates reject direct `PyQt5`/`PyQt6` imports and unqualified
+  Qt enums.
+- CI on GitHub Actions: ruff + mypy, a Qt5/Qt6 compatibility gate, the test suite
+  on QGIS 3.40 LTR (Qt5) and latest (Qt6) containers, and a build-and-verify
+  plugin-zip job. Packaging/release via `qgis-plugin-ci`.
+- License: GPL-2.0-or-later.
+
+[Unreleased]: https://github.com/Osman-Geomatics93/CRSmart/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/Osman-Geomatics93/CRSmart/releases/tag/v0.1.0
