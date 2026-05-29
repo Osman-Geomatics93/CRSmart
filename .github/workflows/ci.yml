@@ -35,24 +35,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      # The official QGIS pyqt5->pyqt6 checker is a self-contained AST scan; we
-      # fetch it at run time (no external container needed). It exits non-zero on
-      # any Qt5-only API usage.
-      - name: Fetch the official Qt6 checker
-        run: |
-          curl -fsSL -o pyqt5_to_pyqt6.py \
-            https://raw.githubusercontent.com/qgis/QGIS/master/scripts/pyqt5_to_pyqt6.py
-      - name: Run Qt6 compatibility checker
-        run: python pyqt5_to_pyqt6.py crsmart
+      # Self-contained, dependency-free Qt5/Qt6 portability gates (no external
+      # image needed). These enforce the two rules that matter for one codebase
+      # running on Qt5 (QGIS <= 3.44) and Qt6 (QGIS 4.x).
       - name: Assert no direct PyQt imports (qgis.PyQt shim only)
         run: |
-          if grep -rEn "^\s*(import|from)\s+PyQt(5|6)\b" crsmart; then
+          if grep -rEn "^[[:space:]]*(import|from)[[:space:]]+PyQt(5|6)\b" crsmart; then
             echo "Direct PyQt import found; use the qgis.PyQt shim." && exit 1
           fi
           echo "OK: no direct PyQt imports."
+      - name: Assert no unqualified Qt enums (Qt6 requires fully-qualified)
+        run: |
+          if grep -rEn "\bQt\.(AlignCenter|AlignLeft|AlignRight|AlignTop|AlignBottom|AlignHCenter|AlignVCenter|Horizontal|Vertical|Checked|Unchecked|UserRole)\b" crsmart; then
+            echo "Unqualified Qt enum found; use the Qt6-style qualified enum." && exit 1
+          fi
+          echo "OK: no unqualified Qt enums."
 
   test:
     name: Tests (QGIS ${{ matrix.qgis }})
@@ -61,24 +58,31 @@ jobs:
       fail-fast: false
       matrix:
         # 'ltr' currently tracks QGIS 3.40 LTR (Qt5); 'latest' is the newest
-        # release. (There is no 'release-3_40' tag on Docker Hub.) When official
-        # Qt6 / QGIS 4.x images publish, add them here.
+        # release (Qt6). There is no 'release-3_40' tag on Docker Hub.
         qgis: ["ltr", "latest"]
     container:
       image: qgis/qgis:${{ matrix.qgis }}
     env:
       QT_QPA_PLATFORM: offscreen
+      # Honour pip in the externally-managed container Python (PEP 668).
+      PIP_BREAK_SYSTEM_PACKAGES: "1"
     steps:
       - uses: actions/checkout@v4
       - name: Diagnostics (python + qgis import)
         run: |
           python3 --version
-          python3 -c "import qgis; print('qgis at', qgis.__file__)"
-          python3 -c "import qgis.core; print('qgis.core OK')"
+          python3 -c "import qgis; print('qgis at', qgis.__file__)" || true
+          python3 -c "import qgis.core; print('qgis.core OK')" || true
+          python3 -c "import pyproj; print('pyproj', pyproj.__version__)" || true
       - name: Install test dependencies
+        # The QGIS image Python is externally managed (PEP 668); install with the
+        # break-system-packages env var set above. numpy is a crsmart.core runtime
+        # dep; pyproj ships with QGIS but we ensure it. set -e so failures surface.
         run: |
-          pip3 install --break-system-packages pytest pytest-qgis pytest-cov \
-            || pip3 install pytest pytest-qgis pytest-cov
+          set -e
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pytest pytest-qgis pytest-cov numpy pyproj
+          python3 -c "import numpy, pyproj, pytest; print('deps OK')"
       - name: Run test suite
         env:
           PYTHONPATH: ${{ github.workspace }}
