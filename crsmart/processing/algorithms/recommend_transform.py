@@ -110,7 +110,7 @@ class RecommendTransformAlgorithm(CRSmartAlgorithm):
     ) -> dict[str, Any]:
         source = self.parameterAsCrs(parameters, self.SOURCE_CRS, context)
         target = self.parameterAsCrs(parameters, self.TARGET_CRS, context)
-        allow_ballpark = self.parameterAsBoolean(
+        allow_ballpark = self.parameterAsBool(
             parameters, self.ALLOW_BALLPARK, context
         )
 
