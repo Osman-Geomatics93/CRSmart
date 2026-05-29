@@ -8,6 +8,17 @@ All notable changes to CRSmart are documented here. The format follows
 
 _Nothing yet._
 
+## [0.1.1] - 2026-05-29
+
+### Security
+
+- **Restrict PROJ-CDN grid downloads to HTTP(S) schemes.** The grid downloader
+  now rejects any non-`http`/`https` URL (e.g. a crafted `file:` / `ftp:` /
+  custom-scheme `GridInfo.url`) and opens connections through an opener wired
+  with only HTTP(S) handlers, so a local-file or alternate-scheme fetch is not
+  possible even if validation were bypassed. Resolves the Bandit B310 finding
+  that blocked v0.1.0 on plugins.qgis.org. (`crsmart/core/grids.py`)
+
 ## [0.1.0] - 2026-05-29
 
 First public release. Runs on QGIS 3.40 LTR (Qt5) through
@@ -65,5 +76,6 @@ first version awaiting the standard QGIS-repository approval)._
   plugin-zip job. Packaging/release via `qgis-plugin-ci`.
 - License: GPL-2.0-or-later.
 
-[Unreleased]: https://github.com/Osman-Geomatics93/CRSmart/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Osman-Geomatics93/CRSmart/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Osman-Geomatics93/CRSmart/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Osman-Geomatics93/CRSmart/releases/tag/v0.1.0

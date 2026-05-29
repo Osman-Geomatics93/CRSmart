@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import os
 import shutil
+import urllib.parse
 import urllib.request
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -21,6 +22,23 @@ from .errors import ConsentRequiredError
 from .models import GridInfo
 
 CDN_BASE = "https://cdn.proj.org"
+
+# Grid downloads are restricted to network schemes. A ``file:`` / ``ftp:`` /
+# custom-scheme URL (e.g. a crafted ``GridInfo.url``) must never be opened, so
+# we both reject the scheme up front and use an opener wired with only HTTP(S)
+# handlers -- there is no file/ftp handler to fall back to.
+_ALLOWED_SCHEMES = frozenset({"https", "http"})
+_DOWNLOAD_TIMEOUT = 60  # seconds
+
+
+def _http_opener() -> urllib.request.OpenerDirector:
+    """An opener with only HTTP(S) handlers -- no ``file:``/``ftp:`` handlers."""
+    opener = urllib.request.OpenerDirector()
+    opener.add_handler(urllib.request.HTTPHandler())
+    opener.add_handler(urllib.request.HTTPSHandler())
+    opener.add_handler(urllib.request.HTTPRedirectHandler())
+    opener.add_handler(urllib.request.HTTPErrorProcessor())
+    return opener
 
 
 @dataclass(frozen=True)
@@ -78,10 +96,15 @@ def _download_one(grid: GridInfo, dest_dir: str) -> GridDownload:
         return GridDownload(
             grid.short_name, False, None, "grid is not under an open license"
         )
+    scheme = urllib.parse.urlsplit(url).scheme.lower()
+    if scheme not in _ALLOWED_SCHEMES:
+        return GridDownload(
+            grid.short_name, False, None, f"refused non-HTTP(S) URL scheme: {scheme!r}"
+        )
     target = os.path.join(dest_dir, grid.short_name)
     try:
         os.makedirs(dest_dir, exist_ok=True)
-        with urllib.request.urlopen(url) as response:
+        with _http_opener().open(url, timeout=_DOWNLOAD_TIMEOUT) as response:
             if response.status != 200:
                 return GridDownload(
                     grid.short_name, False, None, f"HTTP {response.status}"
