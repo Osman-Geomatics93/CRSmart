@@ -87,6 +87,11 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
       this is normal; later versions auto-approve.
 - [x] OSGeo creds stored only as encrypted Actions secrets
       (OSGEO_USERNAME / OSGEO_PASSWORD).
+- [x] **v0.1.0 BLOCKED by plugins.qgis.org security scan** (Bandit B310:
+      `urllib.request.urlopen` at grids.py:84 permitted file:/ftp:/custom
+      schemes). Fixed in **v0.1.1** (6b7c15c): scheme allow-list + HTTP(S)-only
+      opener; `bandit -r crsmart` now clean. Re-published; BLOCKED status
+      cleared, back to awaiting first-version approval.
 
 ## Remaining — need the user (not code)
 - [ ] **Rotate the plugins.qgis.org password** (it was shared in plaintext),
