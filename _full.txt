@@ -1,0 +1,1273 @@
+Build & verify plugin zip	Set up job	﻿2026-05-29T14:21:09.0549149Z Current runner version: '2.334.0'
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0574165Z ##[group]Runner Image Provisioner
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0575029Z Hosted Compute Agent
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0575643Z Version: 20260520.533
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0576353Z Commit: 189110e25284a9812c124fd27b339e2fb4f2f9db
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0577169Z Build Date: 2026-05-20T17:44:04Z
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0577864Z Worker ID: {43ae76f4-3347-446c-b9de-b5fab227a327}
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0578661Z Azure Region: northcentralus
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0579282Z ##[endgroup]
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0581317Z ##[group]Operating System
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0581979Z Ubuntu
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0582514Z 24.04.4
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0583687Z LTS
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0584245Z ##[endgroup]
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0584847Z ##[group]Runner Image
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0585474Z Image: ubuntu-24.04
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0586067Z Version: 20260525.161.1
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0587178Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260525.161/images/ubuntu/Ubuntu2404-Readme.md
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0588944Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260525.161
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0589946Z ##[endgroup]
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0591198Z ##[group]GITHUB_TOKEN Permissions
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0593563Z Contents: read
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0594180Z Metadata: read
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0594879Z Packages: read
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0595472Z ##[endgroup]
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0597948Z Secret source: Actions
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0599569Z Prepare workflow directory
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0931063Z Prepare all required actions
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.0969519Z Getting action download info
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.5168094Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.6493340Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.7250972Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Build & verify plugin zip	Set up job	2026-05-29T14:21:09.9606155Z Complete job name: Build & verify plugin zip
+Build & verify plugin zip	Run actions/checkout@v4	﻿2026-05-29T14:21:10.0471137Z ##[group]Run actions/checkout@v4
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0472556Z with:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0473656Z   repository: Osman-Geomatics93/CRSmart
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0485118Z   token: ***
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0485970Z   ssh-strict: true
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0486833Z   ssh-user: git
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0487693Z   persist-credentials: true
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0488653Z   clean: true
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0489517Z   sparse-checkout-cone-mode: true
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0490575Z   fetch-depth: 1
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0491408Z   fetch-tags: false
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0492292Z   show-progress: true
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0493480Z   lfs: false
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0494321Z   submodules: false
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0495204Z   set-safe-directory: true
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.0496478Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1640392Z Syncing repository: Osman-Geomatics93/CRSmart
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1643462Z ##[group]Getting Git version info
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1644910Z Working directory is '/home/runner/work/CRSmart/CRSmart'
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1647106Z [command]/usr/bin/git version
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1714114Z git version 2.54.0
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1740187Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1754991Z Temporarily overriding HOME='/home/runner/work/_temp/28de15a0-1bb7-48f2-83d7-bf05ef2fb3ce' before making global git config changes
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1757859Z Adding repository directory to the temporary git global config as a safe directory
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1766848Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CRSmart/CRSmart
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1811096Z Deleting the contents of '/home/runner/work/CRSmart/CRSmart'
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1815131Z ##[group]Initializing the repository
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1818920Z [command]/usr/bin/git init /home/runner/work/CRSmart/CRSmart
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1928556Z hint: Using 'master' as the name for the initial branch. This default branch name
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1932135Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1936175Z hint: to use in all of your new repositories, which will suppress this warning,
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1939095Z hint: call:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1940542Z hint:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1942437Z hint: 	git config --global init.defaultBranch <name>
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1944906Z hint:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1946982Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1950394Z hint: 'development'. The just-created branch can be renamed via this command:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1953409Z hint:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1954961Z hint: 	git branch -m <name>
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1956848Z hint:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1959128Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1961448Z Initialized empty Git repository in /home/runner/work/CRSmart/CRSmart/.git/
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.1970827Z [command]/usr/bin/git remote add origin https://github.com/Osman-Geomatics93/CRSmart
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2010235Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2011795Z ##[group]Disabling automatic garbage collection
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2013902Z [command]/usr/bin/git config --local gc.auto 0
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2041870Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2043571Z ##[group]Setting up auth
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2048290Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2080310Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2420153Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2450841Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2664533Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2696590Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2924540Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2958550Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2960084Z ##[group]Fetching the repository
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.2967796Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8b58d00d0f82a9b8f14ace51875ed29c4024a23a:refs/remotes/origin/main
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6551268Z From https://github.com/Osman-Geomatics93/CRSmart
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6554465Z  * [new ref]         8b58d00d0f82a9b8f14ace51875ed29c4024a23a -> origin/main
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6596669Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6603979Z ##[group]Determining the checkout info
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6605679Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6606672Z [command]/usr/bin/git sparse-checkout disable
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6639326Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6666437Z ##[group]Checking out the ref
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6669739Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6754974Z Switched to a new branch 'main'
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6758212Z branch 'main' set up to track 'origin/main'.
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6766266Z ##[endgroup]
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6801532Z [command]/usr/bin/git log -1 --format=%H
+Build & verify plugin zip	Run actions/checkout@v4	2026-05-29T14:21:10.6823345Z 8b58d00d0f82a9b8f14ace51875ed29c4024a23a
+Build & verify plugin zip	Run actions/setup-python@v5	﻿2026-05-29T14:21:10.7146561Z ##[group]Run actions/setup-python@v5
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7147639Z with:
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7148402Z   python-version: 3.11
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7149284Z   check-latest: false
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7160180Z   token: ***
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7161023Z   update-environment: true
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7161982Z   allow-prereleases: false
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7163336Z   freethreaded: false
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.7164179Z ##[endgroup]
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.8875634Z ##[group]Installed versions
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.8973871Z Successfully set up CPython (3.11.15)
+Build & verify plugin zip	Run actions/setup-python@v5	2026-05-29T14:21:10.8976720Z ##[endgroup]
+Build & verify plugin zip	Build zip	﻿2026-05-29T14:21:10.9165439Z ##[group]Run python scripts/build_zip.py
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9166710Z [36;1mpython scripts/build_zip.py[0m
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9257881Z shell: /usr/bin/bash -e {0}
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9258857Z env:
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9259839Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9261473Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9263365Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9264872Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9266381Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9267914Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+Build & verify plugin zip	Build zip	2026-05-29T14:21:10.9269223Z ##[endgroup]
+Build & verify plugin zip	Build zip	2026-05-29T14:21:11.6449802Z Built /home/runner/work/CRSmart/CRSmart/dist/crsmart-0.1.0.zip (39228 bytes, 29 files)
+Build & verify plugin zip	Verify zip structure	﻿2026-05-29T14:21:11.6589524Z ##[group]Run python -m pytest tests/test_packaging.py -ra
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6590155Z [36;1mpython -m pytest tests/test_packaging.py -ra[0m
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6618408Z shell: /usr/bin/bash -e {0}
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6618793Z env:
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6619182Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6619780Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6620362Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6620882Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6621419Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6621938Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6622380Z ##[endgroup]
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6806593Z /opt/hostedtoolcache/Python/3.11.15/x64/bin/python: No module named pytest
+Build & verify plugin zip	Verify zip structure	2026-05-29T14:21:11.6847075Z ##[error]Process completed with exit code 1.
+Build & verify plugin zip	Post Run actions/checkout@v4	﻿2026-05-29T14:21:11.6978107Z Post job cleanup.
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.7930145Z [command]/usr/bin/git version
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.7965181Z git version 2.54.0
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8010256Z Temporarily overriding HOME='/home/runner/work/_temp/63ef1fd8-068b-4880-ace7-bd0cb94f25e4' before making global git config changes
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8011681Z Adding repository directory to the temporary git global config as a safe directory
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8022957Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CRSmart/CRSmart
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8056152Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8087725Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8306843Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8329728Z http.https://github.com/.extraheader
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8341815Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8371040Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8606701Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & verify plugin zip	Post Run actions/checkout@v4	2026-05-29T14:21:11.8638705Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & verify plugin zip	Complete job	﻿2026-05-29T14:21:11.8958638Z Cleaning up orphan processes
+Build & verify plugin zip	Complete job	2026-05-29T14:21:11.9258649Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-python@v5. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Tests (QGIS latest)	Set up job	﻿2026-05-29T14:21:09.0785625Z Current runner version: '2.334.0'
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0806259Z ##[group]Runner Image Provisioner
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0806936Z Hosted Compute Agent
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0807499Z Version: 20260520.533
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0808251Z Commit: 189110e25284a9812c124fd27b339e2fb4f2f9db
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0808955Z Build Date: 2026-05-20T17:44:04Z
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0809531Z Worker ID: {e0e28a0c-acd3-41ba-84e0-af76b078f885}
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0810096Z Azure Region: westus
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0810627Z ##[endgroup]
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0811751Z ##[group]Operating System
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0812319Z Ubuntu
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0812765Z 24.04.4
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0813183Z LTS
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0813636Z ##[endgroup]
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0814087Z ##[group]Runner Image
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0814578Z Image: ubuntu-24.04
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0815087Z Version: 20260525.161.1
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0815930Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260525.161/images/ubuntu/Ubuntu2404-Readme.md
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0817317Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260525.161
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0818292Z ##[endgroup]
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0819338Z ##[group]GITHUB_TOKEN Permissions
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0821108Z Contents: read
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0821676Z Metadata: read
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0822162Z Packages: read
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0822643Z ##[endgroup]
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0824396Z Secret source: Actions
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.0825010Z Prepare workflow directory
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.1260448Z Prepare all required actions
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.1291903Z Getting action download info
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.5771446Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Tests (QGIS latest)	Set up job	2026-05-29T14:21:09.7696321Z Complete job name: Tests (QGIS latest)
+Tests (QGIS latest)	Initialize containers	﻿2026-05-29T14:21:09.8037593Z ##[group]Checking docker version
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8047978Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8425780Z '1.48'
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8440319Z Docker daemon API version: '1.48'
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8440953Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8566751Z '1.48'
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8577406Z Docker client API version: '1.48'
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8581336Z ##[endgroup]
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8583233Z ##[group]Clean up resources from previous jobs
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8587619Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=1dc3e7"
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8695961Z ##[command]/usr/bin/docker network prune --force --filter "label=1dc3e7"
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8794816Z ##[endgroup]
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8795247Z ##[group]Create local container network
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.8803055Z ##[command]/usr/bin/docker network create --label 1dc3e7 github_network_54c7e658af3f4d3993d5b1fb62b00665
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.9273445Z dbd80cb59561484ba5a9fb52ba0d911d2aa2f6767bbebe6f4c3828c586d9b3f2
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.9289419Z ##[endgroup]
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.9309333Z ##[group]Starting job container
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:09.9326528Z ##[command]/usr/bin/docker pull qgis/qgis:latest
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9091537Z latest: Pulling from qgis/qgis
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9097511Z 16c195d4c5e9: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9098855Z b314910d494b: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9099668Z b95923a4197e: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9100536Z 4f4fb700ef54: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9101403Z 6331523532c0: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9102436Z 1d7f85082f2a: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9103185Z 330a3bb96320: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9103980Z 9f63c03b77be: Pulling fs layer
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9104755Z 4f4fb700ef54: Waiting
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9105454Z 6331523532c0: Waiting
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9106213Z 330a3bb96320: Waiting
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9106935Z 9f63c03b77be: Waiting
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:10.9107801Z 1d7f85082f2a: Waiting
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.1402625Z b95923a4197e: Verifying Checksum
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.1403803Z b95923a4197e: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.2435700Z 16c195d4c5e9: Verifying Checksum
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.2437288Z 16c195d4c5e9: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.3637298Z 4f4fb700ef54: Verifying Checksum
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.3638830Z 4f4fb700ef54: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.4819681Z 6331523532c0: Verifying Checksum
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.4820539Z 6331523532c0: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.6007014Z 1d7f85082f2a: Verifying Checksum
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.6007996Z 1d7f85082f2a: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.7133209Z 330a3bb96320: Verifying Checksum
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.7134412Z 330a3bb96320: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.8152023Z 9f63c03b77be: Verifying Checksum
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:11.8152950Z 9f63c03b77be: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:12.3882783Z 16c195d4c5e9: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:16.1232075Z b314910d494b: Download complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.7953326Z b314910d494b: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.8056940Z b95923a4197e: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.8131075Z 4f4fb700ef54: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.8240057Z 6331523532c0: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.8951270Z 1d7f85082f2a: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9035725Z 330a3bb96320: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9116267Z 9f63c03b77be: Pull complete
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9234140Z Digest: sha256:519fd447785c7c155c4d45b06712e1bad0b756317ba1ec9af4d3cdf009da7d41
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9442764Z Status: Downloaded newer image for qgis/qgis:latest
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9452551Z docker.io/qgis/qgis:latest
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9524248Z ##[command]/usr/bin/docker create --name bf3fdc83f43047c1b2649c225aec3589_qgisqgislatest_4cddd3 --label 1dc3e7 --workdir /__w/CRSmart/CRSmart --network github_network_54c7e658af3f4d3993d5b1fb62b00665  -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.334.0/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" qgis/qgis:latest "-f" "/dev/null"
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9729481Z 6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:52.9746971Z ##[command]/usr/bin/docker start 6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2181447Z 6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2196928Z ##[command]/usr/bin/docker ps --all --filter id=6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2290350Z 6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71 Up Less than a second
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2306484Z ##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" 6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2413860Z HOME=/github/home
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2414423Z GITHUB_ACTIONS=true
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2414871Z CI=true
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2415377Z PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2415995Z PYTHONPATH=/usr/share/qgis/python
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2435835Z ##[endgroup]
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2444359Z ##[group]Waiting for all services to be ready
+Tests (QGIS latest)	Initialize containers	2026-05-29T14:21:53.2445830Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	﻿2026-05-29T14:21:53.2646717Z ##[group]Run actions/checkout@v4
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2647133Z with:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2647325Z   repository: Osman-Geomatics93/CRSmart
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2649936Z   token: ***
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2650133Z   ssh-strict: true
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2650330Z   ssh-user: git
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2650511Z   persist-credentials: true
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2650728Z   clean: true
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2650906Z   sparse-checkout-cone-mode: true
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2651111Z   fetch-depth: 1
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2651271Z   fetch-tags: false
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2651442Z   show-progress: true
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2651806Z   lfs: false
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2651965Z   submodules: false
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2652135Z   set-safe-directory: true
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2652506Z env:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2652666Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2652861Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.2700107Z ##[command]/usr/bin/docker exec  6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71 sh -c "cat /etc/*release | grep ^ID"
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4394234Z Syncing repository: Osman-Geomatics93/CRSmart
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4395278Z ##[group]Getting Git version info
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4395608Z Working directory is '/__w/CRSmart/CRSmart'
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4396046Z [command]/usr/bin/git version
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4396250Z git version 2.51.0
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4405301Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4416855Z Temporarily overriding HOME='/__w/_temp/c221cc5f-c225-4ae8-9619-63829d426d5b' before making global git config changes
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4417566Z Adding repository directory to the temporary git global config as a safe directory
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4422657Z [command]/usr/bin/git config --global --add safe.directory /__w/CRSmart/CRSmart
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4449880Z Deleting the contents of '/__w/CRSmart/CRSmart'
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4453036Z ##[group]Initializing the repository
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4455813Z [command]/usr/bin/git init /__w/CRSmart/CRSmart
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4488348Z hint: Using 'master' as the name for the initial branch. This default branch name
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4489244Z hint: is subject to change. To configure the initial branch name to use in all
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4490009Z hint: of your new repositories, which will suppress this warning, call:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4490584Z hint:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4490987Z hint: 	git config --global init.defaultBranch <name>
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4491505Z hint:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4491954Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4492687Z hint: 'development'. The just-created branch can be renamed via this command:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4493327Z hint:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4493655Z hint: 	git branch -m <name>
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4494036Z hint:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4494521Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4496071Z Initialized empty Git repository in /__w/CRSmart/CRSmart/.git/
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4499227Z [command]/usr/bin/git remote add origin https://github.com/Osman-Geomatics93/CRSmart
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4555322Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4555829Z ##[group]Disabling automatic garbage collection
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4564304Z [command]/usr/bin/git config --local gc.auto 0
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4582370Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4582956Z ##[group]Setting up auth
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4588284Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4611913Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4832837Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.4855980Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.5071006Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.5095444Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.5309327Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.5335714Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.5336210Z ##[group]Fetching the repository
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.5342331Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8b58d00d0f82a9b8f14ace51875ed29c4024a23a:refs/remotes/origin/main
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9552661Z From https://github.com/Osman-Geomatics93/CRSmart
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9553227Z  * [new ref]         8b58d00d0f82a9b8f14ace51875ed29c4024a23a -> origin/main
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9578769Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9579202Z ##[group]Determining the checkout info
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9580036Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9642997Z [command]/usr/bin/git sparse-checkout disable
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9644514Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9645906Z ##[group]Checking out the ref
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9646787Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9730318Z Switched to a new branch 'main'
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9730713Z branch 'main' set up to track 'origin/main'.
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9733617Z ##[endgroup]
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9760458Z [command]/usr/bin/git log -1 --format=%H
+Tests (QGIS latest)	Run actions/checkout@v4	2026-05-29T14:21:53.9781487Z 8b58d00d0f82a9b8f14ace51875ed29c4024a23a
+Tests (QGIS latest)	Diagnostics (python + qgis import)	﻿2026-05-29T14:21:53.9941813Z ##[group]Run python3 --version
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:53.9942125Z [36;1mpython3 --version[0m
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:53.9942424Z [36;1mpython3 -c "import qgis; print('qgis at', qgis.__file__)"[0m
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:53.9942774Z [36;1mpython3 -c "import qgis.core; print('qgis.core OK')"[0m
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:53.9945634Z shell: sh -e {0}
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:53.9945819Z env:
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:53.9945984Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:53.9946182Z ##[endgroup]
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:54.0418000Z Python 3.13.7
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:54.5696410Z qgis at /usr/share/qgis/python/qgis/__init__.py
+Tests (QGIS latest)	Diagnostics (python + qgis import)	2026-05-29T14:21:54.9525260Z qgis.core OK
+Tests (QGIS latest)	Install test dependencies	﻿2026-05-29T14:21:55.0074530Z ##[group]Run pip3 install --break-system-packages pytest pytest-qgis pytest-cov \
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.0075012Z [36;1mpip3 install --break-system-packages pytest pytest-qgis pytest-cov \[0m
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.0075361Z [36;1m  || pip3 install pytest pytest-qgis pytest-cov[0m
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.0075723Z shell: sh -e {0}
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.0075888Z env:
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.0076052Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.0076241Z ##[endgroup]
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.2405659Z WARNING: The directory '/github/home/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.2769197Z Requirement already satisfied: pytest in /usr/lib/python3/dist-packages (8.3.5)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.3636811Z Collecting pytest-qgis
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.3895934Z   Downloading pytest_qgis-4.0.1-py3-none-any.whl.metadata (9.9 kB)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.4065100Z Collecting pytest-cov
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.4089537Z   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.4136828Z Requirement already satisfied: iniconfig in /usr/lib/python3/dist-packages (from pytest) (1.1.1)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.4139889Z Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from pytest) (25.0)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.4143685Z Requirement already satisfied: pluggy<2,>=1.5 in /usr/lib/python3/dist-packages (from pytest) (1.5.0)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.6194136Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.6219569Z   Downloading coverage-7.14.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.6 kB)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.6922538Z Downloading pytest_qgis-4.0.1-py3-none-any.whl (30 kB)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.6949600Z Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.6971293Z Downloading coverage-7.14.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (254 kB)
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.7532795Z Installing collected packages: coverage, pytest-qgis, pytest-cov
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.8509081Z 
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.8513793Z Successfully installed coverage-7.14.1 pytest-cov-7.1.0 pytest-qgis-4.0.1
+Tests (QGIS latest)	Install test dependencies	2026-05-29T14:21:55.8517043Z WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Tests (QGIS latest)	Run test suite	﻿2026-05-29T14:21:55.9304842Z ##[group]Run cd "$GITHUB_WORKSPACE"
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:55.9305114Z [36;1mcd "$GITHUB_WORKSPACE"[0m
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:55.9305438Z [36;1mxvfb-run -a python3 -m pytest -ra --cov=crsmart --cov-report=term-missing[0m
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:55.9305845Z shell: sh -e {0}
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:55.9306008Z env:
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:55.9306167Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:55.9306387Z   PYTHONPATH: /home/runner/work/CRSmart/CRSmart
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:55.9306616Z ##[endgroup]
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2138798Z Traceback (most recent call last):
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2149084Z   File "<frozen runpy>", line 198, in _run_module_as_main
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2149680Z   File "<frozen runpy>", line 88, in _run_code
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2150184Z   File "/usr/lib/python3/dist-packages/pytest/__main__.py", line 9, in <module>
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2150684Z     raise SystemExit(pytest.console_main())
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2151005Z                      ~~~~~~~~~~~~~~~~~~~^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2151501Z   File "/usr/lib/python3/dist-packages/_pytest/config/__init__.py", line 201, in console_main
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2152074Z     code = main()
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2152457Z   File "/usr/lib/python3/dist-packages/_pytest/config/__init__.py", line 156, in main
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2152939Z     config = _prepareconfig(args, plugins)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2153475Z   File "/usr/lib/python3/dist-packages/_pytest/config/__init__.py", line 341, in _prepareconfig
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2154047Z     config = pluginmanager.hook.pytest_cmdline_parse(
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2154429Z         pluginmanager=pluginmanager, args=args
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2154739Z     )
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2155074Z   File "/usr/lib/python3/dist-packages/pluggy/_hooks.py", line 513, in __call__
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2155673Z     return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2156178Z            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2156690Z   File "/usr/lib/python3/dist-packages/pluggy/_manager.py", line 120, in _hookexec
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2157264Z     return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2157916Z            ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2158425Z   File "/usr/lib/python3/dist-packages/pluggy/_callers.py", line 139, in _multicall
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2158987Z     raise exception.with_traceback(exception.__traceback__)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2159534Z   File "/usr/lib/python3/dist-packages/pluggy/_callers.py", line 122, in _multicall
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2160065Z     teardown.throw(exception)  # type: ignore[union-attr]
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2160427Z     ~~~~~~~~~~~~~~^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2160914Z   File "/usr/lib/python3/dist-packages/_pytest/helpconfig.py", line 105, in pytest_cmdline_parse
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2161445Z     config = yield
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2161692Z              ^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2162080Z   File "/usr/lib/python3/dist-packages/pluggy/_callers.py", line 103, in _multicall
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2162583Z     res = hook_impl.function(*args)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2163131Z   File "/usr/lib/python3/dist-packages/_pytest/config/__init__.py", line 1140, in pytest_cmdline_parse
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2163663Z     self.parse(args)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2163894Z     ~~~~~~~~~~^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2164310Z   File "/usr/lib/python3/dist-packages/_pytest/config/__init__.py", line 1494, in parse
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2164824Z     self._preparse(args, addopts=addopts)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2165135Z     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2165612Z   File "/usr/lib/python3/dist-packages/_pytest/config/__init__.py", line 1381, in _preparse
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2166564Z     self.pluginmanager.load_setuptools_entrypoints("pytest11")
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2167004Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2167588Z   File "/usr/lib/python3/dist-packages/pluggy/_manager.py", line 421, in load_setuptools_entrypoints
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2168272Z     plugin = ep.load()
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2168889Z   File "/usr/lib/python3.13/importlib/metadata/__init__.py", line 179, in load
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2169398Z     module = import_module(match.group('module'))
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2169867Z   File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2170409Z     return _bootstrap._gcd_import(name[level:], package, level)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2170863Z            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2171382Z   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2171904Z   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2172449Z   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2172983Z   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2173584Z   File "/usr/lib/python3/dist-packages/_pytest/assertion/rewrite.py", line 185, in exec_module
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2174137Z     exec(co, module.__dict__)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2174429Z     ~~~~^^^^^^^^^^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2174932Z   File "/usr/local/lib/python3.13/dist-packages/pytest_qgis/__init__.py", line 21, in <module>
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2175543Z     from pytest_qgis.pytest_qgis import *  # noqa: F403
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2175922Z     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2176463Z   File "/usr/lib/python3/dist-packages/_pytest/assertion/rewrite.py", line 185, in exec_module
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2177021Z     exec(co, module.__dict__)
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2177317Z     ~~~~^^^^^^^^^^^^^^^^^^^^^
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2178100Z   File "/usr/local/lib/python3.13/dist-packages/pytest_qgis/pytest_qgis.py", line 32, in <module>
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2178682Z     from qgis.core import (
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2178969Z     ...<6 lines>...
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2179206Z     )
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2179468Z ModuleNotFoundError: No module named 'qgis'
+Tests (QGIS latest)	Run test suite	2026-05-29T14:21:56.2385904Z ##[error]Process completed with exit code 1.
+Tests (QGIS latest)	Post Run actions/checkout@v4	﻿2026-05-29T14:21:56.2474770Z Post job cleanup.
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.2481328Z ##[command]/usr/bin/docker exec  6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71 sh -c "cat /etc/*release | grep ^ID"
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4018618Z [command]/usr/bin/git version
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4047426Z git version 2.51.0
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4080504Z Temporarily overriding HOME='/__w/_temp/37967d78-e6da-47c7-a53a-74a19b438491' before making global git config changes
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4082187Z Adding repository directory to the temporary git global config as a safe directory
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4086204Z [command]/usr/bin/git config --global --add safe.directory /__w/CRSmart/CRSmart
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4111932Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4138527Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4358062Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4376245Z http.https://github.com/.extraheader
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4389440Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4411114Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4636859Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Tests (QGIS latest)	Post Run actions/checkout@v4	2026-05-29T14:21:56.4657958Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Tests (QGIS latest)	Stop containers	﻿2026-05-29T14:21:56.4981647Z Stop and remove container: bf3fdc83f43047c1b2649c225aec3589_qgisqgislatest_4cddd3
+Tests (QGIS latest)	Stop containers	2026-05-29T14:21:56.4985079Z ##[command]/usr/bin/docker rm --force 6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71
+Tests (QGIS latest)	Stop containers	2026-05-29T14:21:56.6368939Z 6c44ae03978990575401f3f48655dad982310eda998fcbfe5c0e257fe70e3c71
+Tests (QGIS latest)	Stop containers	2026-05-29T14:21:56.6394961Z Remove container network: github_network_54c7e658af3f4d3993d5b1fb62b00665
+Tests (QGIS latest)	Stop containers	2026-05-29T14:21:56.6398545Z ##[command]/usr/bin/docker network rm github_network_54c7e658af3f4d3993d5b1fb62b00665
+Tests (QGIS latest)	Stop containers	2026-05-29T14:21:56.7287881Z github_network_54c7e658af3f4d3993d5b1fb62b00665
+Tests (QGIS latest)	Complete job	﻿2026-05-29T14:21:56.7343454Z Cleaning up orphan processes
+Tests (QGIS latest)	Complete job	2026-05-29T14:21:56.7616370Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Tests (QGIS ltr)	Set up job	﻿2026-05-29T14:21:09.1419714Z Current runner version: '2.334.0'
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1446033Z ##[group]Runner Image Provisioner
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1447041Z Hosted Compute Agent
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1447667Z Version: 20260520.533
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1448390Z Commit: 189110e25284a9812c124fd27b339e2fb4f2f9db
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1449156Z Build Date: 2026-05-20T17:44:04Z
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1449876Z Worker ID: {780c2f3b-bd23-4dc2-b5cd-c5f5c9d662b2}
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1450673Z Azure Region: northcentralus
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1451297Z ##[endgroup]
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1452858Z ##[group]Operating System
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1453588Z Ubuntu
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1454121Z 24.04.4
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1454751Z LTS
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1455307Z ##[endgroup]
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1456293Z ##[group]Runner Image
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1457121Z Image: ubuntu-24.04
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1457711Z Version: 20260525.161.1
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1458899Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260525.161/images/ubuntu/Ubuntu2404-Readme.md
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1460603Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260525.161
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1461685Z ##[endgroup]
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1462884Z ##[group]GITHUB_TOKEN Permissions
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1465361Z Contents: read
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1466361Z Metadata: read
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1467089Z Packages: read
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1467770Z ##[endgroup]
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1469944Z Secret source: Actions
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.1470859Z Prepare workflow directory
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.2227695Z Prepare all required actions
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.2266067Z Getting action download info
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.5657376Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Tests (QGIS ltr)	Set up job	2026-05-29T14:21:09.8005950Z Complete job name: Tests (QGIS ltr)
+Tests (QGIS ltr)	Initialize containers	﻿2026-05-29T14:21:09.8470265Z ##[group]Checking docker version
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.8483458Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9475112Z '1.48'
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9492690Z Docker daemon API version: '1.48'
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9493610Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9686254Z '1.48'
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9702767Z Docker client API version: '1.48'
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9708964Z ##[endgroup]
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9712028Z ##[group]Clean up resources from previous jobs
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9718459Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=acddf9"
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:09.9887718Z ##[command]/usr/bin/docker network prune --force --filter "label=acddf9"
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.0043851Z ##[endgroup]
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.0044516Z ##[group]Create local container network
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.0055549Z ##[command]/usr/bin/docker network create --label acddf9 github_network_3c5c75ace89d4f32944b10a841f46b4d
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.0604227Z 4d5c1977fd2848594150bb1ad47eeea24985338149aa6580a0aca684c57aa61a
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.0628712Z ##[endgroup]
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.0663843Z ##[group]Starting job container
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.0692427Z ##[command]/usr/bin/docker pull qgis/qgis:ltr
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.5065413Z ltr: Pulling from qgis/qgis
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6935441Z 16c195d4c5e9: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6937500Z 98995d5d1b9b: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6938739Z 32730b5b0d30: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6939926Z 4f4fb700ef54: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6941230Z 4e673975ee40: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6942562Z 7a394fdd823e: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6943770Z 97ecf4a51094: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6944952Z d3dedfa4ab1f: Pulling fs layer
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6946324Z 7a394fdd823e: Waiting
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6947460Z 4f4fb700ef54: Waiting
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6948573Z 97ecf4a51094: Waiting
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6949667Z d3dedfa4ab1f: Waiting
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.6950735Z 4e673975ee40: Waiting
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.7722565Z 32730b5b0d30: Verifying Checksum
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.7724344Z 32730b5b0d30: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.8638535Z 4f4fb700ef54: Verifying Checksum
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.8641466Z 4f4fb700ef54: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.8901102Z 16c195d4c5e9: Verifying Checksum
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.8903115Z 16c195d4c5e9: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.9506457Z 4e673975ee40: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.9653014Z 7a394fdd823e: Verifying Checksum
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:10.9656422Z 7a394fdd823e: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:11.0428243Z d3dedfa4ab1f: Verifying Checksum
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:11.0430851Z d3dedfa4ab1f: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:11.0465370Z 97ecf4a51094: Verifying Checksum
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:11.0469897Z 97ecf4a51094: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:12.5673352Z 16c195d4c5e9: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:13.2253103Z 98995d5d1b9b: Verifying Checksum
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:13.2253835Z 98995d5d1b9b: Download complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.6721213Z 98995d5d1b9b: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.6863778Z 32730b5b0d30: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.6956588Z 4f4fb700ef54: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7285554Z 4e673975ee40: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7383934Z 7a394fdd823e: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7474664Z 97ecf4a51094: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7578906Z d3dedfa4ab1f: Pull complete
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7692923Z Digest: sha256:4e3fb365e193a856271f45764257e8c6fb6bd3b2a6b326ea7d3af1378bff46ff
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7703745Z Status: Downloaded newer image for qgis/qgis:ltr
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7714463Z docker.io/qgis/qgis:ltr
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.7812219Z ##[command]/usr/bin/docker create --name bbb155dd33a3430da22c4544c9f15c3b_qgisqgisltr_47379d --label acddf9 --workdir /__w/CRSmart/CRSmart --network github_network_3c5c75ace89d4f32944b10a841f46b4d  -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.334.0/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" qgis/qgis:ltr "-f" "/dev/null"
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.8071103Z 1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.8096079Z ##[command]/usr/bin/docker start 1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.9934342Z 1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:40.9978375Z ##[command]/usr/bin/docker ps --all --filter id=1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0100901Z 1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9 Up Less than a second
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0120727Z ##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" 1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0242663Z HOME=/github/home
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0243150Z GITHUB_ACTIONS=true
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0243497Z CI=true
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0243991Z PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0244625Z PYTHONPATH=/usr/share/qgis/python
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0261795Z ##[endgroup]
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0271511Z ##[group]Waiting for all services to be ready
+Tests (QGIS ltr)	Initialize containers	2026-05-29T14:21:41.0273607Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	﻿2026-05-29T14:21:41.0541308Z ##[group]Run actions/checkout@v4
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0541913Z with:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0542172Z   repository: Osman-Geomatics93/CRSmart
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0545209Z   token: ***
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0545413Z   ssh-strict: true
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0545624Z   ssh-user: git
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0546204Z   persist-credentials: true
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0546448Z   clean: true
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0546654Z   sparse-checkout-cone-mode: true
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0546913Z   fetch-depth: 1
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0547107Z   fetch-tags: false
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0547311Z   show-progress: true
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0547513Z   lfs: false
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0547943Z   submodules: false
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0548150Z   set-safe-directory: true
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0548682Z env:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0548889Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0549146Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.0610963Z ##[command]/usr/bin/docker exec  1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9 sh -c "cat /etc/*release | grep ^ID"
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2781429Z Syncing repository: Osman-Geomatics93/CRSmart
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2782827Z ##[group]Getting Git version info
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2783199Z Working directory is '/__w/CRSmart/CRSmart'
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2783718Z [command]/usr/bin/git version
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2783965Z git version 2.51.0
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2803816Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2819925Z Temporarily overriding HOME='/__w/_temp/123d5759-715c-4e2b-8e90-fda311fa3703' before making global git config changes
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2827608Z Adding repository directory to the temporary git global config as a safe directory
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2828758Z [command]/usr/bin/git config --global --add safe.directory /__w/CRSmart/CRSmart
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2860611Z Deleting the contents of '/__w/CRSmart/CRSmart'
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2864836Z ##[group]Initializing the repository
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2868222Z [command]/usr/bin/git init /__w/CRSmart/CRSmart
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2908455Z hint: Using 'master' as the name for the initial branch. This default branch name
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2909683Z hint: is subject to change. To configure the initial branch name to use in all
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2910623Z hint: of your new repositories, which will suppress this warning, call:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2911225Z hint:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2911858Z hint: 	git config --global init.defaultBranch <name>
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2912504Z hint:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2913101Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2914217Z hint: 'development'. The just-created branch can be renamed via this command:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2914869Z hint:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2915392Z hint: 	git branch -m <name>
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2916275Z hint:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2917032Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2917997Z Initialized empty Git repository in /__w/CRSmart/CRSmart/.git/
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2919796Z [command]/usr/bin/git remote add origin https://github.com/Osman-Geomatics93/CRSmart
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2950681Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2951347Z ##[group]Disabling automatic garbage collection
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2956140Z [command]/usr/bin/git config --local gc.auto 0
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2982471Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2982988Z ##[group]Setting up auth
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.2989945Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3017762Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3285808Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3314348Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3579082Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3609657Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3883494Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3919691Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3920670Z ##[group]Fetching the repository
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.3928882Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8b58d00d0f82a9b8f14ace51875ed29c4024a23a:refs/remotes/origin/main
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7660051Z From https://github.com/Osman-Geomatics93/CRSmart
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7660733Z  * [new ref]         8b58d00d0f82a9b8f14ace51875ed29c4024a23a -> origin/main
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7696584Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7697473Z ##[group]Determining the checkout info
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7698415Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7701804Z [command]/usr/bin/git sparse-checkout disable
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7754120Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7784141Z ##[group]Checking out the ref
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7788185Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7893872Z Switched to a new branch 'main'
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.7981209Z branch 'main' set up to track 'origin/main'.
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.8001267Z ##[endgroup]
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.8002347Z [command]/usr/bin/git log -1 --format=%H
+Tests (QGIS ltr)	Run actions/checkout@v4	2026-05-29T14:21:41.8003055Z 8b58d00d0f82a9b8f14ace51875ed29c4024a23a
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	﻿2026-05-29T14:21:41.8176510Z ##[group]Run python3 --version
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8176887Z [36;1mpython3 --version[0m
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8177249Z [36;1mpython3 -c "import qgis; print('qgis at', qgis.__file__)"[0m
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8177700Z [36;1mpython3 -c "import qgis.core; print('qgis.core OK')"[0m
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8181027Z shell: sh -e {0}
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8181266Z env:
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8181467Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8181717Z ##[endgroup]
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:41.8738986Z Python 3.13.7
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:42.1824729Z qgis at /usr/lib/python3/dist-packages/qgis/__init__.py
+Tests (QGIS ltr)	Diagnostics (python + qgis import)	2026-05-29T14:21:42.5392701Z qgis.core OK
+Tests (QGIS ltr)	Install test dependencies	﻿2026-05-29T14:21:42.5955309Z ##[group]Run pip3 install --break-system-packages pytest pytest-qgis pytest-cov \
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.5956579Z [36;1mpip3 install --break-system-packages pytest pytest-qgis pytest-cov \[0m
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.5957064Z [36;1m  || pip3 install pytest pytest-qgis pytest-cov[0m
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.5957498Z shell: sh -e {0}
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.5957700Z env:
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.5957887Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.5958114Z ##[endgroup]
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.9026404Z WARNING: The directory '/github/home/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:42.9507107Z Requirement already satisfied: pytest in /usr/lib/python3/dist-packages (8.3.5)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.0058080Z Collecting pytest-qgis
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.0262007Z   Downloading pytest_qgis-4.0.1-py3-none-any.whl.metadata (9.9 kB)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.0383505Z Collecting pytest-cov
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.0420791Z   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.0469824Z Requirement already satisfied: iniconfig in /usr/lib/python3/dist-packages (from pytest) (1.1.1)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.0474411Z Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from pytest) (25.0)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.0481196Z Requirement already satisfied: pluggy<2,>=1.5 in /usr/lib/python3/dist-packages (from pytest) (1.5.0)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.3594158Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.3626378Z   Downloading coverage-7.14.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.6 kB)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.3709578Z Downloading pytest_qgis-4.0.1-py3-none-any.whl (30 kB)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.3739797Z Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.3768638Z Downloading coverage-7.14.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (254 kB)
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.4554767Z Installing collected packages: coverage, pytest-qgis, pytest-cov
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.5773011Z 
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.5783819Z Successfully installed coverage-7.14.1 pytest-cov-7.1.0 pytest-qgis-4.0.1
+Tests (QGIS ltr)	Install test dependencies	2026-05-29T14:21:43.5788201Z WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Tests (QGIS ltr)	Run test suite	﻿2026-05-29T14:21:43.6722559Z ##[group]Run cd "$GITHUB_WORKSPACE"
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:43.6723067Z [36;1mcd "$GITHUB_WORKSPACE"[0m
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:43.6723690Z [36;1mxvfb-run -a python3 -m pytest -ra --cov=crsmart --cov-report=term-missing[0m
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:43.6724508Z shell: sh -e {0}
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:43.6724815Z env:
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:43.6725102Z   QT_QPA_PLATFORM: offscreen
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:43.6725546Z   PYTHONPATH: /home/runner/work/CRSmart/CRSmart
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:43.6726829Z ##[endgroup]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:44.3439660Z QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1190225Z ============================= test session starts ==============================
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1191219Z platform linux -- Python 3.13.7, pytest-8.3.5, pluggy-1.5.0
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1191910Z rootdir: /__w/CRSmart/CRSmart
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1192291Z configfile: pyproject.toml
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1192740Z testpaths: tests
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1193199Z plugins: qgis-4.0.1, cov-7.1.0
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1193809Z collected 72 items
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1194154Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1517592Z tests/test_calibration.py .........                                      [ 12%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.1892031Z tests/test_edge_cases.py ...............                                 [ 33%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.2178928Z tests/test_epoch.py .........                                            [ 45%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.2299173Z tests/test_grids.py .....                                                [ 52%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.3139199Z tests/test_gui.py ...FF                                                  [ 59%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.4787944Z tests/test_no_qt_in_core.py .                                            [ 61%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.4949941Z tests/test_packaging.py ..                                               [ 63%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.6443109Z tests/test_processing.py ......F..                                       [ 76%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.7028100Z tests/test_recommender.py .......                                        [ 86%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.7203518Z tests/test_smoke.py .....                                                [ 93%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9762130Z tests/test_vertical.py .....                                             [100%]
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9762909Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9763470Z =================================== FAILURES ===================================
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9764125Z _____________________ test_vertical_tab_assembles_compound _____________________
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9764505Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9764799Z qgis_iface = <pytest_qgis.qgis_interface.QgisInterface object at 0x7f49bd198710>
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9765529Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9766211Z     def test_vertical_tab_assembles_compound(qgis_iface) -> None:
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9767090Z         from crsmart.gui.widgets.vertical_tab import VerticalTab
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9767981Z         from qgis.core import QgsCoordinateReferenceSystem
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9768505Z     
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9768751Z         tab = VerticalTab(qgis_iface)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9769258Z         tab.horizontal_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:4326"))
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9769947Z         tab.vertical_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:5703"))  # NAVD88
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9770478Z         tab.on_assemble()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9770787Z >       assert tab._compound_wkt is not None
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9771144Z E       assert None is not None
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9771747Z E        +  where None = <crsmart.gui.widgets.vertical_tab.VerticalTab object at 0x7f49a03022a0>._compound_wkt
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9772281Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9772649Z tests/test_gui.py:58: AssertionError
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9773124Z _____________________ test_epoch_tab_explains_requirement ______________________
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9773506Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9773805Z qgis_iface = <pytest_qgis.qgis_interface.QgisInterface object at 0x7f49bd198710>
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9774216Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9774432Z     def test_epoch_tab_explains_requirement(qgis_iface) -> None:
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9775165Z         from crsmart.gui.widgets.epoch_tab import EpochTab
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9775582Z         from qgis.core import (
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9776320Z             QgsCoordinateReferenceSystem,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9776699Z             QgsFeature,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9776921Z             QgsGeometry,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9777136Z             QgsPoint,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9777340Z             QgsProject,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9777549Z             QgsVectorLayer,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9777759Z         )
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9777925Z     
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9778255Z         layer = QgsVectorLayer("PointZ?crs=EPSG:7912", "itrf", "memory")  # dynamic
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9778666Z         feat = QgsFeature()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9778959Z         feat.setGeometry(QgsGeometry(QgsPoint(7.0, 46.0, 500.0)))
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9779302Z         layer.dataProvider().addFeature(feat)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9779605Z         QgsProject.instance().addMapLayer(layer)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9779873Z         try:
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9780074Z             tab = EpochTab(qgis_iface)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9780340Z             tab.layer_combo.setLayer(layer)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9780712Z             tab.target_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:7911"))
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9781109Z             tab.epoch_spin.setValue(0.0)  # "not set"
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9781392Z             tab.on_check()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9781722Z             # Two dynamic frames + no epoch -> the status must explain it is required.
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9782134Z >           assert "epoch" in tab.status.text().lower()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9782520Z E           AssertionError: assert 'epoch' in 'error: invalid wkt string: '
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9783069Z E            +  where 'error: invalid wkt string: ' = <built-in method lower of str object at 0x7f49a037efb0>()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9783716Z E            +    where <built-in method lower of str object at 0x7f49a037efb0> = 'Error: Invalid WKT string: '.lower
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9784367Z E            +      where 'Error: Invalid WKT string: ' = <built-in method text of QLabel object at 0x7f49a0303800>()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9785095Z E            +        where <built-in method text of QLabel object at 0x7f49a0303800> = <PyQt5.QtWidgets.QLabel object at 0x7f49a0303800>.text
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9786116Z E            +          where <PyQt5.QtWidgets.QLabel object at 0x7f49a0303800> = <crsmart.gui.widgets.epoch_tab.EpochTab object at 0x7f49a0303650>.status
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9786639Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9786739Z tests/test_gui.py:88: AssertionError
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9787100Z ----------------------------- Captured stderr call -----------------------------
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9787525Z proj_as_wkt: WKT1 does not support Geographic 3D CRS.
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9787913Z _________________________ test_epoch_transform_points __________________________
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9788185Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9788365Z qgis_app = <qgis._core.QgsApplication object at 0x7f49bd198320>
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9788624Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9788774Z     def test_epoch_transform_points(qgis_app) -> None:
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9789168Z         from crsmart.processing.algorithms.epoch_transform import (
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9789532Z             EpochTransformAlgorithm,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9789781Z         )
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9789965Z         from qgis.core import (
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9790192Z             QgsFeature,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9790396Z             QgsGeometry,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9790601Z             QgsPoint,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9790804Z             QgsVectorLayer,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9791013Z         )
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9791357Z     
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9791605Z         # ITRF2014 (dynamic) -> ITRF2008 (dynamic) at epoch 2010.0.
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9792159Z         layer = QgsVectorLayer("PointZ?crs=EPSG:7912&field=id:integer", "pts", "memory")
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9792586Z         feat = QgsFeature(layer.fields())
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9792918Z         feat.setGeometry(QgsGeometry(QgsPoint(7.0, 46.0, 500.0)))
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9793248Z         feat.setAttribute("id", 1)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9793729Z         layer.dataProvider().addFeature(feat)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9793997Z     
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9794163Z >       results = _run(
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9794398Z             EpochTransformAlgorithm(),
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9794641Z             {
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9794824Z                 "INPUT": layer,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9795053Z                 "TARGET_CRS": "EPSG:7911",
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9795302Z                 "EPOCH": 2010.0,
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9795533Z                 "OUTPUT": "memory:",
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9795920Z             },
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9796095Z         )
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9796187Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9796282Z tests/test_processing.py:159: 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9796568Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9796802Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9797120Z alg = <crsmart.processing.algorithms.epoch_transform.EpochTransformAlgorithm object at 0x7f49a03a8e60>
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9797851Z params = {'EPOCH': 2010.0, 'INPUT': <QgsVectorLayer: 'pts' (memory)>, 'OUTPUT': 'memory:', 'TARGET_CRS': 'EPSG:7911'}
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9798258Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9798341Z     def _run(alg, params):
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9798661Z         from qgis.core import QgsProcessingContext, QgsProcessingFeedback
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9799003Z     
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9799179Z         alg.initAlgorithm({})
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9799429Z         context = QgsProcessingContext()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9799710Z         feedback = QgsProcessingFeedback()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9800022Z         results, ok = alg.run(params, context, feedback)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9800356Z >       assert ok, "algorithm run reported failure"
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9800685Z E       AssertionError: algorithm run reported failure
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9800974Z E       assert False
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9801093Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9801204Z tests/test_processing.py:27: AssertionError
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9801564Z ----------------------------- Captured stderr call -----------------------------
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9801971Z Logged critical: Traceback (most recent call last):
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9802505Z   File "/__w/CRSmart/CRSmart/crsmart/processing/algorithms/epoch_transform.py", line 96, in processAlgorithm
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9803022Z     src_py = qgs_crs_to_pyproj(source_crs)
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9803476Z   File "/__w/CRSmart/CRSmart/crsmart/processing/algorithms/base.py", line 23, in qgs_crs_to_pyproj
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9803940Z     return CRS.from_wkt(crs.toWkt())
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9804188Z            ~~~~~~~~~~~~^^^^^^^^^^^^^
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9804555Z   File "/usr/lib/python3/dist-packages/pyproj/crs/crs.py", line 433, in from_wkt
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9804992Z     raise CRSError(f"Invalid WKT string: {in_wkt_string}")
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9805344Z pyproj.exceptions.CRSError: Invalid WKT string: 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9805550Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9805826Z ================================ tests coverage ================================
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9806253Z _______________ coverage: platform linux, python 3.13.7-final-0 ________________
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9806536Z 
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9806674Z Name                                                   Stmts   Miss  Cover   Missing
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9807073Z ------------------------------------------------------------------------------------
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9807488Z crsmart/__init__.py                                        5      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9807894Z crsmart/core/__init__.py                                   9      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9808501Z crsmart/core/calibration.py                              124      3    98%   33, 181, 231
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9808965Z crsmart/core/epoch.py                                     45      1    98%   29
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9809381Z crsmart/core/errors.py                                     6      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9809798Z crsmart/core/grids.py                                     71     14    80%   69, 81-95
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9810354Z crsmart/core/models.py                                   110      2    98%   106, 126
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9810858Z crsmart/core/transform_recommender.py                    114      7    94%   55, 62, 88, 104-105, 113, 279
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9811373Z crsmart/core/vertical.py                                  38      2    95%   22-23
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9811801Z crsmart/gui/__init__.py                                    1      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9812219Z crsmart/gui/dock.py                                       23      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9812633Z crsmart/gui/widgets/__init__.py                            1      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9813164Z crsmart/gui/widgets/calibration_tab.py                    97     24    75%   109-120, 134-137, 162-165, 168-170, 173-175
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9813785Z crsmart/gui/widgets/epoch_tab.py                          80     27    66%   78-79, 85-86, 97, 100-120, 123-125, 128-130
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9814473Z crsmart/gui/widgets/recommender_tab.py                   126     41    67%   96-97, 104-106, 111, 123-124, 149, 153-156, 164-168, 171-201, 207, 209, 214
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9815183Z crsmart/gui/widgets/vertical_tab.py                       84     23    73%   77-78, 83-84, 87-89, 98-110, 113-116, 119-121
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9816030Z crsmart/plugin.py                                         48     20    58%   40, 45-58, 74-76, 79-81, 85-86
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9816561Z crsmart/processing/__init__.py                             1      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9817010Z crsmart/processing/algorithms/__init__.py                  1      0   100%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9817502Z crsmart/processing/algorithms/base.py                     19      2    89%   41, 44
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9818076Z crsmart/processing/algorithms/epoch_transform.py          72     38    47%   44, 47, 86, 97-138, 144-157
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9818769Z crsmart/processing/algorithms/fit_calibration.py          66     15    77%   52, 55, 124-125, 139-141, 145, 160-161, 166-195
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9819498Z crsmart/processing/algorithms/recommend_transform.py      79     21    73%   47, 50, 117-124, 147, 149, 162-163, 190-191, 196-231
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9820194Z crsmart/processing/algorithms/repair_vertical.py          52     15    71%   37, 40, 87-93, 105-106, 118-134
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9820858Z crsmart/processing/algorithms/reproject_layer.py          49      9    82%   36, 39, 72, 81-82, 96, 102, 106-109
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9821437Z crsmart/processing/provider.py                            22      3    86%   42, 45, 48
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9821904Z ------------------------------------------------------------------------------------
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9822296Z TOTAL                                                   1343    267    80%
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9822673Z =========================== short test summary info ============================
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9827996Z FAILED tests/test_gui.py::test_vertical_tab_assembles_compound - assert None is not None
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9828710Z  +  where None = <crsmart.gui.widgets.vertical_tab.VerticalTab object at 0x7f49a03022a0>._compound_wkt
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9829515Z FAILED tests/test_gui.py::test_epoch_tab_explains_requirement - AssertionError: assert 'epoch' in 'error: invalid wkt string: '
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9830255Z  +  where 'error: invalid wkt string: ' = <built-in method lower of str object at 0x7f49a037efb0>()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9830875Z  +    where <built-in method lower of str object at 0x7f49a037efb0> = 'Error: Invalid WKT string: '.lower
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9831510Z  +      where 'Error: Invalid WKT string: ' = <built-in method text of QLabel object at 0x7f49a0303800>()
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9832406Z  +        where <built-in method text of QLabel object at 0x7f49a0303800> = <PyQt5.QtWidgets.QLabel object at 0x7f49a0303800>.text
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9833250Z  +          where <PyQt5.QtWidgets.QLabel object at 0x7f49a0303800> = <crsmart.gui.widgets.epoch_tab.EpochTab object at 0x7f49a0303650>.status
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9834254Z FAILED tests/test_processing.py::test_epoch_transform_points - AssertionError: algorithm run reported failure
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9834755Z assert False
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:45.9835013Z ========================= 3 failed, 69 passed in 1.11s =========================
+Tests (QGIS ltr)	Run test suite	2026-05-29T14:21:46.1238336Z ##[error]Process completed with exit code 1.
+Tests (QGIS ltr)	Post Run actions/checkout@v4	﻿2026-05-29T14:21:46.1348905Z Post job cleanup.
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.1356742Z ##[command]/usr/bin/docker exec  1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9 sh -c "cat /etc/*release | grep ^ID"
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3358767Z [command]/usr/bin/git version
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3394661Z git version 2.51.0
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3442009Z Temporarily overriding HOME='/__w/_temp/3b00a734-9824-47e3-b8fc-7cdeba9be9d1' before making global git config changes
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3449719Z Adding repository directory to the temporary git global config as a safe directory
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3450346Z [command]/usr/bin/git config --global --add safe.directory /__w/CRSmart/CRSmart
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3481574Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3517074Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3785469Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3807268Z http.https://github.com/.extraheader
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3819195Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.3849177Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.4112931Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Tests (QGIS ltr)	Post Run actions/checkout@v4	2026-05-29T14:21:46.4143725Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Tests (QGIS ltr)	Stop containers	﻿2026-05-29T14:21:46.4552240Z Stop and remove container: bbb155dd33a3430da22c4544c9f15c3b_qgisqgisltr_47379d
+Tests (QGIS ltr)	Stop containers	2026-05-29T14:21:46.4557617Z ##[command]/usr/bin/docker rm --force 1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9
+Tests (QGIS ltr)	Stop containers	2026-05-29T14:21:46.5612797Z 1042f2b745429e42fe9e09a38d3d53e2140725bb3296af08a66419ad28c062e9
+Tests (QGIS ltr)	Stop containers	2026-05-29T14:21:46.5643260Z Remove container network: github_network_3c5c75ace89d4f32944b10a841f46b4d
+Tests (QGIS ltr)	Stop containers	2026-05-29T14:21:46.5648383Z ##[command]/usr/bin/docker network rm github_network_3c5c75ace89d4f32944b10a841f46b4d
+Tests (QGIS ltr)	Stop containers	2026-05-29T14:21:46.6671073Z github_network_3c5c75ace89d4f32944b10a841f46b4d
+Tests (QGIS ltr)	Complete job	﻿2026-05-29T14:21:46.6739700Z Cleaning up orphan processes
+Tests (QGIS ltr)	Complete job	2026-05-29T14:21:46.7150682Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Lint, format & type-check	Set up job	﻿2026-05-29T14:21:08.4234474Z Current runner version: '2.334.0'
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4259481Z ##[group]Runner Image Provisioner
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4260363Z Hosted Compute Agent
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4260939Z Version: 20260520.533
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4261937Z Commit: 189110e25284a9812c124fd27b339e2fb4f2f9db
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4262706Z Build Date: 2026-05-20T17:44:04Z
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4263431Z Worker ID: {a2ee574c-a1f2-4dbe-844b-3f92b20fedbc}
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4264191Z Azure Region: eastus
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4264766Z ##[endgroup]
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4266332Z ##[group]Operating System
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4267120Z Ubuntu
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4267735Z 24.04.4
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4268269Z LTS
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4268784Z ##[endgroup]
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4269373Z ##[group]Runner Image
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4270005Z Image: ubuntu-24.04
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4270581Z Version: 20260525.161.1
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4272036Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260525.161/images/ubuntu/Ubuntu2404-Readme.md
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4273864Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260525.161
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4274858Z ##[endgroup]
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4276044Z ##[group]GITHUB_TOKEN Permissions
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4278001Z Contents: read
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4278617Z Metadata: read
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4279284Z Packages: read
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4279877Z ##[endgroup]
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4282984Z Secret source: Actions
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4283790Z Prepare workflow directory
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4765872Z Prepare all required actions
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.4820877Z Getting action download info
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.8761366Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Lint, format & type-check	Set up job	2026-05-29T14:21:08.9993246Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+Lint, format & type-check	Set up job	2026-05-29T14:21:09.1838069Z Complete job name: Lint, format & type-check
+Lint, format & type-check	Run actions/checkout@v4	﻿2026-05-29T14:21:09.2610326Z ##[group]Run actions/checkout@v4
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2611563Z with:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2612102Z   repository: Osman-Geomatics93/CRSmart
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2616860Z   token: ***
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2617337Z   ssh-strict: true
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2617806Z   ssh-user: git
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2618289Z   persist-credentials: true
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2618806Z   clean: true
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2619282Z   sparse-checkout-cone-mode: true
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2619842Z   fetch-depth: 1
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2620323Z   fetch-tags: false
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2620797Z   show-progress: true
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2621495Z   lfs: false
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2621963Z   submodules: false
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2622455Z   set-safe-directory: true
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.2623290Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3815421Z Syncing repository: Osman-Geomatics93/CRSmart
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3817519Z ##[group]Getting Git version info
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3818331Z Working directory is '/home/runner/work/CRSmart/CRSmart'
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3819443Z [command]/usr/bin/git version
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3880529Z git version 2.54.0
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3920785Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3959202Z Temporarily overriding HOME='/home/runner/work/_temp/a12ce2a4-b41c-412c-96bc-fb2cf7e1a978' before making global git config changes
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3962841Z Adding repository directory to the temporary git global config as a safe directory
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.3965256Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CRSmart/CRSmart
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4016686Z Deleting the contents of '/home/runner/work/CRSmart/CRSmart'
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4020431Z ##[group]Initializing the repository
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4025142Z [command]/usr/bin/git init /home/runner/work/CRSmart/CRSmart
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4125943Z hint: Using 'master' as the name for the initial branch. This default branch name
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4127350Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4128405Z hint: to use in all of your new repositories, which will suppress this warning,
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4129526Z hint: call:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4130156Z hint:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4130703Z hint: 	git config --global init.defaultBranch <name>
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4131600Z hint:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4132245Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4133259Z hint: 'development'. The just-created branch can be renamed via this command:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4134357Z hint:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4135216Z hint: 	git branch -m <name>
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4135908Z hint:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4136617Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4137733Z Initialized empty Git repository in /home/runner/work/CRSmart/CRSmart/.git/
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4146887Z [command]/usr/bin/git remote add origin https://github.com/Osman-Geomatics93/CRSmart
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4197698Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4198592Z ##[group]Disabling automatic garbage collection
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4202177Z [command]/usr/bin/git config --local gc.auto 0
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4230649Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4231690Z ##[group]Setting up auth
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4238158Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4272933Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4710029Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4745339Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.4995625Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.5035710Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.5277191Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.5314377Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.5315974Z ##[group]Fetching the repository
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.5325273Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8b58d00d0f82a9b8f14ace51875ed29c4024a23a:refs/remotes/origin/main
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8535993Z From https://github.com/Osman-Geomatics93/CRSmart
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8537651Z  * [new ref]         8b58d00d0f82a9b8f14ace51875ed29c4024a23a -> origin/main
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8580326Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8582013Z ##[group]Determining the checkout info
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8583748Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8589759Z [command]/usr/bin/git sparse-checkout disable
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8635484Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8663398Z ##[group]Checking out the ref
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8668204Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8759464Z Switched to a new branch 'main'
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8763136Z branch 'main' set up to track 'origin/main'.
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8769708Z ##[endgroup]
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8808474Z [command]/usr/bin/git log -1 --format=%H
+Lint, format & type-check	Run actions/checkout@v4	2026-05-29T14:21:09.8830525Z 8b58d00d0f82a9b8f14ace51875ed29c4024a23a
+Lint, format & type-check	Run actions/setup-python@v5	﻿2026-05-29T14:21:09.9110375Z ##[group]Run actions/setup-python@v5
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9111453Z with:
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9112044Z   python-version: 3.11
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9112620Z   check-latest: false
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9118502Z   token: ***
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9119032Z   update-environment: true
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9119657Z   allow-prereleases: false
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9120273Z   freethreaded: false
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:09.9120815Z ##[endgroup]
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:10.0874202Z ##[group]Installed versions
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:10.0985686Z Successfully set up CPython (3.11.15)
+Lint, format & type-check	Run actions/setup-python@v5	2026-05-29T14:21:10.0987718Z ##[endgroup]
+Lint, format & type-check	Install tooling	﻿2026-05-29T14:21:10.1134963Z ##[group]Run python -m pip install --upgrade pip
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1136317Z [36;1mpython -m pip install --upgrade pip[0m
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1137875Z [36;1mpip install ruff mypy qgis-stubs numpy pyproj types-setuptools[0m
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1199174Z shell: /usr/bin/bash -e {0}
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1199966Z env:
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1200755Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1202682Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1204264Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1205667Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1207064Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1208488Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.1209627Z ##[endgroup]
+Lint, format & type-check	Install tooling	2026-05-29T14:21:10.8688559Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (26.1.1)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:11.8128146Z Collecting ruff
+Lint, format & type-check	Install tooling	2026-05-29T14:21:11.8860727Z   Downloading ruff-0.15.15-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.1168119Z Collecting mypy
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.1213143Z   Downloading mypy-2.1.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.3 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.1525403Z Collecting qgis-stubs
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.1585523Z   Downloading qgis_stubs-0.2.0.post1-py3-none-any.whl.metadata (3.4 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.6462222Z Collecting numpy
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.6503787Z   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7123252Z Collecting pyproj
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7164421Z   Downloading pyproj-3.7.2-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (31 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7490072Z Collecting types-setuptools
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7539816Z   Downloading types_setuptools-82.0.0.20260518-py3-none-any.whl.metadata (1.9 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7734820Z Collecting typing_extensions>=4.6.0 (from mypy)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7772025Z   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7891444Z Collecting mypy_extensions>=1.0.0 (from mypy)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.7940543Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.8079396Z Collecting pathspec>=1.0.0 (from mypy)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.8126918Z   Downloading pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9091968Z Collecting librt>=0.11.0 (from mypy)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9138310Z   Downloading librt-0.11.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (1.3 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9397072Z Collecting ast-serialize<1.0.0,>=0.3.0 (from mypy)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9439108Z   Downloading ast_serialize-0.5.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.3 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9544830Z Collecting PyQt5-stubs>=5.14 (from qgis-stubs)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9594188Z   Downloading PyQt5_stubs-5.15.6.0-py3-none-any.whl.metadata (3.8 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9772105Z Collecting certifi (from pyproj)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9811317Z   Downloading certifi-2026.5.20-py3-none-any.whl.metadata (2.5 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:12.9910424Z Downloading ruff-0.15.15-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.4 MB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.0549892Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.4/11.4 MB 201.4 MB/s  0:00:00
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.0593354Z Downloading mypy-2.1.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (14.9 MB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.1152873Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.9/14.9 MB 274.0 MB/s  0:00:00
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.1197623Z Downloading ast_serialize-0.5.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.1274770Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 195.1 MB/s  0:00:00
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.1329582Z Downloading qgis_stubs-0.2.0.post1-py3-none-any.whl (330 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.1426889Z Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.2065682Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 271.6 MB/s  0:00:00
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.2106839Z Downloading pyproj-3.7.2-cp311-cp311-manylinux_2_28_x86_64.whl (9.5 MB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.2523608Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.5/9.5 MB 236.1 MB/s  0:00:00
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.2717266Z Downloading types_setuptools-82.0.0.20260518-py3-none-any.whl (68 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.2784072Z Downloading librt-0.11.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (497 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.2869942Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.2965816Z Downloading pathspec-1.1.1-py3-none-any.whl (57 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.3067790Z Downloading PyQt5_stubs-5.15.6.0-py3-none-any.whl (433 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.3161412Z Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.3230104Z Downloading certifi-2026.5.20-py3-none-any.whl (134 kB)
+Lint, format & type-check	Install tooling	2026-05-29T14:21:13.4263812Z Installing collected packages: typing_extensions, types-setuptools, ruff, PyQt5-stubs, pathspec, numpy, mypy_extensions, librt, certifi, ast-serialize, qgis-stubs, pyproj, mypy
+Lint, format & type-check	Install tooling	2026-05-29T14:21:17.2425568Z 
+Lint, format & type-check	Install tooling	2026-05-29T14:21:17.2440719Z Successfully installed PyQt5-stubs-5.15.6.0 ast-serialize-0.5.0 certifi-2026.5.20 librt-0.11.0 mypy-2.1.0 mypy_extensions-1.1.0 numpy-2.4.6 pathspec-1.1.1 pyproj-3.7.2 qgis-stubs-0.2.0.post1 ruff-0.15.15 types-setuptools-82.0.0.20260518 typing_extensions-4.15.0
+Lint, format & type-check	Ruff (lint)	﻿2026-05-29T14:21:17.3257670Z ##[group]Run ruff check crsmart tests
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3258035Z [36;1mruff check crsmart tests[0m
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3286262Z shell: /usr/bin/bash -e {0}
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3286539Z env:
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3286817Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3287272Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3287741Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3288147Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3288562Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3288989Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3289332Z ##[endgroup]
+Lint, format & type-check	Ruff (lint)	2026-05-29T14:21:17.3454959Z All checks passed!
+Lint, format & type-check	Ruff (format check)	﻿2026-05-29T14:21:17.3491800Z ##[group]Run ruff format --check crsmart tests
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3492221Z [36;1mruff format --check crsmart tests[0m
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3519663Z shell: /usr/bin/bash -e {0}
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3519924Z env:
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3520199Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3520667Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3521130Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3521832Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3522231Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3522633Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3522990Z ##[endgroup]
+Lint, format & type-check	Ruff (format check)	2026-05-29T14:21:17.3671087Z 38 files already formatted
+Lint, format & type-check	Mypy (static types)	﻿2026-05-29T14:21:17.3707733Z ##[group]Run mypy crsmart
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3708045Z [36;1mmypy crsmart[0m
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3735522Z shell: /usr/bin/bash -e {0}
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3735781Z env:
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3736054Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3736513Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3736972Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3737370Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3737959Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3738361Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.3738694Z ##[endgroup]
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:17.5508229Z pyproject.toml: [mypy]: python_version: Python 3.9 is not supported (must be 3.10 or higher)
+Lint, format & type-check	Mypy (static types)	2026-05-29T14:21:26.4929166Z Success: no issues found in 26 source files
+Lint, format & type-check	Post Run actions/setup-python@v5	﻿2026-05-29T14:21:26.5313595Z Post job cleanup.
+Lint, format & type-check	Post Run actions/checkout@v4	﻿2026-05-29T14:21:26.7050625Z Post job cleanup.
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8067199Z [command]/usr/bin/git version
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8104184Z git version 2.54.0
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8149275Z Temporarily overriding HOME='/home/runner/work/_temp/fecf4878-3c27-4d42-935a-748aedf17fd7' before making global git config changes
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8150727Z Adding repository directory to the temporary git global config as a safe directory
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8163128Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CRSmart/CRSmart
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8198650Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8230831Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8456123Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8481328Z http.https://github.com/.extraheader
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8494719Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8525281Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8750652Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint, format & type-check	Post Run actions/checkout@v4	2026-05-29T14:21:26.8783599Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint, format & type-check	Complete job	﻿2026-05-29T14:21:26.9114185Z Cleaning up orphan processes
+Lint, format & type-check	Complete job	2026-05-29T14:21:26.9529138Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-python@v5. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	﻿2026-05-29T14:21:09.3426943Z Current runner version: '2.334.0'
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3450604Z ##[group]Runner Image Provisioner
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3451506Z Hosted Compute Agent
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3452056Z Version: 20260520.533
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3452633Z Commit: 189110e25284a9812c124fd27b339e2fb4f2f9db
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3453324Z Build Date: 2026-05-20T17:44:04Z
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3453962Z Worker ID: {d1f42ccc-1449-4f1b-b8dd-b3524f03bd83}
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3454639Z Azure Region: westus3
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3455171Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3456652Z ##[group]Operating System
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3457307Z Ubuntu
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3457780Z 24.04.4
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3458267Z LTS
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3458739Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3459263Z ##[group]Runner Image
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3459894Z Image: ubuntu-24.04
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3460420Z Version: 20260525.161.1
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3461570Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260525.161/images/ubuntu/Ubuntu2404-Readme.md
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3462882Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260525.161
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3463806Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3464859Z ##[group]GITHUB_TOKEN Permissions
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3466971Z Contents: read
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3467526Z Metadata: read
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3468105Z Packages: read
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3468636Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3470677Z Secret source: Actions
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3471769Z Prepare workflow directory
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3783086Z Prepare all required actions
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.3836761Z Getting action download info
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.8795930Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:09.9832950Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1310800Z Complete job name: Qt5/Qt6 compatibility checker
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1941924Z ##[group]Run actions/checkout@v4
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1942899Z with:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1943424Z   repository: Osman-Geomatics93/CRSmart
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1948307Z   token: ***
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1948867Z   ssh-strict: true
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1949356Z   ssh-user: git
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1949865Z   persist-credentials: true
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1950395Z   clean: true
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1950890Z   sparse-checkout-cone-mode: true
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1951464Z   fetch-depth: 1
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1951939Z   fetch-tags: false
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1952405Z   show-progress: true
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1952917Z   lfs: false
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1953375Z   submodules: false
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1953892Z   set-safe-directory: true
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.1954705Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3140734Z Syncing repository: Osman-Geomatics93/CRSmart
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3143480Z ##[group]Getting Git version info
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3144644Z Working directory is '/home/runner/work/CRSmart/CRSmart'
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3146602Z [command]/usr/bin/git version
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3147463Z git version 2.54.0
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3150088Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3155319Z Temporarily overriding HOME='/home/runner/work/_temp/c0876042-a476-4ba5-b30e-d98895baf7e8' before making global git config changes
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3156907Z Adding repository directory to the temporary git global config as a safe directory
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3157928Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CRSmart/CRSmart
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3189191Z Deleting the contents of '/home/runner/work/CRSmart/CRSmart'
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3193160Z ##[group]Initializing the repository
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3199223Z [command]/usr/bin/git init /home/runner/work/CRSmart/CRSmart
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3292182Z hint: Using 'master' as the name for the initial branch. This default branch name
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3293194Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3294073Z hint: to use in all of your new repositories, which will suppress this warning,
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3295438Z hint: call:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3296155Z hint:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3297167Z hint: 	git config --global init.defaultBranch <name>
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3298006Z hint:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3298542Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3299395Z hint: 'development'. The just-created branch can be renamed via this command:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3300058Z hint:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3300451Z hint: 	git branch -m <name>
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3300894Z hint:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3301933Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3303054Z Initialized empty Git repository in /home/runner/work/CRSmart/CRSmart/.git/
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3308042Z [command]/usr/bin/git remote add origin https://github.com/Osman-Geomatics93/CRSmart
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3343761Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3344544Z ##[group]Disabling automatic garbage collection
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3347662Z [command]/usr/bin/git config --local gc.auto 0
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3371480Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3372168Z ##[group]Setting up auth
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3378019Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3405727Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3693820Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3718044Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3889812Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.3917626Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.4105041Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.4140032Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.4152544Z ##[group]Fetching the repository
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.4161082Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8b58d00d0f82a9b8f14ace51875ed29c4024a23a:refs/remotes/origin/main
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9406862Z From https://github.com/Osman-Geomatics93/CRSmart
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9409561Z  * [new ref]         8b58d00d0f82a9b8f14ace51875ed29c4024a23a -> origin/main
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9444046Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9446565Z ##[group]Determining the checkout info
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9449141Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9451323Z [command]/usr/bin/git sparse-checkout disable
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9491579Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9516063Z ##[group]Checking out the ref
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9519495Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9584825Z Switched to a new branch 'main'
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9587103Z branch 'main' set up to track 'origin/main'.
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9592320Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9625702Z [command]/usr/bin/git log -1 --format=%H
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9644582Z 8b58d00d0f82a9b8f14ace51875ed29c4024a23a
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9968650Z ##[group]Run actions/setup-python@v5
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9969876Z with:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9970741Z   python-version: 3.11
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9971729Z   check-latest: false
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9983256Z   token: ***
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9984181Z   update-environment: true
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9985270Z   allow-prereleases: false
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9986389Z   freethreaded: false
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:10.9987339Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1629590Z ##[group]Installed versions
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1726516Z Successfully set up CPython (3.11.15)
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1729060Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1863051Z ##[group]Run curl -fsSL -o pyqt5_to_pyqt6.py \
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1864612Z [36;1mcurl -fsSL -o pyqt5_to_pyqt6.py \[0m
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1866687Z [36;1m  https://raw.githubusercontent.com/qgis/QGIS/master/scripts/pyqt5_to_pyqt6.py[0m
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1902727Z shell: /usr/bin/bash -e {0}
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1903834Z env:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1904907Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1906924Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1908677Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1910267Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1911885Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1913533Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.1914956Z ##[endgroup]
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.3820298Z curl: (22) The requested URL returned error: 404
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.3854347Z ##[error]Process completed with exit code 22.
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.4144034Z Post job cleanup.
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5097895Z [command]/usr/bin/git version
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5129543Z git version 2.54.0
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5167963Z Temporarily overriding HOME='/home/runner/work/_temp/1947ab3e-7171-408f-a624-28ab6bb2129e' before making global git config changes
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5170864Z Adding repository directory to the temporary git global config as a safe directory
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5181346Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CRSmart/CRSmart
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5211307Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5241777Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5419252Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5441106Z http.https://github.com/.extraheader
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5453815Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5480839Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5653605Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5681471Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.5975266Z Cleaning up orphan processes
+Qt5/Qt6 compatibility checker	UNKNOWN STEP	2026-05-29T14:21:11.6328285Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-python@v5. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

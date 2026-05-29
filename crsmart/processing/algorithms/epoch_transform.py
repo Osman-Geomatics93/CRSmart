@@ -14,7 +14,6 @@ from pyproj.transformer import Transformer
 from qgis.core import (
     QgsGeometry,
     QgsPoint,
-    QgsProcessing,
     QgsProcessingContext,
     QgsProcessingException,
     QgsProcessingFeedback,
@@ -26,7 +25,6 @@ from qgis.core import (
 )
 
 from ...core.epoch import analyze_epoch, make_4d_transformer
-from ...core.errors import EpochRequiredError
 from .base import CRSmartAlgorithm, qgs_crs_to_pyproj
 
 
@@ -34,7 +32,6 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
     INPUT = "INPUT"
     TARGET_CRS = "TARGET_CRS"
     EPOCH = "EPOCH"
-    ALLOW_BALLPARK = "ALLOW_BALLPARK"
     OUTPUT = "OUTPUT"
 
     def name(self) -> str:
@@ -57,7 +54,6 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
             QgsProcessingParameterFeatureSource(
                 self.INPUT,
                 self.tr("Input point layer"),
-                types=[QgsProcessing.TypeVectorPoint],
             )
         )
         self.addParameter(
@@ -106,11 +102,7 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
                 ).format(reason=info.reason)
             )
 
-        try:
-            transformer = make_4d_transformer(src_py, dst_py)
-        except EpochRequiredError as exc:  # pragma: no cover - guarded above
-            raise QgsProcessingException(str(exc)) from exc
-
+        transformer = make_4d_transformer(src_py, dst_py)
         tt = epoch if epoch is not None else float("nan")
 
         sink, dest_id = self.parameterAsSink(
@@ -122,7 +114,9 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
             target_crs,
         )
         if sink is None:
-            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
+            raise QgsProcessingException(
+                self.invalidSinkError(parameters, self.OUTPUT)
+            )
 
         total = source.featureCount()
         step = 100.0 / total if total else 0.0

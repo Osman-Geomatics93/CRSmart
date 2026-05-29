@@ -9,11 +9,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from qgis.core import QgsCoordinateReferenceSystem
+from qgis.core import QgsApplication, QgsCoordinateReferenceSystem
 from qgis.gui import QgsMapLayerComboBox, QgsProjectionSelectionWidget
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtWidgets import (
-    QApplication,
     QFormLayout,
     QLabel,
     QPushButton,
@@ -112,7 +111,7 @@ class VerticalTab(QWidget):
     def on_copy(self) -> None:
         if self._compound_wkt is None:
             return
-        QApplication.clipboard().setText(self._compound_wkt)
+        QgsApplication.clipboard().setText(self._compound_wkt)
         self._info(self.tr("Compound WKT copied to clipboard."))
 
     def _info(self, text: str) -> None:

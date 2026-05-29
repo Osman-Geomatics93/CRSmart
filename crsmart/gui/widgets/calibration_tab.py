@@ -11,9 +11,9 @@ import csv
 from typing import TYPE_CHECKING
 
 import numpy as np
+from qgis.core import QgsApplication
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtWidgets import (
-    QApplication,
     QComboBox,
     QFileDialog,
     QFormLayout,
@@ -161,7 +161,7 @@ class CalibrationTab(QWidget):
     def on_copy(self) -> None:
         if self._result is None:
             return
-        QApplication.clipboard().setText(self._result.pipeline)
+        QgsApplication.clipboard().setText(self._result.pipeline)
         self._info(self.tr("Pipeline copied to clipboard."))
 
     def _info(self, text: str) -> None:

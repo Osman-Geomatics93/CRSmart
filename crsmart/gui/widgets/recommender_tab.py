@@ -9,10 +9,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from qgis.core import QgsApplication
 from qgis.gui import QgsProjectionSelectionWidget
 from qgis.PyQt.QtCore import QCoreApplication, Qt
 from qgis.PyQt.QtWidgets import (
-    QApplication,
     QCheckBox,
     QFormLayout,
     QHBoxLayout,
@@ -164,7 +164,7 @@ class RecommenderTab(QWidget):
         cand = self._selected()
         if cand is None or not cand.pipeline:
             return
-        QApplication.clipboard().setText(cand.pipeline)
+        QgsApplication.clipboard().setText(cand.pipeline)
         self._info(self.tr("Pipeline copied to clipboard."))
 
     def on_download_grid(self) -> None:

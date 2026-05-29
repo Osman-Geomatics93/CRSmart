@@ -1,0 +1,52 @@
+Release to QGIS plugin repository/system.txt
+1_Tests (QGIS ltr).txt
+Tests (QGIS ltr)/system.txt
+Tests (QGIS ltr)/1_Set up job.txt
+Tests (QGIS ltr)/2_Initialize containers.txt
+Tests (QGIS ltr)/3_Run actions_checkout@v4.txt
+Tests (QGIS ltr)/4_Diagnostics (python + qgis import).txt
+Tests (QGIS ltr)/5_Install test dependencies.txt
+Tests (QGIS ltr)/6_Run test suite.txt
+Tests (QGIS ltr)/11_Post Run actions_checkout@v4.txt
+Tests (QGIS ltr)/12_Stop containers.txt
+Tests (QGIS ltr)/13_Complete job.txt
+2_Build & verify plugin zip.txt
+Build & verify plugin zip/system.txt
+Build & verify plugin zip/1_Set up job.txt
+Build & verify plugin zip/2_Run actions_checkout@v4.txt
+Build & verify plugin zip/3_Run actions_setup-python@v5.txt
+Build & verify plugin zip/4_Build zip.txt
+Build & verify plugin zip/5_Verify zip structure.txt
+Build & verify plugin zip/12_Post Run actions_checkout@v4.txt
+Build & verify plugin zip/13_Complete job.txt
+3_Lint, format & type-check.txt
+Lint, format & type-check/system.txt
+Lint, format & type-check/1_Set up job.txt
+Lint, format & type-check/2_Run actions_checkout@v4.txt
+Lint, format & type-check/3_Run actions_setup-python@v5.txt
+Lint, format & type-check/4_Install tooling.txt
+Lint, format & type-check/5_Ruff (lint).txt
+Lint, format & type-check/6_Ruff (format check).txt
+Lint, format & type-check/7_Mypy (static types).txt
+Lint, format & type-check/13_Post Run actions_setup-python@v5.txt
+Lint, format & type-check/14_Post Run actions_checkout@v4.txt
+Lint, format & type-check/15_Complete job.txt
+4_Qt5_Qt6 compatibility checker.txt
+Qt5_Qt6 compatibility checker/system.txt
+Qt5_Qt6 compatibility checker/1_Set up job.txt
+Qt5_Qt6 compatibility checker/2_Run actions_checkout@v4.txt
+Qt5_Qt6 compatibility checker/3_Run actions_setup-python@v5.txt
+Qt5_Qt6 compatibility checker/4_Fetch the official Qt6 checker.txt
+Qt5_Qt6 compatibility checker/12_Post Run actions_checkout@v4.txt
+Qt5_Qt6 compatibility checker/13_Complete job.txt
+5_Tests (QGIS latest).txt
+Tests (QGIS latest)/system.txt
+Tests (QGIS latest)/1_Set up job.txt
+Tests (QGIS latest)/2_Initialize containers.txt
+Tests (QGIS latest)/3_Run actions_checkout@v4.txt
+Tests (QGIS latest)/4_Diagnostics (python + qgis import).txt
+Tests (QGIS latest)/5_Install test dependencies.txt
+Tests (QGIS latest)/6_Run test suite.txt
+Tests (QGIS latest)/11_Post Run actions_checkout@v4.txt
+Tests (QGIS latest)/12_Stop containers.txt
+Tests (QGIS latest)/13_Complete job.txt
