@@ -102,12 +102,18 @@ def require_epoch_or_raise(
     return info
 
 
-def _build_4d_transformer(
+def make_4d_transformer(
     source: CRSLike,
     target: CRSLike,
     *,
     allow_ballpark: bool = False,
 ) -> Transformer:
+    """Build a reusable pyproj Transformer for time-dependent (4D) transforms.
+
+    Callers that transform many coordinates (e.g. every vertex of a layer) should
+    build the transformer once and reuse it rather than calling
+    :func:`transform_4d` per point.
+    """
     src = coerce_crs(source)
     dst = coerce_crs(target)
     return Transformer.from_crs(src, dst, always_xy=True, allow_ballpark=allow_ballpark)
@@ -135,6 +141,6 @@ def transform_4d(
     """
     if enforce_epoch and (tt is None or tt != tt):  # NaN check
         require_epoch_or_raise(source, target)
-    transformer = _build_4d_transformer(source, target, allow_ballpark=allow_ballpark)
+    transformer = make_4d_transformer(source, target, allow_ballpark=allow_ballpark)
     x, y, z, t = transformer.transform(xx, yy, zz, tt)
     return float(x), float(y), float(z), float(t)

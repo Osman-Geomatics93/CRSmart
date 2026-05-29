@@ -6,7 +6,11 @@ import math
 
 import numpy as np
 import pytest
-from crsmart.core.calibration import fit_affine_2d, fit_helmert_2d
+from crsmart.core.calibration import (
+    control_points_from_rows,
+    fit_affine_2d,
+    fit_helmert_2d,
+)
 from crsmart.core.errors import CalibrationError
 from pyproj.transformer import Transformer
 
@@ -99,3 +103,50 @@ def test_too_few_points_raises() -> None:
         fit_helmert_2d([[0.0, 0.0]], [[1.0, 1.0]])
     with pytest.raises(CalibrationError):
         fit_affine_2d([[0.0, 0.0], [1.0, 1.0]], [[0.0, 0.0], [1.0, 1.0]])
+
+
+def test_control_points_from_rows_with_header() -> None:
+    rows = [
+        ["local_x", "local_y", "target_x", "target_y"],
+        ["100.0", "200.0", "500100.0", "6000200.0"],
+        ["150.5", "250.5", "500150.5", "6000250.5"],
+        ["", ""],  # blank row skipped
+        ["300", "400", "500300", "6000400", "ignored-extra-col"],
+    ]
+    local, target = control_points_from_rows(rows)
+    assert local.shape == (3, 2)
+    assert target.shape == (3, 2)
+    assert local[0].tolist() == [100.0, 200.0]
+    assert target[2].tolist() == [500300.0, 6000400.0]
+
+
+def test_control_points_from_rows_no_header_autodetect() -> None:
+    # has_header=True but the first row is numeric -> kept, not dropped.
+    rows = [["1", "2", "3", "4"], ["5", "6", "7", "8"]]
+    local, target = control_points_from_rows(rows, has_header=True)
+    assert local.shape == (2, 2)
+
+
+def test_control_points_from_rows_round_trips_fit() -> None:
+    rng = np.random.default_rng(11)
+    local = rng.uniform(-100, 100, size=(8, 2))
+    target = local + np.array([10.0, -5.0])  # pure translation
+    rows = [["lx", "ly", "tx", "ty"]] + [
+        [str(local[i, 0]), str(local[i, 1]), str(target[i, 0]), str(target[i, 1])]
+        for i in range(len(local))
+    ]
+    pl, pt = control_points_from_rows(rows)
+    result = fit_helmert_2d(pl, pt)
+    assert result.params["tx"] == pytest.approx(10.0, abs=1e-6)
+    assert result.params["ty"] == pytest.approx(-5.0, abs=1e-6)
+
+
+def test_control_points_from_rows_errors() -> None:
+    with pytest.raises(CalibrationError):
+        control_points_from_rows([["lx", "ly", "tx", "ty"]])  # header only
+    with pytest.raises(CalibrationError):
+        control_points_from_rows([["1", "2", "3"]], has_header=False)  # too few cols
+    with pytest.raises(CalibrationError):
+        control_points_from_rows(
+            [["a", "b", "c", "d"]], has_header=False
+        )  # non-numeric

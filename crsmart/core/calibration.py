@@ -11,7 +11,7 @@ Helmert parameters (scale, rotation, translation) are also reported.
 from __future__ import annotations
 
 import math
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from typing import Union
 
 import numpy as np
@@ -224,3 +224,48 @@ def fit_affine_2d(
 def to_pipeline(result: CalibrationResult) -> str:
     """Return the PROJ pipeline string for a fitted calibration."""
     return result.pipeline
+
+
+def control_points_from_rows(
+    rows: Iterable[Sequence[str]],
+    *,
+    has_header: bool = True,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Parse control-point rows into ``(local_xy, target_xy)`` arrays.
+
+    Each row must hold at least four numeric columns in the order
+    ``local_x, local_y, target_x, target_y``. Extra columns are ignored. Blank
+    rows are skipped. If ``has_header`` is True the first non-blank row is
+    treated as a header and dropped only when its first cell is non-numeric.
+
+    :raises CalibrationError: if no usable rows are found or a row is malformed.
+    """
+    local: list[tuple[float, float]] = []
+    target: list[tuple[float, float]] = []
+    header_pending = has_header
+    for line_no, row in enumerate(rows, start=1):
+        cells = [c.strip() for c in row]
+        if not cells or all(c == "" for c in cells):
+            continue
+        if header_pending:
+            header_pending = False
+            try:
+                float(cells[0])
+            except (ValueError, IndexError):
+                continue  # genuine header row -> skip
+        if len(cells) < 4:
+            raise CalibrationError(
+                f"Row {line_no}: expected >= 4 columns "
+                f"(local_x, local_y, target_x, target_y), got {len(cells)}."
+            )
+        try:
+            lx, ly, tx, ty = (float(cells[i]) for i in range(4))
+        except ValueError as exc:
+            raise CalibrationError(
+                f"Row {line_no}: non-numeric value ({exc})."
+            ) from exc
+        local.append((lx, ly))
+        target.append((tx, ty))
+    if not local:
+        raise CalibrationError("No control points found.")
+    return np.asarray(local, dtype=float), np.asarray(target, dtype=float)

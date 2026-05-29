@@ -8,6 +8,7 @@ import pytest
 from crsmart.core.epoch import (
     analyze_epoch,
     is_dynamic,
+    make_4d_transformer,
     require_epoch_or_raise,
     transform_4d,
 )
@@ -74,3 +75,18 @@ def test_transform_4d_is_time_dependent() -> None:
 def test_transform_4d_enforces_epoch_for_dynamic() -> None:
     with pytest.raises(EpochRequiredError):
         transform_4d(ITRF2014, ITRF2008, LON, LAT, H, float("nan"))
+
+
+def test_make_4d_transformer_is_reusable_and_matches_transform_4d() -> None:
+    transformer = make_4d_transformer(ITRF2014, ITRF2008)
+    # Batch-transform several points/epochs through the one transformer.
+    xs = [LON, LON + 1.0]
+    ys = [LAT, LAT - 1.0]
+    zs = [H, H + 50.0]
+    ts = [2010.0, 2010.0]
+    bx, by, bz, bt = transformer.transform(xs, ys, zs, ts)
+    # First point matches the single-shot helper within tight tolerance.
+    sx, sy, sz, _ = transform_4d(ITRF2014, ITRF2008, LON, LAT, H, 2010.0)
+    assert bx[0] == pytest.approx(sx, abs=1e-9)
+    assert by[0] == pytest.approx(sy, abs=1e-9)
+    assert bz[0] == pytest.approx(sz, abs=1e-6)

@@ -31,9 +31,14 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 - [ ] black not runnable locally (blib2to3 bug on Python 3.9.0 32-bit) — formatted via
       black-compatible `ruff format`; black runs in CI (Python 3.11)
 
-## Phase 3 — Processing algorithms (MVP surface, built first)
-- [ ] recommend_transform, reproject_layer, epoch_transform, fit_calibration (CSV input first), repair_vertical
-- [ ] Provider `loadAlgorithms` wires them; help text; headless tests
+## Phase 3 — Processing algorithms (MVP surface, built first) ✅
+- [x] recommend_transform, reproject_layer, epoch_transform, fit_calibration (CSV input first), repair_vertical
+- [x] Provider `loadAlgorithms` wires all five; each has displayName/group/shortHelpString
+- [x] Shared `base.py` (CRSmartAlgorithm, WKT-based QGIS<->pyproj CRS bridges); thin wrappers, no geodesy
+- [x] Pushed locally-testable logic into core (`control_points_from_rows`, `make_4d_transformer`) + tests
+- [x] `tests/test_processing.py` headless algorithm tests (run under pytest-qgis in CI)
+- [x] Local gates green: mypy (22 files), ruff, ruff format, pytest 44 (non-QGIS subset)
+- [ ] QGIS-dependent Processing tests verified only in CI (no local QGIS / no remote yet)
 
 ## Phase 4 — GUI dock panel
 - [ ] Feature tabs on `QgsDockWidget`; native widgets; messageBar; consent modal

@@ -19,10 +19,21 @@ class CRSmartProvider(QgsProcessingProvider):
     """Groups all CRSmart Processing algorithms under one provider."""
 
     def loadAlgorithms(self) -> None:  # noqa: N802 (QGIS API name)
-        """Register algorithms. Populated in Phase 3."""
-        # from .algorithms.recommend_transform import RecommendTransformAlgorithm
-        # self.addAlgorithm(RecommendTransformAlgorithm())
-        return None
+        """Register every CRSmart Processing algorithm."""
+        from .algorithms.epoch_transform import EpochTransformAlgorithm
+        from .algorithms.fit_calibration import FitCalibrationAlgorithm
+        from .algorithms.recommend_transform import RecommendTransformAlgorithm
+        from .algorithms.repair_vertical import RepairVerticalAlgorithm
+        from .algorithms.reproject_layer import ReprojectLayerAlgorithm
+
+        for algorithm in (
+            RecommendTransformAlgorithm(),
+            ReprojectLayerAlgorithm(),
+            EpochTransformAlgorithm(),
+            FitCalibrationAlgorithm(),
+            RepairVerticalAlgorithm(),
+        ):
+            self.addAlgorithm(algorithm)
 
     def id(self) -> str:
         return "crsmart"
