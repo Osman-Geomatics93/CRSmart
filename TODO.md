@@ -92,20 +92,26 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
       schemes). Fixed in **v0.1.1** (6b7c15c): scheme allow-list + HTTP(S)-only
       opener; `bandit -r crsmart` now clean. Re-published; BLOCKED status
       cleared, back to awaiting first-version approval.
-- [x] **Smoke test PASSED in real QGIS 3.44.6** (2026-05-29): ran
-      `scripts/qgis_console_smoketest.py` headlessly via `python-qgis.bat`
-      against the *installed* plugin — **29/29 checks**. Covers Processing
-      provider/algorithm registration, all four core features, and the
-      epoch-refusal + consent/scheme safety gates. (Qt5 build; Qt6 path is
-      covered by CI. GUI dock tabs still need a manual click-through per
-      docs/TESTING.md §A–F.)
+- [x] **Tested in real QGIS 3.44.6** against the *installed* plugin
+      (2026-05-30), three independent headless harnesses via `python-qgis.bat`:
+      - **Engine + registration smoke test — 29/29** (`scripts/qgis_console_smoketest.py`):
+        core math, all 5 algorithms registered, epoch-refusal + consent/scheme gates.
+      - **GUI tab click-through — 11/11** (+1 env skip): each dock tab's real
+        handlers driven with the sample data. The 1 skip = Vertical tab's
+        `QgsProjectionSelectionWidget` can't hold a standalone vertical CRS
+        headless (engine + algorithm both assemble the compound CRS fine).
+      - **Full algorithm execution — 19/19** (CI `alg.run()` pattern): every
+        algorithm runs with correct output — Adindan→WGS84 95 m shift, epoch
+        refuses w/o epoch then 1.716 m motion at 1995↔2025, Helmert RMSE 2.5 cm
+        + outlier flagged, compound CRS assembled.
+      (Qt5 build; Qt6 path covered by CI's QGIS-latest container.)
 
 ## Remaining — need the user (not code)
 - [ ] **Rotate the plugins.qgis.org password** (it was shared in plaintext),
       then `gh secret set OSGEO_PASSWORD`.
 - [ ] Wait for / request plugins.qgis.org approval of the first version.
-- [ ] Manually click through the GUI dock tabs in QGIS (docs/TESTING.md §A–F);
-      headless smoke test does not drive the GUI.
+- [ ] Optional: glance at the Vertical tab's CRS picker rendering in the open
+      GUI (only the widget *visual* is unverified; assembly logic passed).
 - [ ] Capture README screenshots (placeholders for now; need a running QGIS).
 
 ## Notes
