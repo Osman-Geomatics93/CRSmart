@@ -48,12 +48,21 @@ def test_calibration_tab_fits_pasted_points(qgis_iface) -> None:
 
 
 def test_vertical_tab_assembles_compound(qgis_iface) -> None:
-    from crsmart.gui.widgets.vertical_tab import VerticalTab
+    import pytest
     from qgis.core import QgsCoordinateReferenceSystem
+
+    from crsmart.gui.widgets.vertical_tab import VerticalTab
 
     tab = VerticalTab(qgis_iface)
     tab.horizontal_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:4326"))
     tab.vertical_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:5703"))  # NAVD88
+    # Some headless QGIS builds will not hold a standalone vertical CRS in the
+    # projection-selection widget. The engine-level compound assembly is covered
+    # authoritatively in tests/test_vertical.py, so skip only that environment.
+    if not tab.vertical_sel.crs().isValid():
+        tab.deleteLater()
+        pytest.skip("QgsProjectionSelectionWidget cannot hold a vertical CRS here")
+
     tab.on_assemble()
     assert tab._compound_wkt is not None
     assert (
