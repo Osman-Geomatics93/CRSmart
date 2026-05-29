@@ -72,10 +72,10 @@ Symlink/copy the `crsmart/` package into your QGIS profile plugins directory:
 ## Development
 
 ```bash
-ruff check crsmart tests      # lint
-black --check crsmart tests   # format
-mypy crsmart                  # types (uses qgis-stubs)
-pytest                        # tests (pytest-qgis)
+ruff check crsmart tests          # lint
+ruff format --check crsmart tests # format (ruff is the sole formatter)
+mypy crsmart                      # types (uses qgis-stubs)
+pytest                            # tests (pytest-qgis)
 ```
 
 The pure-Python engine lives in `crsmart/core/` and has **zero** Qt/`iface`

@@ -2,17 +2,33 @@
 
 from __future__ import annotations
 
-import sys
+import importlib.util
 import zipfile
 from pathlib import Path
+from types import ModuleType
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "scripts"))
-
-import build_zip  # noqa: E402
 
 
-def test_zip_structure(tmp_path) -> None:  # noqa: ANN001
+def _load_build_zip() -> ModuleType:
+    """Import scripts/build_zip.py by absolute path.
+
+    Avoids relying on sys.path / cwd, which differ between local runs and the
+    CI containers (where a bare ``import build_zip`` fails at collection).
+    """
+    spec = importlib.util.spec_from_file_location(
+        "crsmart_build_zip", ROOT / "scripts" / "build_zip.py"
+    )
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+build_zip = _load_build_zip()
+
+
+def test_zip_structure(tmp_path: Path) -> None:
     out = tmp_path / "crsmart.zip"
     build_zip.build(out)
     with zipfile.ZipFile(out) as zf:

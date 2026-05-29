@@ -22,32 +22,37 @@ jobs:
       - name: Install tooling
         run: |
           python -m pip install --upgrade pip
-          pip install ruff black mypy qgis-stubs numpy pyproj types-setuptools
+          pip install ruff mypy qgis-stubs numpy pyproj types-setuptools
       - name: Ruff (lint)
         run: ruff check crsmart tests
-      - name: Black (format check)
-        run: black --check crsmart tests
+      - name: Ruff (format check)
+        run: ruff format --check crsmart tests
       - name: Mypy (static types)
         run: mypy crsmart
 
   qt6-check:
     name: Qt5/Qt6 compatibility checker
     runs-on: ubuntu-latest
-    container:
-      image: registry.gitlab.com/oslandia/qgis/pyqgis-4-checker:latest
     steps:
       - uses: actions/checkout@v4
-      # The Oslandia image ships the official pyqt5->pyqt6 checker. The exact
-      # entrypoint is confirmed/pinned in Phase 6; see TODO.md. The build must
-      # fail on any reported incompatibility.
-      - name: Run Qt6 compatibility checker
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # The official QGIS pyqt5->pyqt6 checker is a self-contained AST scan; we
+      # fetch it at run time (no external container needed). It exits non-zero on
+      # any Qt5-only API usage.
+      - name: Fetch the official Qt6 checker
         run: |
-          set -euo pipefail
-          if command -v pyqgis-4-checker >/dev/null 2>&1; then
-            pyqgis-4-checker crsmart
-          else
-            python3 /opt/pyqt5_to_pyqt6.py crsmart
+          curl -fsSL -o pyqt5_to_pyqt6.py \
+            https://raw.githubusercontent.com/qgis/QGIS/master/scripts/pyqt5_to_pyqt6.py
+      - name: Run Qt6 compatibility checker
+        run: python pyqt5_to_pyqt6.py crsmart
+      - name: Assert no direct PyQt imports (qgis.PyQt shim only)
+        run: |
+          if grep -rEn "^\s*(import|from)\s+PyQt(5|6)\b" crsmart; then
+            echo "Direct PyQt import found; use the qgis.PyQt shim." && exit 1
           fi
+          echo "OK: no direct PyQt imports."
 
   test:
     name: Tests (QGIS ${{ matrix.qgis }})
@@ -55,23 +60,30 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qgis:
-          - "release-3_40" # QGIS 3.40 LTR (Qt5)
-          - "latest"       # QGIS 4.x (Qt6)
+        # 'ltr' currently tracks QGIS 3.40 LTR (Qt5); 'latest' is the newest
+        # release. (There is no 'release-3_40' tag on Docker Hub.) When official
+        # Qt6 / QGIS 4.x images publish, add them here.
+        qgis: ["ltr", "latest"]
     container:
       image: qgis/qgis:${{ matrix.qgis }}
     env:
       QT_QPA_PLATFORM: offscreen
-      PYTHONPATH: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
+      - name: Diagnostics (python + qgis import)
+        run: |
+          python3 --version
+          python3 -c "import qgis; print('qgis at', qgis.__file__)"
+          python3 -c "import qgis.core; print('qgis.core OK')"
       - name: Install test dependencies
         run: |
-          pip3 install --break-system-packages \
-            pytest pytest-qgis pytest-cov pyproj numpy || \
-          pip3 install pytest pytest-qgis pytest-cov pyproj numpy
+          pip3 install --break-system-packages pytest pytest-qgis pytest-cov \
+            || pip3 install pytest pytest-qgis pytest-cov
       - name: Run test suite
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: |
+          cd "$GITHUB_WORKSPACE"
           xvfb-run -a python3 -m pytest -ra --cov=crsmart --cov-report=term-missing
 
   package:
@@ -104,9 +116,8 @@ jobs:
           python-version: "3.11"
       - name: Install qgis-plugin-ci
         run: pip install qgis-plugin-ci
-      # Publishes the tagged release to the OSGeo plugin repo and attaches the
-      # zip to the GitHub release. Requires repository secrets:
-      #   OSGEO_USERNAME / OSGEO_PASSWORD (plugins.qgis.org credentials).
+      # Publishes the tagged release to the OSGeo plugin repo + GitHub release.
+      # Requires repository secrets OSGEO_USERNAME / OSGEO_PASSWORD.
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

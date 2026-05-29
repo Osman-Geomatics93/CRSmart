@@ -43,7 +43,7 @@ assistant. Four features: (A) transformation recommender with uncertainty,
   version before using it.
 
 ### Quality gates (must stay green)
-- `ruff` (lint) + `black` (format) + `mypy` with `qgis-stubs`.
+- `ruff` (lint + format) + `mypy` with `qgis-stubs` (ruff is the sole formatter).
 - Tests via **`pytest-qgis`** — meaningful coverage of the core engine.
 - CI matrix: **QGIS 3.40 LTR + QGIS 4.x**, plus the **Qt5/Qt6 checker**.
 - Full **type hints** on every function/method. Python 3.9+.

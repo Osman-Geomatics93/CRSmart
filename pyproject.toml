@@ -19,7 +19,6 @@ dependencies = ["pyproj>=3.4", "numpy>=1.21"]
 [project.optional-dependencies]
 dev = [
     "ruff>=0.5",
-    "black>=24.3",
     "mypy>=1.8",
     "qgis-stubs>=0.2.0.post1",
     "pytest>=7.4",
@@ -59,10 +58,6 @@ ignore = [
 # qgis.PyQt shim so one codebase runs on Qt5 (QGIS <= 3.44) and Qt6 (QGIS 4.x).
 "PyQt5".msg = "Import Qt via 'from qgis.PyQt...' not PyQt5 directly (Qt5/Qt6 portability)."
 "PyQt6".msg = "Import Qt via 'from qgis.PyQt...' not PyQt6 directly (Qt5/Qt6 portability)."
-
-[tool.black]
-line-length = 88
-target-version = ["py39"]
 
 [tool.mypy]
 python_version = "3.9"
