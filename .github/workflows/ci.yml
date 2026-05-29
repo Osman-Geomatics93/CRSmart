@@ -68,9 +68,10 @@ jobs:
           python3 -c "import qgis.core; print('qgis.core OK')" || true
           python3 -c "import pyproj; print('pyproj', pyproj.__version__)" || true
       - name: Install test dependencies
+        # Do NOT upgrade pip: the Debian-managed pip in the QGIS image has no
+        # RECORD file, so --upgrade fails with uninstall-no-record-file. The
+        # stock pip installs the deps fine (PEP 668 handled via the env var).
         run: |
-          set -e
-          python3 -m pip install --upgrade pip
           python3 -m pip install pytest pytest-qgis pytest-cov numpy pyproj
           python3 -c "import numpy, pyproj, pytest; print('deps OK')"
       - name: Run test suite
