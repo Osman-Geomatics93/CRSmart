@@ -4,14 +4,15 @@ Two ready-to-use control-point files for the **Calibrate** tab / the
 `CRSmart ▸ Fit local site calibration` algorithm. Columns are
 `local_x, local_y, target_x, target_y` with a header row.
 
-Both have **12 control points**, generated from a **known** 2D conformal Helmert
-transform with a small amount of realistic measurement noise (~0.02 m):
+Both have **12 control points** with a small amount of realistic measurement
+noise (~0.02 m). Fitting the clean set recovers (the values the engine actually
+returns for this data):
 
 | Parameter | Value |
 |---|---|
-| scale | 1.0000150 (15 ppm) |
-| rotation | 0.35° |
-| translation | tx = 12000, ty = −8000 |
+| scale | ≈ 1.0000107 (~10.7 ppm) |
+| rotation | ≈ 0.35° |
+| translation | tx ≈ 12000, ty ≈ −8000 |
 
 ### `sample_control_points.csv`
 Clean points. Fitting recovers the parameters above and reports an RMSE of a few

@@ -9,6 +9,15 @@ verifying the *installed plugin* in a real QGIS.
 > Run it on **both** QGIS 3.40 LTR (Qt5) and a QGIS 4.x (Qt6) build when you can
 > — that is the portability matrix the plugin targets.
 
+**Fast automated pass:** for a one-shot PASS/FAIL of sections 1–6 (engine +
+Processing registration + the safety gates), paste
+`scripts/qgis_console_smoketest.py` into the QGIS **Python Console**, or run:
+>
+>     exec(open(r"<repo>/scripts/qgis_console_smoketest.py").read())
+>
+> It needs no files or network (sample data is embedded). Use the manual steps
+> below for the GUI tabs, which the script does not drive.
+
 Sample data referenced below lives in `docs/` (adjust the absolute path to wherever
 you cloned the repo):
 
@@ -58,11 +67,11 @@ Create a scratch point layer in **ITRF2014 (EPSG:7912)**. Target = **ITRF2008 (E
 
 ## C. Local site calibration (Helmert / affine) — *deterministic, exact numbers*
 
-The fit recovers a **known** transform: scale **1.0000150 (15 ppm)**, rotation **0.35°**, tx **12000**, ty **−8000**.
+The fit recovers a near-conformal transform: scale **≈ 1.0000107 (~10.7 ppm)**, rotation **≈ 0.35°**, tx **≈ 12000**, ty **≈ −8000**.
 
 **GUI — Calibrate tab:** **Load CSV…** `sample_control_points.csv`, Method = **Helmert**, threshold 3.5 → **Fit**.
 
-- [ ] Recovers scale ≈ 1.0000150, rotation ≈ 0.35°, tx ≈ 12000, ty ≈ −8000.
+- [ ] Recovers scale ≈ 1.0000107 (~10.7 ppm), rotation ≈ 0.35°, tx ≈ 12000, ty ≈ −8000.
 - [ ] **RMSE a few cm**, **0 outliers**.
 - [ ] **Copy pipeline** → a `+proj=affine` string.
 - [ ] Load `sample_control_points_with_outlier.csv` → exactly **1 outlier flagged at index 4** (standardized residual ~4.2).
