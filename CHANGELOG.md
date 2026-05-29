@@ -14,6 +14,12 @@ First public release. Runs on QGIS 3.40 LTR (Qt5) through
 QGIS 4.x (Qt6); every capability is available both as a Processing algorithm and
 in the dockable panel. All geodetic math goes through PROJ / pyproj.
 
+_Shipped 2026-05-29: tagged `v0.1.0`, published as a
+[GitHub release](https://github.com/Osman-Geomatics93/CRSmart/releases/tag/v0.1.0)
+with the plugin zip, and uploaded to
+[plugins.qgis.org](https://plugins.qgis.org/plugins/crsmart/) (general / non-experimental;
+first version awaiting the standard QGIS-repository approval)._
+
 ### Added
 
 - **Transformation recommender with uncertainty (Feature A).** Enumerates every

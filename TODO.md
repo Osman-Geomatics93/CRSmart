@@ -73,11 +73,27 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
       Real Processing + GUI pytest-qgis tests run on both Qt5 and Qt6.
 - [x] Qt6 gate is a self-contained grep check (no fragile external image)
 
+## Release — v0.1.0 SHIPPED ✅ (2026-05-29)
+- [x] Tagged `v0.1.0` (at b800968) and pushed; tag-triggered pipeline green.
+- [x] Fixed the release automation along the way: added the missing
+      `tags: ["v*"]` workflow trigger; release job now `gh release create`
+      (shell) → `qgis-plugin-ci release` (attaches zip + uploads to OSGeo).
+- [x] GitHub release published with `crsmart.v0.1.0.zip` asset:
+      https://github.com/Osman-Geomatics93/CRSmart/releases/tag/v0.1.0
+- [x] Set as **general** (`experimental=False`); softened "experimental"
+      wording in notes/changelog.
+- [x] Uploaded to plugins.qgis.org (https://plugins.qgis.org/plugins/crsmart/),
+      owner `osman93`. **First version awaiting QGIS-repo admin approval** —
+      this is normal; later versions auto-approve.
+- [x] OSGeo creds stored only as encrypted Actions secrets
+      (OSGEO_USERNAME / OSGEO_PASSWORD).
+
 ## Remaining — need the user (not code)
+- [ ] **Rotate the plugins.qgis.org password** (it was shared in plaintext),
+      then `gh secret set OSGEO_PASSWORD`.
+- [ ] Wait for / request plugins.qgis.org approval of the first version.
 - [ ] Load `dist/crsmart-0.1.0.zip` in local QGIS 3.40 desktop to eyeball it.
 - [ ] Capture README screenshots (placeholders for now; need a running QGIS).
-- [ ] Publish: add repo secrets OSGEO_USERNAME / OSGEO_PASSWORD, then push a
-      version tag (e.g. `v0.1.0`) to trigger the tag-gated release job.
 
 ## Notes
 - Author: **OSMAN IBRAHIM** <osmangeomatics93@gmail.com>; slug Osman-Geomatics93/CRSmart.
