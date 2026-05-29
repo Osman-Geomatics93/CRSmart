@@ -49,8 +49,13 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 - [x] pytest-qgis interaction tests in `tests/test_gui.py` (run in CI)
 - [x] Local gates green: ruff, ruff format, mypy (26 files), pytest 37 (non-QGIS subset)
 
-## Phase 5 — Tests & polish
-- [ ] Edge cases, error states, docstrings, coverage round-out
+## Phase 5 — Tests & polish ✅
+- [x] `tests/test_edge_cases.py`: 23 tests for error states & edge cases
+- [x] Calibration input validation: NaN/inf/ragged/non-numeric -> clean CalibrationError
+- [x] Identity (src==dst) transform, str-vs-int CRS parity, antimeridian AoU wrap
+- [x] grids consent-gate paths: no-URL, non-open-license, report partitioning (offline)
+- [x] Core engine coverage 88% -> 93% (remaining gap = live CDN download body, not unit-tested)
+- [x] Local gates green: ruff, ruff format, mypy (26 files), pytest 58 (non-QGIS subset)
 
 ## Phase 6 — CI, packaging, docs
 - [ ] Finalize CI matrix; confirm/pin exact Qt6 checker entrypoint (see below)

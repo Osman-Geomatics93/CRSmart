@@ -25,9 +25,14 @@ _DEFAULT_OUTLIER_THRESHOLD = 3.5
 
 
 def _as_xy(points: PointArray, name: str) -> np.ndarray:
-    arr = np.asarray(points, dtype=float)
+    try:
+        arr = np.asarray(points, dtype=float)
+    except (ValueError, TypeError) as exc:
+        raise CalibrationError(f"{name} must be numeric (x, y) pairs.") from exc
     if arr.ndim != 2 or arr.shape[1] != 2:
         raise CalibrationError(f"{name} must be an N x 2 array of (x, y) pairs.")
+    if not np.all(np.isfinite(arr)):
+        raise CalibrationError(f"{name} contains non-finite values (NaN or infinity).")
     return arr
 
 
