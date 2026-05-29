@@ -105,10 +105,12 @@ jobs:
           path: dist/*.zip
 
   release:
-    name: Release to QGIS plugin repository
+    name: Create GitHub release
     needs: [lint, qt6-check, test, package]
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -116,13 +118,11 @@ jobs:
           python-version: "3.11"
       - name: Install qgis-plugin-ci
         run: pip install qgis-plugin-ci
+      # GitHub release + plugin zip only. Omitting --osgeo-* skips the
+      # plugins.qgis.org upload (no OSGeo credentials configured).
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OSGEO_USERNAME: ${{ secrets.OSGEO_USERNAME }}
-          OSGEO_PASSWORD: ${{ secrets.OSGEO_PASSWORD }}
         run: |
           qgis-plugin-ci release "${GITHUB_REF_NAME}" \
-            --github-token "${GITHUB_TOKEN}" \
-            --osgeo-username "${OSGEO_USERNAME}" \
-            --osgeo-password "${OSGEO_PASSWORD}"
+            --github-token "${GITHUB_TOKEN}"
