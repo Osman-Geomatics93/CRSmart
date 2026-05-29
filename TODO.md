@@ -92,12 +92,20 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
       schemes). Fixed in **v0.1.1** (6b7c15c): scheme allow-list + HTTP(S)-only
       opener; `bandit -r crsmart` now clean. Re-published; BLOCKED status
       cleared, back to awaiting first-version approval.
+- [x] **Smoke test PASSED in real QGIS 3.44.6** (2026-05-29): ran
+      `scripts/qgis_console_smoketest.py` headlessly via `python-qgis.bat`
+      against the *installed* plugin — **29/29 checks**. Covers Processing
+      provider/algorithm registration, all four core features, and the
+      epoch-refusal + consent/scheme safety gates. (Qt5 build; Qt6 path is
+      covered by CI. GUI dock tabs still need a manual click-through per
+      docs/TESTING.md §A–F.)
 
 ## Remaining — need the user (not code)
 - [ ] **Rotate the plugins.qgis.org password** (it was shared in plaintext),
       then `gh secret set OSGEO_PASSWORD`.
 - [ ] Wait for / request plugins.qgis.org approval of the first version.
-- [ ] Load `dist/crsmart-0.1.0.zip` in local QGIS 3.40 desktop to eyeball it.
+- [ ] Manually click through the GUI dock tabs in QGIS (docs/TESTING.md §A–F);
+      headless smoke test does not drive the GUI.
 - [ ] Capture README screenshots (placeholders for now; need a running QGIS).
 
 ## Notes
