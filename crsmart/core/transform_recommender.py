@@ -16,7 +16,7 @@ Verified against pyproj 3.6.1 / PROJ 9.3.0:
 
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from typing import Union
 
 from pyproj import CRS
@@ -114,11 +114,14 @@ def _covers(area: AreaOfUseInfo | None, aoi_bbox: BBox | None) -> bool:
     return area.intersects_bbox(*aoi_bbox)
 
 
-def _sort_key(candidate: TransformCandidate) -> tuple:
+def _sort_key(
+    candidate: TransformCandidate,
+) -> tuple[int, int, float, int, int, str]:
     """Higher tuple == better. Priority: AOI cover -> accuracy -> available
     -> non-ballpark -> stable by description."""
-    has_acc = candidate.accuracy_m is not None
-    acc_component = -candidate.accuracy_m if has_acc else 0.0
+    accuracy = candidate.accuracy_m
+    has_acc = accuracy is not None
+    acc_component = -accuracy if accuracy is not None else 0.0
     return (
         1 if candidate.covers_aoi else 0,
         1 if has_acc else 0,
@@ -158,7 +161,11 @@ def enumerate_candidates(
         )
 
     group = TransformerGroup(
-        src, dst, always_xy=True, area_of_interest=aoi, allow_ballpark=True
+        src,
+        dst,
+        always_xy=True,
+        area_of_interest=aoi,  # type: ignore[arg-type]  # pyproj.aoi vs _transformer alias
+        allow_ballpark=True,
     )
 
     candidates: list[TransformCandidate] = []
@@ -264,8 +271,8 @@ def _choose_recommended(
     return available[0]
 
 
-def _dedupe_grids(grids) -> tuple[GridInfo, ...]:  # noqa: ANN001
-    seen = set()
+def _dedupe_grids(grids: Iterable[GridInfo]) -> tuple[GridInfo, ...]:
+    seen: set[str] = set()
     out: list[GridInfo] = []
     for g in grids:
         if g.short_name in seen:

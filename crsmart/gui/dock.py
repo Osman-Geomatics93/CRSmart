@@ -35,5 +35,5 @@ class CRSmartDock(QgsDockWidget):
         layout.addStretch(1)
         self.setWidget(container)
 
-    def tr(self, message: str) -> str:
+    def tr(self, message: str) -> str:  # type: ignore[override]
         return QCoreApplication.translate("CRSmartDock", message)
