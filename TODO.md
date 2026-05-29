@@ -19,13 +19,15 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 - [ ] Confirm the empty plugin loads in local QGIS 3.40 LTR (manual)
 - [ ] Confirm CI is green on the remote (needs a pushed repo)
 
-## Phase 2 — Core engine (pure Python, fully tested)
-- [ ] `core/models.py` dataclasses
-- [ ] `core/transform_recommender.py` (Feature A) + tests (AU/UK/Sudan cases)
-- [ ] `core/epoch.py` (Feature B) + tests (ITRF/GDA2020 epoch reproduction)
-- [ ] `core/calibration.py` (Feature C) + tests (param recovery, RMSE, outlier, pipeline round-trip)
-- [ ] `core/vertical.py` (Feature D) + tests (compound CRS assembly)
-- [ ] `core/grids.py` (availability + consented CDN fetch) + consent-gate test
+## Phase 2 — Core engine (pure Python, fully tested) ✅
+- [x] `core/models.py` dataclasses + `core/errors.py` exception hierarchy
+- [x] `core/transform_recommender.py` (Feature A) + tests (Sudan/AGD66/GDA cases)
+- [x] `core/epoch.py` (Feature B) + tests (ITRF dynamic detect, 4D round-trip, epoch enforcement)
+- [x] `core/calibration.py` (Feature C) + tests (param recovery, RMSE, outlier, pipeline round-trip)
+- [x] `core/vertical.py` (Feature D) + tests (detect + compound CRS assembly)
+- [x] `core/grids.py` (availability + consented CDN fetch) + consent-gate + no-silent-network tests
+- [x] **31 tests pass locally** (pyproj 3.6.1 / PROJ 9.3.0 / numpy 2.0.2); no-Qt-in-core guard green
+- [ ] ruff/black/mypy not run locally (not installed) — rely on CI
 
 ## Phase 3 — Processing algorithms (MVP surface, built first)
 - [ ] recommend_transform, reproject_layer, epoch_transform, fit_calibration (CSV input first), repair_vertical
