@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 """The CRSmart Processing provider (stub for Phase 1).
 
 Algorithms are added in Phase 3 via :meth:`loadAlgorithms`.
 """
+
 from __future__ import annotations
 
 import os
@@ -10,7 +10,9 @@ import os
 from qgis.core import QgsProcessingProvider
 from qgis.PyQt.QtGui import QIcon
 
-ICON_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "resources", "icon.svg")
+ICON_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)), "resources", "icon.svg"
+)
 
 
 class CRSmartProvider(QgsProcessingProvider):
@@ -22,7 +24,7 @@ class CRSmartProvider(QgsProcessingProvider):
         # self.addAlgorithm(RecommendTransformAlgorithm())
         return None
 
-    def id(self) -> str:  # noqa: A003 (QGIS API name)
+    def id(self) -> str:
         return "crsmart"
 
     def name(self) -> str:

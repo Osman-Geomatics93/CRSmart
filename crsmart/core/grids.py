@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """PROJ grid availability and *consented* CDN download (pure Python).
 
 Hard rule (see CLAUDE.md): no module import or engine call may enable the PROJ
@@ -6,13 +5,14 @@ network as a side effect. A download proceeds ONLY when the caller passes
 ``consent=True``; the network flag is toggled on for the duration of the fetch
 and restored afterwards.
 """
+
 from __future__ import annotations
 
 import os
 import shutil
 import urllib.request
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable, List, Optional, Tuple
 
 from pyproj import network
 from pyproj.datadir import get_user_data_dir
@@ -29,26 +29,26 @@ class GridDownload:
 
     short_name: str
     ok: bool
-    path: Optional[str]
-    error: Optional[str]
+    path: str | None
+    error: str | None
 
 
 @dataclass(frozen=True)
 class DownloadReport:
     """Aggregate result of :func:`download_grids`."""
 
-    results: Tuple[GridDownload, ...]
+    results: tuple[GridDownload, ...]
 
     @property
     def all_ok(self) -> bool:
         return all(r.ok for r in self.results)
 
     @property
-    def succeeded(self) -> Tuple[GridDownload, ...]:
+    def succeeded(self) -> tuple[GridDownload, ...]:
         return tuple(r for r in self.results if r.ok)
 
     @property
-    def failed(self) -> Tuple[GridDownload, ...]:
+    def failed(self) -> tuple[GridDownload, ...]:
         return tuple(r for r in self.results if not r.ok)
 
 
@@ -57,12 +57,12 @@ def is_network_enabled() -> bool:
     return bool(network.is_network_enabled())
 
 
-def select_missing(grids: Iterable[GridInfo]) -> Tuple[GridInfo, ...]:
+def select_missing(grids: Iterable[GridInfo]) -> tuple[GridInfo, ...]:
     """Filter to grids that are not present locally."""
     return tuple(g for g in grids if not g.available)
 
 
-def _grid_url(grid: GridInfo) -> Optional[str]:
+def _grid_url(grid: GridInfo) -> str | None:
     if grid.url:
         return grid.url
     if grid.short_name:
@@ -81,7 +81,7 @@ def _download_one(grid: GridInfo, dest_dir: str) -> GridDownload:
     target = os.path.join(dest_dir, grid.short_name)
     try:
         os.makedirs(dest_dir, exist_ok=True)
-        with urllib.request.urlopen(url) as response:  # noqa: S310 - https CDN only
+        with urllib.request.urlopen(url) as response:
             if response.status != 200:
                 return GridDownload(
                     grid.short_name, False, None, f"HTTP {response.status}"
@@ -90,7 +90,7 @@ def _download_one(grid: GridInfo, dest_dir: str) -> GridDownload:
             with open(tmp, "wb") as fh:
                 shutil.copyfileobj(response, fh)
         os.replace(tmp, target)
-    except Exception as exc:  # noqa: BLE001 - report, don't crash the engine
+    except Exception as exc:
         return GridDownload(grid.short_name, False, None, str(exc))
     return GridDownload(grid.short_name, True, target, None)
 
@@ -99,7 +99,7 @@ def download_grids(
     grids: Iterable[GridInfo],
     *,
     consent: bool,
-    dest_dir: Optional[str] = None,
+    dest_dir: str | None = None,
 ) -> DownloadReport:
     """Download the given grids from the PROJ CDN -- only with explicit consent.
 
@@ -123,9 +123,7 @@ def download_grids(
     previous = network.is_network_enabled()
     network.set_network_enabled(True)
     try:
-        results: List[GridDownload] = [
-            _download_one(g, destination) for g in to_fetch
-        ]
+        results: list[GridDownload] = [_download_one(g, destination) for g in to_fetch]
     finally:
         network.set_network_enabled(previous)
     return DownloadReport(results=tuple(results))

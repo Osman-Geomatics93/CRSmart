@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Phase 1 smoke tests: the empty plugin imports, registers, and tears down."""
+
 from __future__ import annotations
 
 import configparser
@@ -25,10 +25,9 @@ def test_metadata_declares_target_versions() -> None:
     assert general["hasProcessingProvider"].lower() == "yes"
 
 
-def test_provider_registers(qgis_app) -> None:  # noqa: ANN001 (pytest fixture)
-    from qgis.core import QgsApplication
-
+def test_provider_registers(qgis_app) -> None:
     from crsmart.processing.provider import CRSmartProvider
+    from qgis.core import QgsApplication
 
     provider = CRSmartProvider()
     registry = QgsApplication.processingRegistry()
@@ -40,7 +39,7 @@ def test_provider_registers(qgis_app) -> None:  # noqa: ANN001 (pytest fixture)
         registry.removeProvider(provider)
 
 
-def test_dock_instantiates(qgis_app) -> None:  # noqa: ANN001 (pytest fixture)
+def test_dock_instantiates(qgis_app) -> None:
     from crsmart.gui.dock import CRSmartDock
 
     dock = CRSmartDock(iface=None, parent=None)
@@ -48,11 +47,10 @@ def test_dock_instantiates(qgis_app) -> None:  # noqa: ANN001 (pytest fixture)
     dock.deleteLater()
 
 
-def test_plugin_processing_lifecycle(qgis_app) -> None:  # noqa: ANN001 (pytest fixture)
+def test_plugin_processing_lifecycle(qgis_app) -> None:
     """initProcessing + unload must be reversible without a GUI iface."""
-    from qgis.core import QgsApplication
-
     from crsmart import classFactory
+    from qgis.core import QgsApplication
 
     plugin = classFactory(iface=None)
     plugin.initProcessing()

@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 """Architecture guard: ``crsmart.core`` must import with ZERO Qt / iface deps.
 
 Run in a fresh interpreter (subprocess) so the result is not polluted by Qt
 modules that other tests / pytest-qgis have already imported into ``sys.modules``.
 """
+
 from __future__ import annotations
 
 import subprocess
@@ -31,8 +31,9 @@ _PROBE = textwrap.dedent(
     leaked = sorted(
         name
         for name in sys.modules
-        if any(name == p or name.startswith(p + ".") or name == p for p in forbidden_prefixes)
-        or any(name.startswith(p) for p in forbidden_prefixes)
+        if any(
+            name == p or name.startswith(p + ".") for p in forbidden_prefixes
+        )
     )
     if leaked:
         print("\\n".join(leaked))
@@ -50,6 +51,5 @@ def test_core_imports_without_qt() -> None:
         text=True,
     )
     assert result.returncode == 0, (
-        "Qt / iface leaked into crsmart.core:\n"
-        f"{result.stdout}\n{result.stderr}"
+        f"Qt / iface leaked into crsmart.core:\n{result.stdout}\n{result.stderr}"
     )

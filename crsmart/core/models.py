@@ -1,23 +1,23 @@
-# -*- coding: utf-8 -*-
 """Immutable result types for the CRSmart engine.
 
 Pure data only -- no Qt, no pyproj, no logic beyond trivial geometry helpers.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Literal, Optional, Tuple
+from typing import Literal
 
 
 @dataclass(frozen=True)
 class AreaOfUseInfo:
     """Bounding box (WGS84 degrees) describing where an operation is valid."""
 
-    name: Optional[str]
-    west: Optional[float]
-    south: Optional[float]
-    east: Optional[float]
-    north: Optional[float]
+    name: str | None
+    west: float | None
+    south: float | None
+    east: float | None
+    north: float | None
 
     @property
     def is_defined(self) -> bool:
@@ -75,8 +75,8 @@ class GridInfo:
 
     short_name: str
     full_name: str
-    package_name: Optional[str]
-    url: Optional[str]
+    package_name: str | None
+    url: str | None
     direct_download: bool
     open_license: bool
     available: bool  # present locally?
@@ -91,18 +91,18 @@ class TransformCandidate:
     """One candidate transformation operation, fully annotated."""
 
     description: str
-    accuracy_m: Optional[float]  # None == unknown (ballpark / undefined)
+    accuracy_m: float | None  # None == unknown (ballpark / undefined)
     is_ballpark: bool
-    area_of_use: Optional[AreaOfUseInfo]
-    grids: Tuple[GridInfo, ...]
-    pipeline: Optional[str]  # PROJ pipeline string for reuse
+    area_of_use: AreaOfUseInfo | None
+    grids: tuple[GridInfo, ...]
+    pipeline: str | None  # PROJ pipeline string for reuse
     available: bool  # all required grids present locally?
     covers_aoi: bool  # area_of_use covers the requested area of interest
     rank_score: float
-    auth_code: Optional[str] = None  # e.g. "EPSG:8048"
+    auth_code: str | None = None  # e.g. "EPSG:8048"
 
     @property
-    def missing_grids(self) -> Tuple[GridInfo, ...]:
+    def missing_grids(self) -> tuple[GridInfo, ...]:
         return tuple(g for g in self.grids if not g.available)
 
     @property
@@ -116,10 +116,10 @@ class RecommendationResult:
 
     source_crs: str
     target_crs: str
-    candidates: Tuple[TransformCandidate, ...]  # ranked best-first
-    recommended: Optional[TransformCandidate]
+    candidates: tuple[TransformCandidate, ...]  # ranked best-first
+    recommended: TransformCandidate | None
     ballpark_only: bool
-    missing_grids: Tuple[GridInfo, ...]
+    missing_grids: tuple[GridInfo, ...]
 
     @property
     def has_recommendation(self) -> bool:
@@ -143,10 +143,10 @@ class CalibrationResult:
     """Result of a Helmert/affine least-squares fit."""
 
     method: Literal["helmert", "affine"]
-    params: Dict[str, float]
-    residuals: Tuple[Residual, ...]
+    params: dict[str, float]
+    residuals: tuple[Residual, ...]
     rmse: float
-    outliers: Tuple[int, ...]
+    outliers: tuple[int, ...]
     pipeline: str  # +proj=helmert ... / +proj=affine ...
     n_points: int
 
@@ -159,8 +159,8 @@ class EpochInfo:
     reason: str
     source_is_dynamic: bool
     target_is_dynamic: bool
-    source_epoch: Optional[float]
-    target_epoch: Optional[float]
+    source_epoch: float | None
+    target_epoch: float | None
 
 
 @dataclass(frozen=True)
@@ -169,6 +169,6 @@ class VerticalStatus:
 
     has_vertical: bool
     is_compound: bool
-    horizontal_name: Optional[str]
-    vertical_name: Optional[str]
+    horizontal_name: str | None
+    vertical_name: str | None
     message: str

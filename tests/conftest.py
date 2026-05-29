@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 """Shared pytest configuration.
 
 ``pytest-qgis`` provides the ``qgis_app``, ``qgis_iface`` and related fixtures
 automatically once installed; we only need to make the ``crsmart`` package
 importable from the repository root.
 """
+
 from __future__ import annotations
 
 import sys

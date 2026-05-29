@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Exception hierarchy for the CRSmart engine (pure Python, no Qt)."""
+
 from __future__ import annotations
 
 

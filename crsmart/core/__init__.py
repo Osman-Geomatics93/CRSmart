@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """CRSmart pure-Python engine.
 
 CONTRACT: nothing in this subpackage may import ``qgis.PyQt``, ``qgis.gui`` or
@@ -6,6 +5,7 @@ rely on a QGIS ``iface``. Allowed third-party imports: ``pyproj``, ``numpy``, an
 optionally ``qgis.core`` *only* behind an ``hasattr`` / try-import feature guard
 with a pyproj fallback. This rule is enforced by ``tests/test_no_qt_in_core.py``.
 """
+
 from __future__ import annotations
 
 from .calibration import fit_affine_2d, fit_helmert_2d, to_pipeline
@@ -34,10 +34,10 @@ from .vertical import assemble_compound, detect_vertical
 __all__ = [
     "AreaOfUseInfo",
     "BallparkNotAllowedError",
+    "CRSmartError",
     "CalibrationError",
     "CalibrationResult",
     "ConsentRequiredError",
-    "CRSmartError",
     "DownloadReport",
     "EpochInfo",
     "EpochRequiredError",

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Feature C -- local site calibration by least squares (pure Python + numpy).
 
 This is the ONLY geodetic math CRSmart implements itself: a 2D conformal Helmert
@@ -8,10 +7,12 @@ result is emitted as an exact, unit-unambiguous ``+proj=affine`` PROJ pipeline
 it exactly and round-trips through ``Transformer.from_pipeline``). The geometric
 Helmert parameters (scale, rotation, translation) are also reported.
 """
+
 from __future__ import annotations
 
 import math
-from typing import List, Sequence, Tuple, Union
+from collections.abc import Sequence
+from typing import Union
 
 import numpy as np
 
@@ -20,7 +21,7 @@ from .models import CalibrationResult, Residual
 
 PointArray = Union[Sequence[Sequence[float]], np.ndarray]
 
-_DEFAULT_OUTLIER_THRESHOLD = 3.0
+_DEFAULT_OUTLIER_THRESHOLD = 3.5
 
 
 def _as_xy(points: PointArray, name: str) -> np.ndarray:
@@ -42,26 +43,32 @@ def _affine_pipeline(a: float, b: float, d: float, e: float, c: float, f: float)
 def _residuals(
     pred: np.ndarray,
     target: np.ndarray,
-    dof: int,
     outlier_threshold: float,
-) -> Tuple[Tuple[Residual, ...], float, Tuple[int, ...]]:
+) -> tuple[tuple[Residual, ...], float, tuple[int, ...]]:
     diff = pred - target
     mags = np.hypot(diff[:, 0], diff[:, 1])
     n = len(mags)
     sq = float(np.sum(diff**2))
     rmse = math.sqrt(sq / n) if n else 0.0
 
-    # Robust scale (MAD) for outlier flagging; fall back to RMSE if degenerate.
-    med = float(np.median(mags))
-    mad = float(np.median(np.abs(mags - med)))
+    # Robust scale from the residual *components* (each ~ N(0, sigma)), using the
+    # median absolute deviation so a gross blunder does not inflate the scale and
+    # mask itself. The standardized residual is then a per-component z-score,
+    # which (unlike a magnitude/sigma ratio on Rayleigh-distributed magnitudes)
+    # leaves clean Gaussian noise comfortably under the threshold.
+    comps = diff.reshape(-1)
+    med = float(np.median(comps))
+    mad = float(np.median(np.abs(comps - med)))
     sigma = 1.4826 * mad
     if sigma <= 1e-12:
         sigma = rmse if rmse > 1e-12 else 1.0
 
-    residuals: List[Residual] = []
-    outliers: List[int] = []
+    residuals: list[Residual] = []
+    outliers: list[int] = []
     for i in range(n):
-        std = float(mags[i] / sigma)
+        zx = abs(float(diff[i, 0]) - med) / sigma
+        zy = abs(float(diff[i, 1]) - med) / sigma
+        std = float(max(zx, zy))
         is_out = std > outlier_threshold
         if is_out:
             outliers.append(i)
@@ -75,7 +82,12 @@ def _residuals(
                 is_outlier=is_out,
             )
         )
-    return tuple(residuals), rmse, tuple(outliers)
+    result: tuple[tuple[Residual, ...], float, tuple[int, ...]] = (
+        tuple(residuals),
+        float(rmse),
+        tuple(outliers),
+    )
+    return result
 
 
 def fit_helmert_2d(
@@ -118,11 +130,9 @@ def fit_helmert_2d(
     scale = math.hypot(a, b)
     rotation_rad = math.atan2(b, a)
 
-    pred = np.column_stack(
-        (tx + a * x - b * y, ty + b * x + a * y)
-    )
+    pred = np.column_stack((tx + a * x - b * y, ty + b * x + a * y))
     residuals, rmse, outliers = _residuals(
-        pred, target, dof=4, outlier_threshold=outlier_threshold
+        pred, target, outlier_threshold=outlier_threshold
     )
 
     params = {
@@ -176,11 +186,9 @@ def fit_affine_2d(
     a, b, c = (float(v) for v in coeff_x)
     d, e, f = (float(v) for v in coeff_y)
 
-    pred = np.column_stack(
-        (a * x + b * y + c, d * x + e * y + f)
-    )
+    pred = np.column_stack((a * x + b * y + c, d * x + e * y + f))
     residuals, rmse, outliers = _residuals(
-        pred, target, dof=6, outlier_threshold=outlier_threshold
+        pred, target, outlier_threshold=outlier_threshold
     )
 
     # Decompose for reporting (scale/rotation are approximate for non-conformal).

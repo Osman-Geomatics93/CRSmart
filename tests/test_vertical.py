@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Feature D -- vertical datum repair (pure engine)."""
+
 from __future__ import annotations
 
 import pytest
-
 from crsmart.core.vertical import assemble_compound, detect_vertical
 
 WGS84_2D = 4326

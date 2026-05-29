@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
 """Main plugin class: wires the Processing provider and the dockable GUI.
 
 Qt portability: every Qt symbol is imported through the ``qgis.PyQt`` shim and
 every Qt enum is used in its fully-qualified (Qt6) form so this single codebase
 runs on Qt5 (QGIS <= 3.44) and Qt6 (QGIS 4.x).
 """
+
 from __future__ import annotations
 
 import os
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from qgis.core import QgsApplication
 from qgis.PyQt.QtCore import QCoreApplication, Qt
@@ -28,11 +28,11 @@ ICON_PATH = os.path.join(PLUGIN_DIR, "resources", "icon.svg")
 class CRSmartPlugin:
     """Entry point QGIS instantiates via ``classFactory``."""
 
-    def __init__(self, iface: "QgisInterface") -> None:
+    def __init__(self, iface: QgisInterface) -> None:
         self.iface = iface
-        self.provider: Optional["CRSmartProvider"] = None
-        self.dock: Optional["CRSmartDock"] = None
-        self.action: Optional[QAction] = None
+        self.provider: CRSmartProvider | None = None
+        self.dock: CRSmartDock | None = None
+        self.action: QAction | None = None
 
     # -- i18n ---------------------------------------------------------------
     def tr(self, message: str) -> str:

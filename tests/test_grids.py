@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Grid availability + the hard download-consent gate (pure engine, no network)."""
+
 from __future__ import annotations
 
 import pytest
-
 from crsmart.core import grids
 from crsmart.core.errors import ConsentRequiredError
 from crsmart.core.models import GridInfo

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Feature D -- vertical datum repair (pure Python).
 
 Detect a missing/undefined vertical CRS and assemble a compound (horizontal +
@@ -6,9 +5,8 @@ vertical) CRS so data that loads as "vertical CRS missing!" becomes fixable.
 Where a geoid/vertical transformation grid is needed, callers reuse
 ``crsmart.core.grids`` (the recommender enumerates the vertical operations).
 """
-from __future__ import annotations
 
-from typing import Optional
+from __future__ import annotations
 
 from pyproj import CRS
 from pyproj.crs import CompoundCRS
@@ -17,7 +15,7 @@ from .models import VerticalStatus
 from .transform_recommender import CRSLike, coerce_crs
 
 
-def _vertical_sub_crs(crs: CRS) -> Optional[CRS]:
+def _vertical_sub_crs(crs: CRS) -> CRS | None:
     if crs.is_vertical:
         return crs
     for sub in crs.sub_crs_list:
@@ -26,7 +24,7 @@ def _vertical_sub_crs(crs: CRS) -> Optional[CRS]:
     return None
 
 
-def _horizontal_sub_crs(crs: CRS) -> Optional[CRS]:
+def _horizontal_sub_crs(crs: CRS) -> CRS | None:
     if crs.is_compound:
         for sub in crs.sub_crs_list:
             if not sub.is_vertical:
@@ -72,7 +70,7 @@ def assemble_compound(
     horizontal: CRSLike,
     vertical: CRSLike,
     *,
-    name: Optional[str] = None,
+    name: str | None = None,
 ) -> CRS:
     """Assemble a compound CRS from a horizontal and a vertical CRS.
 

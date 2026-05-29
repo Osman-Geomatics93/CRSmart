@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Feature A -- transformation recommender (pure engine, no QGIS)."""
+
 from __future__ import annotations
 
 import pytest
-
 from crsmart.core.transform_recommender import enumerate_candidates
 
 # EPSG anchors used across the suite.

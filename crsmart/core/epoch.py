@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Feature B -- epoch-aware / dynamic-datum (4D) transformations (pure Python).
 
 A *dynamic* datum is tied to a plate-fixed reference frame whose coordinates
@@ -7,11 +6,9 @@ a frame is time-dependent: the coordinate epoch (decimal year) matters. This
 module detects when an epoch is required, explains why in plain language, and
 performs the 4D transform (x, y, z, t) through pyproj/PROJ.
 """
+
 from __future__ import annotations
 
-from typing import Optional, Tuple
-
-from pyproj import CRS
 from pyproj.transformer import Transformer
 
 from .errors import EpochRequiredError
@@ -29,10 +26,7 @@ def is_dynamic(crs: CRSLike) -> bool:
     datum = obj.datum
     if datum is None:
         # Compound CRS: inspect the horizontal sub-CRS.
-        for sub in obj.sub_crs_list:
-            if is_dynamic(sub):
-                return True
-        return False
+        return any(is_dynamic(sub) for sub in obj.sub_crs_list)
     type_name = (getattr(datum, "type_name", "") or "").lower()
     return "dynamic" in type_name
 
@@ -40,8 +34,8 @@ def is_dynamic(crs: CRSLike) -> bool:
 def analyze_epoch(
     source: CRSLike,
     target: CRSLike,
-    source_epoch: Optional[float] = None,
-    target_epoch: Optional[float] = None,
+    source_epoch: float | None = None,
+    target_epoch: float | None = None,
 ) -> EpochInfo:
     """Decide whether a coordinate epoch is required and explain why.
 
@@ -64,9 +58,7 @@ def analyze_epoch(
             target_epoch=target_epoch,
         )
 
-    missing = (src_dyn and source_epoch is None) or (
-        dst_dyn and target_epoch is None
-    )
+    missing = (src_dyn and source_epoch is None) or (dst_dyn and target_epoch is None)
     sides = []
     if src_dyn:
         sides.append(f"source ({src.name})")
@@ -100,8 +92,8 @@ def analyze_epoch(
 def require_epoch_or_raise(
     source: CRSLike,
     target: CRSLike,
-    source_epoch: Optional[float] = None,
-    target_epoch: Optional[float] = None,
+    source_epoch: float | None = None,
+    target_epoch: float | None = None,
 ) -> EpochInfo:
     """Return the :class:`EpochInfo`, raising if an epoch is required but unset."""
     info = analyze_epoch(source, target, source_epoch, target_epoch)
@@ -118,9 +110,7 @@ def _build_4d_transformer(
 ) -> Transformer:
     src = coerce_crs(source)
     dst = coerce_crs(target)
-    return Transformer.from_crs(
-        src, dst, always_xy=True, allow_ballpark=allow_ballpark
-    )
+    return Transformer.from_crs(src, dst, always_xy=True, allow_ballpark=allow_ballpark)
 
 
 def transform_4d(
@@ -133,7 +123,7 @@ def transform_4d(
     *,
     allow_ballpark: bool = False,
     enforce_epoch: bool = True,
-) -> Tuple[float, float, float, float]:
+) -> tuple[float, float, float, float]:
     """Perform a time-dependent (4D) transform of a single coordinate.
 
     :param xx, yy: horizontal coordinates (lon, lat for geographic CRS with
@@ -145,8 +135,6 @@ def transform_4d(
     """
     if enforce_epoch and (tt is None or tt != tt):  # NaN check
         require_epoch_or_raise(source, target)
-    transformer = _build_4d_transformer(
-        source, target, allow_ballpark=allow_ballpark
-    )
+    transformer = _build_4d_transformer(source, target, allow_ballpark=allow_ballpark)
     x, y, z, t = transformer.transform(xx, yy, zz, tt)
     return float(x), float(y), float(z), float(t)

@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 """The CRSmart dockable panel (empty shell for Phase 1).
 
 Feature tabs (recommender / epoch / calibration / vertical) are added in Phase 4.
 """
+
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from qgis.gui import QgsDockWidget
 from qgis.PyQt.QtCore import QCoreApplication, Qt
@@ -18,9 +18,7 @@ if TYPE_CHECKING:  # pragma: no cover - typing only
 class CRSmartDock(QgsDockWidget):
     """Dockable container for the CRSmart UI."""
 
-    def __init__(
-        self, iface: "QgisInterface", parent: Optional[QWidget] = None
-    ) -> None:
+    def __init__(self, iface: QgisInterface, parent: QWidget | None = None) -> None:
         super().__init__(parent)
         self.iface = iface
         self.setObjectName("CRSmartDock")

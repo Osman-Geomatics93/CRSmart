@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Feature A -- transformation recommender with uncertainty (pure Python).
 
 Heart of the feature is :class:`pyproj.transformer.TransformerGroup`. We build it
@@ -14,9 +13,11 @@ Verified against pyproj 3.6.1 / PROJ 9.3.0:
     package_name/url/direct_download/open_license/available)
   * missing-grid ops live in ``group.unavailable_operations``
 """
+
 from __future__ import annotations
 
-from typing import List, Optional, Sequence, Tuple, Union
+from collections.abc import Sequence
+from typing import Union
 
 from pyproj import CRS
 from pyproj.aoi import AreaOfInterest
@@ -25,7 +26,7 @@ from pyproj.transformer import TransformerGroup
 from .models import AreaOfUseInfo, GridInfo, RecommendationResult, TransformCandidate
 
 CRSLike = Union[CRS, str, int]
-BBox = Tuple[float, float, float, float]  # (west, south, east, north) in WGS84 deg
+BBox = tuple[float, float, float, float]  # (west, south, east, north) in WGS84 deg
 
 
 def coerce_crs(value: CRSLike) -> CRS:
@@ -36,8 +37,8 @@ def coerce_crs(value: CRSLike) -> CRS:
 
 
 def _to_area_of_interest(
-    area: Optional[Union[BBox, AreaOfInterest]],
-) -> Optional[AreaOfInterest]:
+    area: Union[BBox, AreaOfInterest] | None,
+) -> AreaOfInterest | None:
     if area is None or isinstance(area, AreaOfInterest):
         return area
     west, south, east, north = area
@@ -49,7 +50,7 @@ def _to_area_of_interest(
     )
 
 
-def _area_of_use_info(area_of_use: object) -> Optional[AreaOfUseInfo]:
+def _area_of_use_info(area_of_use: object) -> AreaOfUseInfo | None:
     if area_of_use is None:
         return None
     name = getattr(area_of_use, "name", None)
@@ -74,20 +75,21 @@ def _grid_info(grid: object) -> GridInfo:
     )
 
 
-def _grids_from_operations(operations: Sequence[object]) -> Tuple[GridInfo, ...]:
-    grids: List[GridInfo] = []
+def _grids_from_operations(operations: Sequence[object]) -> tuple[GridInfo, ...]:
+    grids: list[GridInfo] = []
     for op in operations:
         for grid in getattr(op, "grids", ()) or ():
             grids.append(_grid_info(grid))
     return tuple(grids)
 
 
-def _normalize_accuracy(value: Optional[float]) -> Optional[float]:
-    if value is None:
+def _normalize_accuracy(value: object) -> float | None:
+    if not isinstance(value, (int, float)):
         return None
-    if value < 0:  # PROJ uses -1 for unknown / ballpark
+    accuracy = float(value)
+    if accuracy < 0:  # PROJ uses -1 for unknown / ballpark
         return None
-    return float(value)
+    return accuracy
 
 
 def _is_ballpark(operations: Sequence[object]) -> bool:
@@ -96,15 +98,15 @@ def _is_ballpark(operations: Sequence[object]) -> bool:
     )
 
 
-def _safe_proj4(obj: object) -> Optional[str]:
+def _safe_proj4(obj: object) -> str | None:
     try:
         text = obj.to_proj4()  # type: ignore[attr-defined]
-    except Exception:  # noqa: BLE001 - some unavailable ops aren't instantiable
+    except Exception:
         return None
     return text or None
 
 
-def _covers(area: Optional[AreaOfUseInfo], aoi_bbox: Optional[BBox]) -> bool:
+def _covers(area: AreaOfUseInfo | None, aoi_bbox: BBox | None) -> bool:
     if aoi_bbox is None:
         return True  # no constraint => trivially "covers"
     if area is None:
@@ -112,7 +114,7 @@ def _covers(area: Optional[AreaOfUseInfo], aoi_bbox: Optional[BBox]) -> bool:
     return area.intersects_bbox(*aoi_bbox)
 
 
-def _sort_key(candidate: TransformCandidate) -> Tuple:
+def _sort_key(candidate: TransformCandidate) -> tuple:
     """Higher tuple == better. Priority: AOI cover -> accuracy -> available
     -> non-ballpark -> stable by description."""
     has_acc = candidate.accuracy_m is not None
@@ -131,7 +133,7 @@ def enumerate_candidates(
     source: CRSLike,
     target: CRSLike,
     *,
-    area_of_interest: Optional[Union[BBox, AreaOfInterest]] = None,
+    area_of_interest: Union[BBox, AreaOfInterest] | None = None,
     allow_ballpark: bool = True,
 ) -> RecommendationResult:
     """Enumerate, annotate and rank every candidate transform from src to dst.
@@ -146,7 +148,7 @@ def enumerate_candidates(
     src = coerce_crs(source)
     dst = coerce_crs(target)
     aoi = _to_area_of_interest(area_of_interest)
-    aoi_bbox: Optional[BBox] = None
+    aoi_bbox: BBox | None = None
     if aoi is not None:
         aoi_bbox = (
             aoi.west_lon_degree,
@@ -159,7 +161,7 @@ def enumerate_candidates(
         src, dst, always_xy=True, area_of_interest=aoi, allow_ballpark=True
     )
 
-    candidates: List[TransformCandidate] = []
+    candidates: list[TransformCandidate] = []
 
     # 1) Available transformers.
     for transformer in group.transformers:
@@ -170,9 +172,7 @@ def enumerate_candidates(
         candidates.append(
             TransformCandidate(
                 description=transformer.description,
-                accuracy_m=None if is_ballpark else _normalize_accuracy(
-                    transformer.accuracy
-                ),
+                accuracy_m=_normalize_accuracy(transformer.accuracy),
                 is_ballpark=is_ballpark,
                 area_of_use=area,
                 grids=grids,
@@ -192,9 +192,7 @@ def enumerate_candidates(
         candidates.append(
             TransformCandidate(
                 description=getattr(op, "name", "") or "",
-                accuracy_m=None if is_ballpark else _normalize_accuracy(
-                    getattr(op, "accuracy", None)
-                ),
+                accuracy_m=_normalize_accuracy(getattr(op, "accuracy", None)),
                 is_ballpark=is_ballpark,
                 area_of_use=area,
                 grids=grids,
@@ -208,8 +206,7 @@ def enumerate_candidates(
     # Rank (best first) and stamp a monotonic rank_score (higher == better).
     candidates.sort(key=_sort_key, reverse=True)
     ranked = tuple(
-        _with_score(c, float(len(candidates) - i))
-        for i, c in enumerate(candidates)
+        _with_score(c, float(len(candidates) - i)) for i, c in enumerate(candidates)
     )
 
     non_ballpark = [c for c in ranked if not c.is_ballpark]
@@ -222,9 +219,7 @@ def enumerate_candidates(
 
     recommended = _choose_recommended(non_ballpark, aoi_bbox)
 
-    missing = _dedupe_grids(
-        g for c in ranked for g in c.grids if not g.available
-    )
+    missing = _dedupe_grids(g for c in ranked for g in c.grids if not g.available)
 
     return RecommendationResult(
         source_crs=src.to_string(),
@@ -253,8 +248,8 @@ def _with_score(candidate: TransformCandidate, score: float) -> TransformCandida
 
 
 def _choose_recommended(
-    non_ballpark: Sequence[TransformCandidate], aoi_bbox: Optional[BBox]
-) -> Optional[TransformCandidate]:
+    non_ballpark: Sequence[TransformCandidate], aoi_bbox: BBox | None
+) -> TransformCandidate | None:
     """Top non-ballpark, available candidate -- preferring AOI coverage.
 
     Never recommends a ballpark transform (survey-grade safety).
@@ -269,9 +264,9 @@ def _choose_recommended(
     return available[0]
 
 
-def _dedupe_grids(grids) -> Tuple[GridInfo, ...]:  # noqa: ANN001
+def _dedupe_grids(grids) -> tuple[GridInfo, ...]:  # noqa: ANN001
     seen = set()
-    out: List[GridInfo] = []
+    out: list[GridInfo] = []
     for g in grids:
         if g.short_name in seen:
             continue

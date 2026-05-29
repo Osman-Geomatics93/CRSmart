@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
 """Feature C -- local site calibration (Helmert/affine least squares)."""
+
 from __future__ import annotations
 
 import math
 
 import numpy as np
 import pytest
-from pyproj.transformer import Transformer
-
 from crsmart.core.calibration import fit_affine_2d, fit_helmert_2d
 from crsmart.core.errors import CalibrationError
+from pyproj.transformer import Transformer
 
 # Known Helmert parameters used to synthesize control points.
 TRUE_SCALE = 1.0000234  # 23.4 ppm
@@ -28,7 +27,7 @@ def _apply_helmert(local: np.ndarray) -> np.ndarray:
     return np.column_stack((TRUE_TX + a * x - b * y, TRUE_TY + b * x + a * y))
 
 
-def _synthetic(n: int = 12, seed: int = 7):
+def _synthetic(n: int = 12, seed: int = 7) -> tuple[np.ndarray, np.ndarray]:
     rng = np.random.default_rng(seed)
     local = rng.uniform(-500.0, 500.0, size=(n, 2))
     target = _apply_helmert(local)

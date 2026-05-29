@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """Feature B -- epoch-aware / dynamic-datum transforms (pure engine)."""
+
 from __future__ import annotations
 
 import math
 
 import pytest
-
 from crsmart.core.epoch import (
     analyze_epoch,
     is_dynamic,

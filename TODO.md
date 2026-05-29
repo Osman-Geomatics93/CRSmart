@@ -27,7 +27,9 @@ Phase-by-phase build log. See `DESIGN.md` for detail, `CLAUDE.md` for constraint
 - [x] `core/vertical.py` (Feature D) + tests (detect + compound CRS assembly)
 - [x] `core/grids.py` (availability + consented CDN fetch) + consent-gate + no-silent-network tests
 - [x] **31 tests pass locally** (pyproj 3.6.1 / PROJ 9.3.0 / numpy 2.0.2); no-Qt-in-core guard green
-- [ ] ruff/black/mypy not run locally (not installed) — rely on CI
+- [x] **ruff + mypy + ruff-format all clean locally** (ruff 0.14.14, mypy 1.19.1)
+- [ ] black not runnable locally (blib2to3 bug on Python 3.9.0 32-bit) — formatted via
+      black-compatible `ruff format`; black runs in CI (Python 3.11)
 
 ## Phase 3 — Processing algorithms (MVP surface, built first)
 - [ ] recommend_transform, reproject_layer, epoch_transform, fit_calibration (CSV input first), repair_vertical
