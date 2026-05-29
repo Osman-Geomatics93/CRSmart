@@ -261,7 +261,7 @@ ranked RecommendationResult (best-first)
 ## 8. Open questions for you (please answer to unblock Phase 1)
 
 1. **Repo name & slug.** Keep `crsmart` (package `crsmart/`, provider id `crsmart`)? Or rename now?
-2. **Author/contact for `metadata.txt`.** Name + the email to ship (your `mohamed.fawzy98@hotmail.com`?), and the eventual **repository/tracker/homepage URLs** (a GitHub repo I should assume the slug for, e.g. `github.com/<you>/crsmart`?).
+2. **Author/contact for `metadata.txt`.** ✅ Resolved: **OSMAN IBRAHIM** <osmangeomatics93@gmail.com>. Repository/tracker/homepage URLs use the placeholder slug `github.com/osmangeomatics/crsmart` (replace with the real one when the repo is created).
 3. **Git.** This directory is **not yet a git repo**. Shall I `git init` (with `.gitignore`, GPL-2.0 `LICENSE`) in Phase 1?
 4. **CI host.** GitHub Actions (default) or GitLab CI? The Qt6 checker image is GitLab-hosted but runs fine on GHA.
 5. **Calibration input priority for the MVP algorithm.** Of {paste table, two layers, CSV file}, which do you want wired first? (I'll default to **CSV file**, simplest to test headless.)

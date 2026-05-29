@@ -37,7 +37,7 @@ batchable) and via a **dockable panel**.
 
 ### From source (for development)
 ```bash
-git clone https://github.com/mohamed-fawzy/crsmart
+git clone https://github.com/osmangeomatics/crsmart
 cd crsmart
 pip install -e ".[dev]"
 pre-commit install

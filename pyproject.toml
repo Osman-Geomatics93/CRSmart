@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = "GPL-2.0-or-later"
 license-files = ["LICENSE"]
-authors = [{ name = "Mohamed Fawzy", email = "mohamed.fawzy98@hotmail.com" }]
+authors = [{ name = "OSMAN IBRAHIM", email = "osmangeomatics93@gmail.com" }]
 keywords = ["qgis", "crs", "datum", "proj", "pyproj", "geodesy", "epoch", "helmert"]
 # Runtime deps are provided by the QGIS Python environment (pyqgis, pyproj) at
 # install time; numpy/pyproj are listed so the *engine* is testable standalone.
@@ -29,9 +29,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/mohamed-fawzy/crsmart"
-Repository = "https://github.com/mohamed-fawzy/crsmart"
-Issues = "https://github.com/mohamed-fawzy/crsmart/issues"
+Homepage = "https://github.com/osmangeomatics/crsmart"
+Repository = "https://github.com/osmangeomatics/crsmart"
+Issues = "https://github.com/osmangeomatics/crsmart/issues"
 
 [tool.setuptools]
 packages = ["crsmart"]
