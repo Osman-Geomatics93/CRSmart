@@ -82,9 +82,7 @@ def assemble_compound(
     h = coerce_crs(horizontal)
     v = coerce_crs(vertical)
     if h.is_compound or not (h.is_geographic or h.is_projected):
-        raise ValueError(
-            f"'{h.name}' is not a plain horizontal (geographic/projected) CRS."
-        )
+        raise ValueError(f"'{h.name}' is not a horizontal (geographic/projected) CRS.")
     # PROJ flags any CRS that contains a vertical axis as ``is_vertical`` -- that
     # includes compound CRSs (e.g. EPSG:9707 'WGS 84 + EGM96 height'). We need a
     # *standalone* vertical CRS so we never nest one compound inside another.
