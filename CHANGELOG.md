@@ -6,7 +6,25 @@ All notable changes to CRSmart are documented here. The format follows
 
 ## [Unreleased]
 
-_Nothing yet._
+### Fixed
+
+- **Epoch-aware transform no longer fails with a cryptic PROJ traceback when only
+  a ballpark transform exists.** `make_4d_transformer` (feature B) called
+  `Transformer.from_crs(..., allow_ballpark=False)`, which PROJ aborts with
+  `ProjError: Error creating Transformer from CRS.` whenever the only available
+  path is a low-accuracy ballpark transform (e.g. a required datum grid is not
+  installed) — surfacing as an unhelpful traceback. The engine now detects that
+  case and raises a clear, actionable `BallparkNotAllowedError`, and raises
+  `TransformUnavailableError` when no operation exists at all.
+  (`crsmart/core/epoch.py`, `crsmart/core/errors.py`)
+
+### Added
+
+- **Explicit "Allow ballpark transform" opt-in on the Epoch-aware transform
+  algorithm.** Honors the survey-grade rule that a ballpark fallback is never
+  silent: it is off by default and must be enabled deliberately. Engine errors
+  are now surfaced as readable Processing messages instead of raw tracebacks.
+  (`crsmart/processing/algorithms/epoch_transform.py`)
 
 ## [0.1.1] - 2026-05-29
 

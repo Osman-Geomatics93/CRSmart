@@ -9,9 +9,14 @@ performs the 4D transform (x, y, z, t) through pyproj/PROJ.
 
 from __future__ import annotations
 
+from pyproj.exceptions import ProjError
 from pyproj.transformer import Transformer
 
-from .errors import EpochRequiredError
+from .errors import (
+    BallparkNotAllowedError,
+    EpochRequiredError,
+    TransformUnavailableError,
+)
 from .models import EpochInfo
 from .transform_recommender import CRSLike, coerce_crs
 
@@ -113,10 +118,43 @@ def make_4d_transformer(
     Callers that transform many coordinates (e.g. every vertex of a layer) should
     build the transformer once and reuse it rather than calling
     :func:`transform_4d` per point.
+
+    :raises BallparkNotAllowedError: when ``allow_ballpark`` is False and the only
+        coordinate operation PROJ can build is a low-accuracy ballpark transform
+        (e.g. a required datum-shift grid is not installed). PROJ itself raises a
+        cryptic ``ProjError`` here; we translate it into an actionable message so
+        survey-grade work never falls back silently.
+    :raises TransformUnavailableError: when no operation exists between the two
+        CRSs even with ballpark allowed (e.g. an invalid/incompatible CRS).
     """
     src = coerce_crs(source)
     dst = coerce_crs(target)
-    return Transformer.from_crs(src, dst, always_xy=True, allow_ballpark=allow_ballpark)
+    try:
+        return Transformer.from_crs(
+            src, dst, always_xy=True, allow_ballpark=allow_ballpark
+        )
+    except ProjError as exc:
+        # PROJ raises "Error creating Transformer from CRS." both when only a
+        # ballpark path exists (with allow_ballpark=False) and when no path
+        # exists at all. Disambiguate by retrying with ballpark allowed.
+        if not allow_ballpark:
+            try:
+                Transformer.from_crs(src, dst, always_xy=True, allow_ballpark=True)
+            except ProjError:
+                pass  # genuinely untransformable -- fall through below
+            else:
+                raise BallparkNotAllowedError(
+                    f"No survey-grade transformation is available from "
+                    f"{src.name!r} to {dst.name!r}: only a low-accuracy ballpark "
+                    "transform exists. A required PROJ datum grid may be missing. "
+                    "Install the grid, or explicitly allow a ballpark transform "
+                    "if approximate results are acceptable."
+                ) from exc
+        raise TransformUnavailableError(
+            f"No coordinate transformation could be built from {src.name!r} to "
+            f"{dst.name!r}. The CRSs may be incompatible or invalid (PROJ: "
+            f"{exc})."
+        ) from exc
 
 
 def transform_4d(

@@ -17,6 +17,7 @@ from qgis.core import (
     QgsProcessingContext,
     QgsProcessingException,
     QgsProcessingFeedback,
+    QgsProcessingParameterBoolean,
     QgsProcessingParameterCrs,
     QgsProcessingParameterFeatureSink,
     QgsProcessingParameterFeatureSource,
@@ -25,6 +26,7 @@ from qgis.core import (
 )
 
 from ...core.epoch import analyze_epoch, make_4d_transformer
+from ...core.errors import CRSmartError
 from .base import CRSmartAlgorithm, qgs_crs_to_pyproj
 
 
@@ -32,6 +34,7 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
     INPUT = "INPUT"
     TARGET_CRS = "TARGET_CRS"
     EPOCH = "EPOCH"
+    ALLOW_BALLPARK = "ALLOW_BALLPARK"
     OUTPUT = "OUTPUT"
 
     def name(self) -> str:
@@ -65,6 +68,13 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
                 self.tr("Coordinate epoch (decimal year)"),
                 type=QgsProcessingParameterNumber.Double,
                 optional=True,
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterBoolean(
+                self.ALLOW_BALLPARK,
+                self.tr("Allow ballpark transform (low accuracy, not survey-grade)"),
+                defaultValue=False,
             )
         )
         self.addParameter(
@@ -102,7 +112,15 @@ class EpochTransformAlgorithm(CRSmartAlgorithm):
                 ).format(reason=info.reason)
             )
 
-        transformer = make_4d_transformer(src_py, dst_py)
+        allow_ballpark = self.parameterAsBoolean(
+            parameters, self.ALLOW_BALLPARK, context
+        )
+        try:
+            transformer = make_4d_transformer(
+                src_py, dst_py, allow_ballpark=allow_ballpark
+            )
+        except CRSmartError as exc:
+            raise QgsProcessingException(str(exc)) from exc
         tt = epoch if epoch is not None else float("nan")
 
         sink, dest_id = self.parameterAsSink(
