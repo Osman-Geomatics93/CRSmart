@@ -48,22 +48,26 @@ def test_calibration_tab_fits_pasted_points(qgis_iface) -> None:
 
 
 def test_vertical_tab_assembles_compound(qgis_iface) -> None:
-    import pytest
+    from crsmart.core.vertical import COMMON_VERTICAL_CRS
     from crsmart.gui.widgets.vertical_tab import VerticalTab
     from qgis.core import QgsCoordinateReferenceSystem
 
     tab = VerticalTab(qgis_iface)
     tab.horizontal_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:4326"))
-    tab.vertical_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:5703"))  # NAVD88
-    # Some headless QGIS builds will not hold a standalone vertical CRS in the
-    # projection-selection widget. The engine-level compound assembly is covered
-    # authoritatively in tests/test_vertical.py, so skip only that environment.
-    if not tab.vertical_sel.crs().isValid():
-        tab.deleteLater()
-        pytest.skip("QgsProjectionSelectionWidget cannot hold a vertical CRS here")
 
+    # Preset path (index 0 = EGM96 height) -- no QGIS CRS picker involved, so this
+    # works on every build (unlike the old vertical projection-selection widget).
+    tab.vertical_combo.setCurrentIndex(0)
     tab.on_assemble()
     assert tab._compound_wkt is not None
+    assert (
+        "COMPOUND" in tab._compound_wkt.upper() or "COMPD" in tab._compound_wkt.upper()
+    )
+
+    # Custom free-text path overrides the preset.
+    tab.vertical_combo.setCurrentIndex(len(COMMON_VERTICAL_CRS))  # the "Custom…" item
+    tab.vertical_custom.setText("EPSG:5703")  # NAVD88 height
+    tab.on_assemble()
     assert (
         "COMPOUND" in tab._compound_wkt.upper() or "COMPD" in tab._compound_wkt.upper()
     )
