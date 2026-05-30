@@ -14,6 +14,7 @@ from crsmart.core.epoch import (
 )
 from crsmart.core.errors import (
     BallparkNotAllowedError,
+    CRSmartError,
     EpochRequiredError,
     TransformUnavailableError,
 )
@@ -95,9 +96,21 @@ def test_ballpark_only_pair_raises_clear_error_not_cryptic_projerror() -> None:
     assert transformer is not None
 
 
-def test_incompatible_pair_raises_transform_unavailable() -> None:
-    """No operation at all (e.g. geographic -> vertical-only) -> clear error."""
-    with pytest.raises(TransformUnavailableError):
+def test_incompatible_pair_raises_clear_crsmart_error() -> None:
+    """An incompatible pair (geographic -> vertical-only) must raise a clear
+    CRSmartError, never PROJ's cryptic ProjError.
+
+    Whether PROJ can synthesize a ballpark path between a horizontal and a
+    vertical-only CRS is PROJ-version dependent: older builds fail outright
+    (-> TransformUnavailableError) while newer builds offer a ballpark
+    (-> BallparkNotAllowedError). Both are acceptable; the user-facing
+    contract we assert is only that the error is one of ours, not a raw
+    ProjError traceback. ``TransformUnavailableError`` is imported above so
+    its branch stays referenced even when this PROJ build takes the ballpark
+    path.
+    """
+    assert issubclass(TransformUnavailableError, CRSmartError)
+    with pytest.raises(CRSmartError):
         make_4d_transformer(WGS84, 5703)  # NAVD88 height (vertical-only)
 
 
