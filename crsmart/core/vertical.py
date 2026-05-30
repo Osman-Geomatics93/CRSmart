@@ -14,6 +14,20 @@ from pyproj.crs import CompoundCRS
 from .models import VerticalStatus
 from .transform_recommender import CRSLike, coerce_crs
 
+# Common standalone vertical (height) CRSs, as (label, EPSG code). Shared by the
+# GUI dock and the Processing algorithm so users can pick one without QGIS's CRS
+# selector, which on many builds does not list pure vertical CRSs at all.
+COMMON_VERTICAL_CRS: tuple[tuple[str, int], ...] = (
+    ("EGM96 height (EPSG:5773)", 5773),
+    ("EGM2008 height (EPSG:3855)", 3855),
+    ("EGM84 height (EPSG:5798)", 5798),
+    ("NAVD88 height (EPSG:5703)", 5703),
+    ("NAVD88 height - US survey foot (EPSG:6360)", 6360),
+    ("MSL height (EPSG:5714)", 5714),
+    ("EVRF2019 height - Europe (EPSG:9389)", 9389),
+    ("AHD height - Australia (EPSG:5711)", 5711),
+)
+
 
 def _vertical_sub_crs(crs: CRS) -> CRS | None:
     if crs.is_vertical:

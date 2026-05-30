@@ -3,7 +3,11 @@
 from __future__ import annotations
 
 import pytest
-from crsmart.core.vertical import assemble_compound, detect_vertical
+from crsmart.core.vertical import (
+    COMMON_VERTICAL_CRS,
+    assemble_compound,
+    detect_vertical,
+)
 
 WGS84_2D = 4326
 NAVD88_HEIGHT = 5703  # vertical CRS
@@ -55,3 +59,12 @@ def test_assemble_compound_rejects_compound_in_vertical_slot() -> None:
         assemble_compound(WGS84_2D, WGS84_EGM96)
     msg = str(excinfo.value).lower()
     assert "standalone vertical" in msg and "5773" in str(excinfo.value)
+
+
+def test_common_vertical_presets_are_standalone_and_assemble() -> None:
+    """Every preset offered in the GUI/Processing must be a real, standalone
+    vertical CRS that assembles cleanly with a horizontal CRS."""
+    assert COMMON_VERTICAL_CRS, "preset list is empty"
+    for label, code in COMMON_VERTICAL_CRS:
+        compound = assemble_compound(WGS84_2D, code)  # must not raise
+        assert detect_vertical(compound).has_vertical is True, label

@@ -15,17 +15,21 @@ from qgis.core import (
     QgsProcessingFeedback,
     QgsProcessingOutputString,
     QgsProcessingParameterCrs,
+    QgsProcessingParameterEnum,
     QgsProcessingParameterFeatureSink,
     QgsProcessingParameterFeatureSource,
+    QgsProcessingParameterString,
 )
 
-from ...core.vertical import assemble_compound, detect_vertical
+from ...core.transform_recommender import CRSLike
+from ...core.vertical import COMMON_VERTICAL_CRS, assemble_compound, detect_vertical
 from .base import CRSmartAlgorithm, pyproj_crs_to_qgs, qgs_crs_to_pyproj
 
 
 class RepairVerticalAlgorithm(CRSmartAlgorithm):
     INPUT = "INPUT"
     HORIZONTAL_CRS = "HORIZONTAL_CRS"
+    VERTICAL_PRESET = "VERTICAL_PRESET"
     VERTICAL_CRS = "VERTICAL_CRS"
     OUTPUT = "OUTPUT"
     COMPOUND_WKT = "COMPOUND_WKT"
@@ -43,7 +47,9 @@ class RepairVerticalAlgorithm(CRSmartAlgorithm):
             "given, a copy is written with the compound CRS assigned (this "
             "declares the meaning of existing coordinates; it does not move "
             "them). The horizontal CRS defaults to the input layer's CRS when "
-            "not set explicitly. The assembled compound CRS WKT is also returned."
+            "not set explicitly. Choose the vertical CRS from the common presets "
+            "(EGM96, EGM2008, NAVD88, …) or type any EPSG code / WKT / PROJ string "
+            "in the custom field. The assembled compound CRS WKT is also returned."
         )
 
     def initAlgorithm(self, config: dict[str, Any] | None = None) -> None:  # noqa: N802
@@ -60,7 +66,22 @@ class RepairVerticalAlgorithm(CRSmartAlgorithm):
             )
         )
         self.addParameter(
-            QgsProcessingParameterCrs(self.VERTICAL_CRS, self.tr("Vertical CRS"))
+            QgsProcessingParameterEnum(
+                self.VERTICAL_PRESET,
+                self.tr("Vertical CRS (common presets)"),
+                options=[label for label, _code in COMMON_VERTICAL_CRS],
+                defaultValue=0,
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterString(
+                self.VERTICAL_CRS,
+                self.tr(
+                    "Custom vertical CRS (EPSG code / authid / WKT / PROJ) - "
+                    "overrides the preset above when set"
+                ),
+                optional=True,
+            )
         )
         self.addParameter(
             QgsProcessingParameterFeatureSink(
@@ -92,16 +113,23 @@ class RepairVerticalAlgorithm(CRSmartAlgorithm):
                 )
             horizontal = source.sourceCrs()
 
-        vertical = self.parameterAsCrs(parameters, self.VERTICAL_CRS, context)
+        # Resolve the vertical CRS: a custom text entry overrides the preset.
+        custom = (
+            self.parameterAsString(parameters, self.VERTICAL_CRS, context) or ""
+        ).strip()
+        if custom:
+            vertical: CRSLike = custom
+        else:
+            preset_idx = self.parameterAsEnum(parameters, self.VERTICAL_PRESET, context)
+            vertical = COMMON_VERTICAL_CRS[preset_idx][1]
 
         h_py = qgs_crs_to_pyproj(horizontal)
-        v_py = qgs_crs_to_pyproj(vertical)
 
         status = detect_vertical(h_py)
         feedback.pushInfo(status.message)
 
         try:
-            compound_py = assemble_compound(h_py, v_py)
+            compound_py = assemble_compound(h_py, vertical)
         except ValueError as exc:
             raise QgsProcessingException(str(exc)) from exc
 

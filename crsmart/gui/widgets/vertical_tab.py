@@ -13,14 +13,17 @@ from qgis.core import QgsApplication, QgsCoordinateReferenceSystem
 from qgis.gui import QgsMapLayerComboBox, QgsProjectionSelectionWidget
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtWidgets import (
+    QComboBox,
     QFormLayout,
     QLabel,
+    QLineEdit,
     QPushButton,
     QVBoxLayout,
     QWidget,
 )
 
-from ...core.vertical import assemble_compound, detect_vertical
+from ...core.transform_recommender import CRSLike
+from ...core.vertical import COMMON_VERTICAL_CRS, assemble_compound, detect_vertical
 from ...processing.algorithms.base import qgs_crs_to_pyproj
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
@@ -44,8 +47,22 @@ class VerticalTab(QWidget):
 
         self.horizontal_sel = QgsProjectionSelectionWidget(self)
         form.addRow(self.tr("Horizontal CRS"), self.horizontal_sel)
-        self.vertical_sel = QgsProjectionSelectionWidget(self)
-        form.addRow(self.tr("Vertical CRS"), self.vertical_sel)
+
+        # QGIS's CRS selector does not list standalone vertical CRSs on many
+        # builds, so offer common presets plus a free-text field instead.
+        self.vertical_combo = QComboBox(self)
+        for label, _code in COMMON_VERTICAL_CRS:
+            self.vertical_combo.addItem(label)
+        self.vertical_combo.addItem(self.tr("Custom (enter below)…"))
+        form.addRow(self.tr("Vertical CRS"), self.vertical_combo)
+
+        self.vertical_custom = QLineEdit(self)
+        self.vertical_custom.setPlaceholderText(
+            self.tr("e.g. EPSG:5773 or 5773, or a WKT / PROJ string")
+        )
+        self.vertical_custom.setEnabled(False)
+        form.addRow("", self.vertical_custom)
+        self.vertical_combo.currentIndexChanged.connect(self._on_vertical_choice)
         layout.addLayout(form)
 
         self.status = QLabel("", self)
@@ -76,6 +93,17 @@ class VerticalTab(QWidget):
         layer = self.layer_combo.currentLayer()
         return layer.crs() if layer is not None else crs
 
+    def _on_vertical_choice(self, index: int) -> None:
+        self.vertical_custom.setEnabled(index >= len(COMMON_VERTICAL_CRS))
+
+    def _vertical_crslike(self) -> CRSLike | None:
+        """Resolve the chosen vertical CRS to an engine identifier (code or text)."""
+        index = self.vertical_combo.currentIndex()
+        if index < len(COMMON_VERTICAL_CRS):
+            return COMMON_VERTICAL_CRS[index][1]
+        text = self.vertical_custom.text().strip()
+        return text or None
+
     def on_detect(self) -> None:
         crs = self._horizontal_crs()
         if not crs.isValid():
@@ -90,14 +118,15 @@ class VerticalTab(QWidget):
 
     def on_assemble(self) -> None:
         horizontal = self._horizontal_crs()
-        vertical = self.vertical_sel.crs()
-        if not horizontal.isValid() or not vertical.isValid():
-            self._warn(self.tr("Select both a horizontal and a vertical CRS."))
+        vertical = self._vertical_crslike()
+        if not horizontal.isValid():
+            self._warn(self.tr("Select a horizontal CRS or a layer."))
+            return
+        if vertical is None:
+            self._warn(self.tr("Choose a vertical CRS, or enter a custom one."))
             return
         try:
-            compound = assemble_compound(
-                qgs_crs_to_pyproj(horizontal), qgs_crs_to_pyproj(vertical)
-            )
+            compound = assemble_compound(qgs_crs_to_pyproj(horizontal), vertical)
         except Exception as exc:
             self._warn(self.tr("Could not assemble: {e}").format(e=exc))
             return
