@@ -19,6 +19,11 @@
 
 ---
 
+> ### 📘 New to CRSmart? **[Start with the User Guide →](docs/USER_GUIDE.md)**
+> A hands-on, learn-by-doing tutorial — each feature walked through with sample data, exact steps, and the result you should see.
+
+---
+
 ## ✨ Why CRSmart?
 
 Most tools just "reproject" and hope for the best. CRSmart makes the *quality* of every
