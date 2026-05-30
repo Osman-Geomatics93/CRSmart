@@ -74,6 +74,98 @@ def test_vertical_tab_assembles_compound(qgis_iface) -> None:
     tab.deleteLater()
 
 
+def test_dock_clickthrough_all_tabs(qgis_iface) -> None:
+    """End-to-end click-through of the whole dock: each tab's primary action,
+    copy-to-clipboard, GUI outlier detection, and the vertical-CRS refusal.
+
+    Drives the real ``CRSmartDock`` and its four tab widgets exactly as clicking
+    would, complementing the per-tab tests above with a dock-level pass.
+    """
+    from pathlib import Path
+
+    from crsmart.core.vertical import COMMON_VERTICAL_CRS
+    from crsmart.gui.dock import CRSmartDock
+    from qgis.core import (
+        QgsApplication,
+        QgsCoordinateReferenceSystem,
+        QgsFeature,
+        QgsGeometry,
+        QgsPoint,
+        QgsProject,
+        QgsVectorLayer,
+    )
+
+    docs = Path(__file__).resolve().parent.parent / "docs"
+    dock = CRSmartDock(qgis_iface)
+    tabs = dock.widget()
+    assert tabs.count() == 4
+    recommend, epoch, calibrate, vertical = (tabs.widget(i) for i in range(4))
+
+    # -- Recommend: enumerate, recommend a non-ballpark op, copy its pipeline.
+    recommend.source_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:4201"))
+    recommend.target_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:4326"))
+    recommend.allow_ballpark.setChecked(False)
+    recommend.on_find()
+    assert recommend.table.rowCount() >= 3
+    assert recommend._result.recommended is not None
+    assert not recommend._result.recommended.is_ballpark
+    recommend.table.selectRow(0)
+    recommend.on_copy_pipeline()
+    assert QgsApplication.clipboard().text().startswith("+proj=pipeline")
+
+    # -- Calibrate: clean fit + copy pipeline, then catch the planted outlier.
+    calibrate.points_edit.setPlainText(
+        (docs / "sample_control_points.csv").read_text(encoding="utf-8")
+    )
+    calibrate.method_combo.setCurrentIndex(0)  # Helmert
+    calibrate.threshold_edit.setText("3.5")
+    calibrate.on_fit()
+    assert calibrate._result.rmse < 0.1
+    assert len(calibrate._result.outliers) == 0
+    assert calibrate.table.rowCount() == 12
+    calibrate.on_copy()
+    assert QgsApplication.clipboard().text().startswith("+proj=pipeline")
+    calibrate.points_edit.setPlainText(
+        (docs / "sample_control_points_with_outlier.csv").read_text(encoding="utf-8")
+    )
+    calibrate.on_fit()
+    assert list(calibrate._result.outliers) == [4]
+
+    # -- Vertical: preset assemble + copy, then a compound CRS is refused.
+    vertical.horizontal_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:4326"))
+    vertical.vertical_combo.setCurrentIndex(0)  # EGM96 height (EPSG:5773)
+    vertical.on_assemble()
+    assert vertical._compound_wkt and "COMPOUND" in vertical._compound_wkt.upper()
+    vertical.on_copy()
+    assert "COMPOUND" in QgsApplication.clipboard().text().upper()
+    # A compound CRS (EPSG:9707) in the vertical slot is refused, so the prior
+    # valid EGM96 (5773) compound is left untouched -- proof it did not proceed.
+    vertical.vertical_combo.setCurrentIndex(len(COMMON_VERTICAL_CRS))  # "Custom…"
+    vertical.vertical_custom.setText("EPSG:9707")
+    vertical.on_assemble()
+    assert "5773" in vertical._compound_wkt
+
+    # -- Epoch: refusal-without-epoch, then epoch-set status (no run needed).
+    layer = QgsVectorLayer("PointZ?crs=EPSG:7912", "itrf_dock", "memory")
+    feat = QgsFeature()
+    feat.setGeometry(QgsGeometry(QgsPoint(151.2093, -33.8688, 0.0)))
+    layer.dataProvider().addFeature(feat)
+    QgsProject.instance().addMapLayer(layer)
+    try:
+        epoch.layer_combo.setLayer(layer)
+        epoch.target_sel.setCrs(QgsCoordinateReferenceSystem("EPSG:7843"))
+        epoch.epoch_spin.setValue(0.0)  # not set
+        epoch.on_check()
+        assert "required" in epoch.status.text().lower()
+        epoch.epoch_spin.setValue(2020.0)
+        epoch.on_check()
+        assert "required" not in epoch.status.text().lower()
+    finally:
+        QgsProject.instance().removeMapLayer(layer.id())
+
+    dock.deleteLater()
+
+
 def test_epoch_tab_explains_requirement(qgis_iface) -> None:
     from crsmart.gui.widgets.epoch_tab import EpochTab
     from qgis.core import (
