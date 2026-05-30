@@ -12,7 +12,12 @@ from crsmart.core.epoch import (
     require_epoch_or_raise,
     transform_4d,
 )
-from crsmart.core.errors import EpochRequiredError
+from crsmart.core.errors import (
+    BallparkNotAllowedError,
+    EpochRequiredError,
+    TransformUnavailableError,
+)
+from pyproj import CRS
 
 ITRF2014 = 7912  # ITRF2014 geographic 3D (dynamic)
 ITRF2008 = 7911  # ITRF2008 geographic 3D (dynamic)
@@ -75,6 +80,25 @@ def test_transform_4d_is_time_dependent() -> None:
 def test_transform_4d_enforces_epoch_for_dynamic() -> None:
     with pytest.raises(EpochRequiredError):
         transform_4d(ITRF2014, ITRF2008, LON, LAT, H, float("nan"))
+
+
+def test_ballpark_only_pair_raises_clear_error_not_cryptic_projerror() -> None:
+    """A pair whose only path is a ballpark transform must raise a clear,
+    actionable error -- not PROJ's cryptic 'Error creating Transformer from CRS.'"""
+    # A custom CRS with an undefined datum: only a ballpark path to WGS 84 exists.
+    custom = CRS.from_proj4("+proj=longlat +ellps=bessel +no_defs")
+    with pytest.raises(BallparkNotAllowedError) as excinfo:
+        make_4d_transformer(WGS84, custom)
+    assert "ballpark" in str(excinfo.value).lower()
+    # With explicit opt-in the transformer builds.
+    transformer = make_4d_transformer(WGS84, custom, allow_ballpark=True)
+    assert transformer is not None
+
+
+def test_incompatible_pair_raises_transform_unavailable() -> None:
+    """No operation at all (e.g. geographic -> vertical-only) -> clear error."""
+    with pytest.raises(TransformUnavailableError):
+        make_4d_transformer(WGS84, 5703)  # NAVD88 height (vertical-only)
 
 
 def test_make_4d_transformer_is_reusable_and_matches_transform_4d() -> None:
