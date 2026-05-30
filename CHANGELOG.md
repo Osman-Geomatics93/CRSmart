@@ -6,6 +6,10 @@ All notable changes to CRSmart are documented here. The format follows
 
 ## [Unreleased]
 
+_Nothing yet._
+
+## [0.1.2] - 2026-05-30
+
 ### Fixed
 
 - **Epoch-aware transform no longer fails with a cryptic PROJ traceback when only
