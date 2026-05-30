@@ -8,6 +8,19 @@ All notable changes to CRSmart are documented here. The format follows
 
 _Nothing yet._
 
+## [0.1.5] - 2026-05-30
+
+### Added
+
+- **Pick a vertical CRS without QGIS's CRS selector.** QGIS's standard CRS picker
+  does not list standalone vertical CRSs on many builds, which made vertical-datum
+  repair hard to use. Both the **Vertical** dock tab and the **Repair vertical CRS**
+  algorithm now offer a **presets dropdown** of common geoid/height CRSs (EGM96,
+  EGM2008, EGM84, NAVD88, NAVD88 ftUS, MSL, EVRF2019, AHD) **plus a free-text field**
+  for any EPSG code / authid / WKT / PROJ string (the text overrides the preset).
+  (`crsmart/core/vertical.py`, `crsmart/gui/widgets/vertical_tab.py`,
+  `crsmart/processing/algorithms/repair_vertical.py`)
+
 ## [0.1.4] - 2026-05-30
 
 ### Fixed

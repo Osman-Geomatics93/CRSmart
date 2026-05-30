@@ -155,12 +155,28 @@ def test_repair_vertical(qgis_app) -> None:
         RepairVerticalAlgorithm,
     )
 
+    # Custom text field (overrides the preset).
     results = _run(
         RepairVerticalAlgorithm(),
         {"HORIZONTAL_CRS": "EPSG:4326", "VERTICAL_CRS": "EPSG:5703"},  # NAVD88
     )
     wkt = results["COMPOUND_WKT"]
     assert "COMPOUNDCRS" in wkt.upper() or "COMPD_CS" in wkt.upper()
+
+
+def test_repair_vertical_preset(qgis_app) -> None:
+    from crsmart.processing.algorithms.repair_vertical import (
+        RepairVerticalAlgorithm,
+    )
+
+    # Preset path: no custom text, default preset (EGM96) -> compound assembled.
+    results = _run(
+        RepairVerticalAlgorithm(),
+        {"HORIZONTAL_CRS": "EPSG:4326", "VERTICAL_PRESET": 0},
+    )
+    wkt = results["COMPOUND_WKT"]
+    assert "COMPOUNDCRS" in wkt.upper() or "COMPD_CS" in wkt.upper()
+    assert "EGM96" in wkt
 
 
 def test_epoch_transform_points(qgis_app) -> None:
