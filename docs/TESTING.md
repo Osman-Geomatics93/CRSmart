@@ -28,12 +28,17 @@ you cloned the repo):
 
 ## 0. Pre-flight (catch load errors first)
 
-- [ ] **Plugins ▸ Manage and Install Plugins ▸ Installed** → CRSmart is enabled, **version 0.1.1**.
+- [ ] **Plugins ▸ Manage and Install Plugins ▸ Installed** → CRSmart is enabled, **version 0.1.3**.
 - [ ] Open **View ▸ Panels ▸ Log Messages**; check the **Plugins** and **Python** tabs. Reload the plugin (use *Plugin Reloader*, or toggle CRSmart off/on) — **no red tracebacks**.
 - [ ] Toolbar button / **Plugins ▸ CRSmart** toggles a **dock with 4 tabs** (Recommend / Epoch / Calibrate / Vertical).
 - [ ] **Processing ▸ Toolbox ▸ CRSmart** lists **5 algorithms**.
 
 ---
+
+> **Setting a CRS in the GUI:** "Source = EPSG:4201" means *set the CRS picker to
+> that CRS* — the Source/Target/Horizontal/Vertical rows are QGIS's standard CRS
+> selector widgets, not text boxes. Click the widget → open the selector → type the
+> number (e.g. `4201`) or name (e.g. `Adindan`) in the **Filter** box → pick it → **OK**.
 
 ## A. Recommend transformation (with uncertainty)
 
@@ -58,10 +63,13 @@ Load `sample_points_itrf2014_australia.csv` as **ITRF2014 (EPSG:7912)**. Target 
 
 - [ ] **Explain epoch requirement** states an epoch **is required** and why.
 - [ ] **Run with the epoch unset** → CRSmart **refuses** (no silent output). *(key safety behavior)*
-- [ ] Set epoch **2020.0** → runs and produces output.
-- [ ] Same point at **1995.0** vs **2025.0** → coordinates **differ by ~1.7 m** (30 yr × ~5.7 cm/yr plate motion).
+- [ ] Set epoch **2020.0** → **Run epoch transform** → a **"Transformed" layer is added** to the Layers panel *(v0.1.3 — it used to run silently with no visible output)*.
+- [ ] Same point at **1995.0** vs **2025.0** → coordinates **differ by ~1.7 m** (30 yr × ~5.7 cm/yr plate motion). Compare via the attribute table or the Identify tool on the two output layers.
 
-**Processing — `Epoch-aware transform`:** `INPUT` layer, `TARGET_CRS=EPSG:7843`, `EPOCH` empty → errors out; with `EPOCH=2020.0` → succeeds.
+**Processing — `Epoch-aware transform`:** `INPUT` layer, `TARGET_CRS=EPSG:7843`, `EPOCH` empty → errors out; with `EPOCH=2020.0` → succeeds and loads the result.
+
+- [ ] *(v0.1.3 regression)* Running from the **Processing Toolbox** must **not crash QGIS**. CRSmart algorithms declare `NoThreading` and run on the main thread (PROJ is not thread-safe in Processing worker threads).
+- [ ] *(v0.1.2 — ballpark guard)* Pick a target whose datum grid you do **not** have so only a ballpark path exists. With **Allow ballpark transform** *off* → a **clear message** (*"No survey-grade transformation is available… only a ballpark transform exists"*), **not** a raw `ProjError` traceback. Tick **Allow ballpark transform** → it runs.
 
 > ITRF2014 → ITRF2008 (EPSG:7911) also requires an epoch, but two global frames barely move relative to each other — the 1995-vs-2025 difference is ~0. Use the dynamic↔plate-fixed pair above to *see* the effect.
 
@@ -104,7 +112,10 @@ print(t.transform(100.0, 200.0))   # ≈ (12098.76, -7799.38) = row 1 of the CSV
 
 **GUI — Vertical tab:** **Detect vertical CRS** on a plain 2D layer → reports missing/none. Horizontal = **EPSG:4326**, Vertical = **EGM96 height (EPSG:5773)** → **Assemble compound CRS** → **Copy compound WKT**.
 
+> The **Vertical CRS** field must hold an actual *vertical* (height) CRS — e.g. **EGM96 height (EPSG:5773)**, **EGM2008 (EPSG:3855)**, or **NAVD88 height (EPSG:5703)**. In the CRS picker, type the number or `EGM96`. A compound CRS is *horizontal + vertical*, so picking a horizontal CRS like WGS 84 here is **correctly refused** with *"'WGS 84' is not a vertical CRS"* — that guard is expected behavior, not a bug.
+
 - [ ] WKT is a `COMPOUNDCRS[...]` containing both the horizontal and vertical components.
+- [ ] Putting a non-vertical CRS (e.g. EPSG:4326) in the **Vertical CRS** field is refused with a clear *"… is not a vertical CRS"* message.
 - [ ] **Processing — `Repair vertical CRS`** with the optional output layer enabled writes a copy with the compound CRS **assigned** — coordinates unchanged (it relabels, does not move them).
 
 ---
