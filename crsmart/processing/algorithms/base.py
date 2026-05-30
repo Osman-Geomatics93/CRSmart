@@ -7,7 +7,7 @@ Algorithms are thin wrappers: they marshal QGIS parameters into the pure
 from __future__ import annotations
 
 from pyproj import CRS
-from qgis.core import QgsCoordinateReferenceSystem, QgsProcessingAlgorithm
+from qgis.core import Qgis, QgsCoordinateReferenceSystem, QgsProcessingAlgorithm
 from qgis.PyQt.QtCore import QCoreApplication
 
 GROUP_NAME = "CRS & datum tools"
@@ -45,6 +45,30 @@ def pyproj_crs_to_qgs(crs: CRS) -> QgsCoordinateReferenceSystem:
 
 class CRSmartAlgorithm(QgsProcessingAlgorithm):
     """Base for all CRSmart algorithms: common group, tr, and createInstance."""
+
+    def flags(self) -> QgsProcessingAlgorithm.Flags:
+        """Run CRSmart algorithms on the main thread (never a worker thread).
+
+        Every algorithm builds pyproj/PROJ objects, and PROJ's database context
+        is not reliably thread-safe inside QGIS Processing worker threads -- on
+        Windows, creating a ``pyproj.CRS`` in a worker thread can crash the host
+        with a native access violation (``projCppContext::getDatabaseContext``).
+        Declaring ``NoThreading`` makes QGIS execute the algorithm on the main
+        thread, where QGIS has already initialised PROJ.
+
+        Feature-detected so it works on both the Qt6 enum
+        (``Qgis.ProcessingAlgorithmFlag.NoThreading``) and the older Qt5
+        attribute (``QgsProcessingAlgorithm.FlagNoThreading``).
+        """
+        result = super().flags()
+        no_threading = getattr(
+            getattr(Qgis, "ProcessingAlgorithmFlag", None), "NoThreading", None
+        )
+        if no_threading is None:
+            no_threading = getattr(QgsProcessingAlgorithm, "FlagNoThreading", None)
+        if no_threading is not None:
+            result |= no_threading
+        return result
 
     def tr(self, string: str) -> str:
         return QCoreApplication.translate("CRSmart", string)

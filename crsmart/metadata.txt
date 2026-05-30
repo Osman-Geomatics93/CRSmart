@@ -12,7 +12,7 @@ about=CRSmart turns CRS and datum transformation from a guessing game into a
     (Helmert / affine) with residual reporting, and repairs missing vertical CRS.
     All geodetic math goes through PROJ / pyproj. Every capability is exposed both
     as a Processing algorithm and via a dockable panel.
-version=0.1.2
+version=0.1.3
 author=OSMAN IBRAHIM
 email=osmangeomatics93@gmail.com
 tracker=https://github.com/Osman-Geomatics93/CRSmart/issues
@@ -25,7 +25,10 @@ experimental=False
 deprecated=False
 hasProcessingProvider=yes
 license=GPL-2.0
-changelog=0.1.2 - Fix: epoch-aware transform no longer fails with a cryptic PROJ
+changelog=0.1.3 - Fix: running an algorithm from the Processing Toolbox could
+    crash QGIS (PROJ not thread-safe in worker threads); algorithms now run on
+    the main thread. The Epoch tab also now loads its result layer.
+    0.1.2 - Fix: epoch-aware transform no longer fails with a cryptic PROJ
     traceback when only a ballpark transform exists; it now reports a clear,
     actionable message and adds an explicit "Allow ballpark transform" opt-in.
     0.1.1 - Security fix: restrict PROJ-CDN grid downloads to HTTP(S)

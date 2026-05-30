@@ -8,6 +8,21 @@ All notable changes to CRSmart are documented here. The format follows
 
 _Nothing yet._
 
+## [0.1.3] - 2026-05-30
+
+### Fixed
+
+- **Running any algorithm from the Processing Toolbox could crash QGIS** with a
+  native access violation (`projCppContext::getDatabaseContext`). The Toolbox
+  runs algorithms in a background worker thread, and pyproj/PROJ's database
+  context is not reliably thread-safe there. All CRSmart algorithms now declare
+  the `NoThreading` flag, so QGIS executes them on the main thread where PROJ is
+  already initialised. (`crsmart/processing/algorithms/base.py`)
+- **The Epoch tab's "Run epoch transform" produced no visible output.** It used
+  `processing.run(...)` with a memory output and discarded the result; it now
+  uses `processing.runAndLoadResults(...)` so the transformed layer is added to
+  the project. (`crsmart/gui/widgets/epoch_tab.py`)
+
 ## [0.1.2] - 2026-05-30
 
 ### Fixed
