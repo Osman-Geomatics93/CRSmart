@@ -16,8 +16,8 @@ jobs:
     name: Lint, format and type-check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Install tooling
@@ -35,7 +35,7 @@ jobs:
     name: Qt5/Qt6 compatibility checker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: No direct PyQt imports (qgis.PyQt shim only)
         run: |
           if grep -rEn "^[[:space:]]*(import|from)[[:space:]]+PyQt[56]\b" crsmart; then
@@ -62,7 +62,7 @@ jobs:
       QT_QPA_PLATFORM: offscreen
       PIP_BREAK_SYSTEM_PACKAGES: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Diagnostics
         run: |
           python3 --version
@@ -88,8 +88,8 @@ jobs:
     name: Build and verify plugin zip
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Install deps
@@ -99,7 +99,7 @@ jobs:
       - name: Verify zip structure
         run: python -m pytest tests/test_packaging.py -ra
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: crsmart-plugin-zip
           path: dist/*.zip
@@ -112,8 +112,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Install qgis-plugin-ci
