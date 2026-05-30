@@ -8,6 +8,7 @@ from crsmart.core.vertical import assemble_compound, detect_vertical
 WGS84_2D = 4326
 NAVD88_HEIGHT = 5703  # vertical CRS
 NAD83_NAVD88 = 5498  # compound: NAD83 + NAVD88 height
+WGS84_EGM96 = 9707  # compound: WGS 84 + EGM96 height (NOT a standalone vertical)
 
 
 def test_missing_vertical_detected() -> None:
@@ -44,3 +45,13 @@ def test_assemble_compound_repairs_missing_vertical() -> None:
 def test_assemble_compound_rejects_non_vertical() -> None:
     with pytest.raises(ValueError):
         assemble_compound(WGS84_2D, WGS84_2D)  # second arg isn't vertical
+
+
+def test_assemble_compound_rejects_compound_in_vertical_slot() -> None:
+    """A compound CRS (e.g. EPSG:9707) reports is_vertical=True but must be
+    refused with a clear message -- not allowed to reach PROJ and raise a cryptic
+    CRSError by nesting compounds."""
+    with pytest.raises(ValueError) as excinfo:
+        assemble_compound(WGS84_2D, WGS84_EGM96)
+    msg = str(excinfo.value).lower()
+    assert "standalone vertical" in msg and "5773" in str(excinfo.value)

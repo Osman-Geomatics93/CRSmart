@@ -8,6 +8,19 @@ All notable changes to CRSmart are documented here. The format follows
 
 _Nothing yet._
 
+## [0.1.4] - 2026-05-30
+
+### Fixed
+
+- **Vertical datum repair crashed with a cryptic `CRSError` traceback when a
+  *compound* CRS (e.g. EPSG:9707 "WGS 84 + EGM96 height") was chosen in the
+  Vertical CRS slot.** PROJ reports a compound CRS as `is_vertical=True` because
+  it merely *contains* a vertical axis, so the guard let it through and PROJ then
+  rejected the nested compound. `assemble_compound` now requires a **standalone**
+  vertical CRS and refuses a compound (or horizontal) one with a clear, actionable
+  message pointing to a pure vertical CRS such as EGM96 height (EPSG:5773).
+  (`crsmart/core/vertical.py`)
+
 ## [0.1.3] - 2026-05-30
 
 ### Fixed

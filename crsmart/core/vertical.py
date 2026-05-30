@@ -74,14 +74,28 @@ def assemble_compound(
 ) -> CRS:
     """Assemble a compound CRS from a horizontal and a vertical CRS.
 
-    :raises ValueError: if ``horizontal`` is not horizontal or ``vertical`` is
-        not a vertical CRS.
+    :raises ValueError: if ``horizontal`` is not a plain horizontal CRS, or
+        ``vertical`` is not a standalone vertical CRS (a compound CRS is rejected
+        even though PROJ reports it as ``is_vertical`` — it merely *contains* a
+        vertical axis, and nesting compounds is invalid).
     """
     h = coerce_crs(horizontal)
     v = coerce_crs(vertical)
-    if not (h.is_geographic or h.is_projected):
+    if h.is_compound or not (h.is_geographic or h.is_projected):
         raise ValueError(f"'{h.name}' is not a horizontal (geographic/projected) CRS.")
-    if not v.is_vertical:
-        raise ValueError(f"'{v.name}' is not a vertical CRS.")
+    # PROJ flags any CRS that contains a vertical axis as ``is_vertical`` -- that
+    # includes compound CRSs (e.g. EPSG:9707 'WGS 84 + EGM96 height'). We need a
+    # *standalone* vertical CRS so we never nest one compound inside another.
+    if v.is_compound or not v.is_vertical:
+        raise ValueError(
+            f"'{v.name}' is not a standalone vertical (height) CRS. Choose a pure "
+            "vertical CRS such as EGM96 height (EPSG:5773) or EGM2008 height "
+            "(EPSG:3855) -- not a compound CRS like EPSG:9707."
+        )
     compound_name = name or f"{h.name} + {v.name}"
-    return CRS(CompoundCRS(name=compound_name, components=[h, v]).to_wkt())
+    try:
+        return CRS(CompoundCRS(name=compound_name, components=[h, v]).to_wkt())
+    except Exception as exc:  # pragma: no cover - defensive; guards catch known cases
+        raise ValueError(
+            f"Could not assemble a compound CRS from '{h.name}' + '{v.name}': {exc}"
+        ) from exc
