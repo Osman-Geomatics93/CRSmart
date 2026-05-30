@@ -113,11 +113,13 @@ class EpochTab(QWidget):
         if epoch is not None:
             params["EPOCH"] = epoch
         try:
-            processing.run("crsmart:epochtransform", params)
+            # runAndLoadResults adds the output layer to the project so the user
+            # can actually see it; plain run() would create and discard it.
+            processing.runAndLoadResults("crsmart:epochtransform", params)
         except Exception as exc:
             self._warn(self.tr("Transform failed: {e}").format(e=exc))
             return
-        self._info(self.tr("Epoch transform complete."))
+        self._info(self.tr("Epoch transform complete; added the result layer."))
 
     def _info(self, text: str) -> None:
         bar = self.iface.messageBar() if self.iface else None

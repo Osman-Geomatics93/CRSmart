@@ -37,6 +37,31 @@ def test_provider_loads_all_algorithms(qgis_app) -> None:
     assert ids >= EXPECTED_ALGORITHMS
 
 
+def test_all_algorithms_run_on_main_thread(qgis_app) -> None:
+    """Every CRSmart algorithm must declare NoThreading.
+
+    The algorithms build pyproj/PROJ objects, whose database context is not
+    reliably thread-safe inside QGIS Processing worker threads -- on Windows it
+    can crash the host with a native access violation. NoThreading forces
+    main-thread execution. Regression guard for that crash.
+    """
+    from crsmart.processing.provider import CRSmartProvider
+    from qgis.core import Qgis, QgsProcessingAlgorithm
+
+    no_threading = getattr(
+        getattr(Qgis, "ProcessingAlgorithmFlag", None), "NoThreading", None
+    )
+    if no_threading is None:  # pragma: no cover - Qt5-only fallback
+        no_threading = QgsProcessingAlgorithm.FlagNoThreading
+
+    provider = CRSmartProvider()
+    provider.refreshAlgorithms()
+    algorithms = list(provider.algorithms())
+    assert algorithms, "provider exposed no algorithms"
+    for alg in algorithms:
+        assert alg.flags() & no_threading, f"{alg.name()} is missing NoThreading"
+
+
 def test_recommend_sudan_parametric(qgis_app) -> None:
     from crsmart.processing.algorithms.recommend_transform import (
         RecommendTransformAlgorithm,
